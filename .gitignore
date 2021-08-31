@@ -1,0 +1,6 @@
+
+.ftpquota
+
+*.bak
+
+sftp-config.json
