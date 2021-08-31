@@ -1,0 +1,1979 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="form_5_viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+    <title>HMCC- Orthotic prescription- Dr. Mark 2020</title>
+    <style>
+      .container {
+        margin-top: 2em;
+        margin-bottom: 2em;
+        border: 2px solid #444;
+      }
+      #my-table tr {
+        font-size: 10px;
+      }
+
+      #your-table td {
+        border-width: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button type="button" onclick="reset()">Reset Test</button>
+    <button type="button" onclick="saveData()">Save Form</button>
+    <button type="button" onclick="loadData()">Load Form</button>
+    <button type="button" onclick="print()">Print</button>
+    <form>
+      <div class="container mt-5 p-4">
+        <div class="d-flex">
+          <div>
+            <label for="elem_524">Patient Name:</label>
+            <input
+              name="form_5_form_5_elem_524"
+              id="elem_524"
+              onkeyup="updateInputValue(name, this)"
+            />
+          </div>
+          <div style="margin-left: auto; text-align: right">
+            <div style="margin-bottom: 0.5em">
+              <label for="elem_2">Patient #:</label>
+              <input id="elem_2" name="form_5_form_5_elem_2" onkeyup="updateInputValue(name, this)" />
+            </div>
+            <div>
+              <label for="elem_3">Date:</label>
+              <input id="elem_3" name="form_5_form_5_elem_3" onkeyup="updateInputValue(name, this)" />
+            </div>
+          </div>
+        </div>
+        <h3>Orthotic Examination</h3>
+        <h5>Patient Symptoms/Complaint:</h5>
+        <div class="row">
+          <div class="col">
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_4"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_4">
+                        <label class="form-check-label" for="elem_4">Lower back pain</label></div>
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_5"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_5">
+                        <label class="form-check-label" for="elem_5">Peroneus tendonitis</label></div>
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_6"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_6">
+                        <label class="form-check-label" for="elem_6">Heel spurs</label></div>
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_7"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_7">
+                        <label class="form-check-label" for="elem_7">Anterior tibialis shin splints</label></div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_8"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_8">
+                        <label class="form-check-label" for="elem_8">Patellar femoral syndrome</label></div>
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_9"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_9">
+                        <label class="form-check-label" for="elem_9">Bunions</label></div>
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_525"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_525">
+                        <label class="form-check-label" for="elem_525">I-T band syndrome</label></div>
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_526"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_526">
+                        <label class="form-check-label" for="elem_526">Sacroiliac joint inflammation</label></div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_12"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_12">
+                        <label class="form-check-label" for="elem_12">Metatarsalgia</label></div>
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_13"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_13">
+                        <label class="form-check-label" for="elem_13">Abnormal gait</label></div>
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_14"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_14">
+                        <label class="form-check-label" for="elem_14">Achilles tendonitis</label></div>
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_15"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_15">
+                        <label class="form-check-label" for="elem_15">Plantar fasciitis</label></div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_16"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_16">
+                        <label class="form-check-label" for="elem_16">Pes planus</label></div>
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_17"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_17">
+                        <label class="form-check-label" for="elem_17">Severe overpronation</label></div>
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_18"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_18">
+                        <label class="form-check-label" for="elem_18">Hallux Valgus</label></div>
+            <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_19"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_19">
+                        <label class="form-check-label" for="elem_19">Heel Pain</label></div>
+          </div>
+        </div>
+        <div class="form-check d-flex">
+          <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_20"
+              onclick="updateCheckBoxValue(name, this)" id="elem_20">
+          <label class="form-check-label ms-1 me-1" for="elem_20">Other:</label>
+          <input onkeyup="updateInputValue(name, this)" name="form_5_form_5_elem_21" id="elem_21" class="w-100 d-inline" />
+        </div>
+        
+        <div class="row" style="margin-bottom: 0.5em;">
+          <div class="col-6">
+            Do you wear store-bought orthotic arch supports?<br />
+          </div>
+          <div class="col-2">
+            <input class="" type="radio" id="receive_email_1" name="form_5_form_2_receive_email" onclick="updateRadioValue(name, this)" value="true" style="margin-left: 10px;"><label for="receive_email_1" class="">Y</label>
+				    <input class="" type="radio" id="receive_email_2" name="form_5_form_2_receive_email" onclick="updateRadioValue(name, this)" value="false" style="margin-left: 10px;"><label for="receive_email_2" class="">N</label>
+          </div>
+          <div class="col-4">
+            <label for="elem_23">Comments:</label>
+             <input id="elem_23" name="form_5_form_5_elem_23" onkeyup="updateInputValue(name, this)"  />
+          </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 0.5em;">
+          <div class="col-6">
+            Do you wear custom orthotic arch supports?<br />
+          </div>
+          <div class="col-2">
+            <input class="" type="radio" id="experience_1" name="form_5_form_2_experience" onclick="updateRadioValue(name, this)" style="margin-left: 10px;"><label for="experience_1" class="">Y</label>
+				    <input class="" type="radio" id="experience_2" name="form_5_form_2_experience" onclick="updateRadioValue(name, this)" style="margin-left: 10px;"><label for="experience_2" class="">N</label>
+          </div>
+          <div class="col-4">
+            <label for="elem_26">Comments:</label>
+             <input id="elem_26" name="form_5_form_5_elem_26" onkeyup="updateInputValue(name, this)"  />
+          </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 0.5em;">
+          <div class="col-12 d-flex">
+            <label for="elem_27">If yes, who made them: </label>
+            <input class="w-100 d-inline" id="elem_27" name="form_5_form_5_elem_27" onkeyup="updateInputValue(name, this)"  />
+          </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 0.5em;">
+          <div class="col-12 d-flex">
+            <label for="elem_28">Lower Extremity Medical History: Surgeries, injuries, Illnesses: </label>
+            <input class="w-100 d-inline" id="elem_28" name="form_5_form_5_elem_28" onkeyup="updateInputValue(name, this)"  />
+          </div>
+        </div>
+
+        <h5>General:</h5>
+
+        <div class="row">
+          <div class="col-4" style="margin-bottom: 0.5em">
+            <label for="elem_29">Weight:</label>
+            <input name="form_5_form_5_elem_29" id="elem_29" /> lbs/kgs.
+          </div>
+          <div class="col-4">
+            <label for="elem_30">Height:</label>
+            <input name="form_5_form_5_elem_30" id="elem_30" /> inches/cm
+          </div>
+          <div class="col-4">
+            <label for="elem_31">Shoe Size:</label>
+            <input name="form_5_form_5_elem_31" id="elem_31" /> inches/cm
+          </div>
+          <div class="col-4">
+            <label>Diabetic: </label>
+            <input class="" type="radio" id="coverage_1" name="form_5_form_2_coverage" onclick="updateRadioValue(name, this)" style="margin-left: 10px;"><label for="coverage_1" class="">Yes</label>
+            <input class="" type="radio" id="coverage_2" name="form_5_form_2_coverage" onclick="updateRadioValue(name, this)" style="margin-left: 10px;"><label for="coverage_2" class="">No</label>
+          </div>
+          <div class="col-8">
+            <label for="elem_34">Comments:</label>
+            <input id="elem_34" name="form_5_form_5_elem_34" type="text" />
+          </div>
+          <div class="col-8">
+            <label for="elem_35">Occupation:</label>
+            <input id="elem_35" name="form_5_form_5_elem_35" type="text" />
+          </div>
+          <div class="col-4" style="margin-bottom: .5em;">
+            <label for="elem_36">Hours/day on feet:</label>
+            <input id="elem_36" name="form_5_form_5_elem_36" type="text" />
+          </div>
+          <div class="col-12" style="margin-bottom: .5em;">
+            <label for="elem_37">Athletic Activities you participate in:</label>
+            <input id="elem_37" name="form_5_form_5_elem_37" type="text" />
+          </div>
+          <div class="col-12" style="margin-bottom: .5em;">
+            <label for="elem_38"># days per week exercising? </label>
+            <input id="elem_38" name="form_5_form_5_elem_38" type="text" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <img src="./assets/2.png" class="w-100" />
+          </div>
+          <div class="col-3">
+            <table class="table text-center table-sm table-bordered" id="my-table">
+              <tr>
+                <td>C0</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_39"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_39"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_40"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_40"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_41"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_41"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_42"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_42"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_43"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_43"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_44"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_44"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_45"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_45"></td>
+              </tr>
+              <tr>
+                <td>C1</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_46"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_46"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_47"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_47"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_48"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_48"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_49"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_49"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_50"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_50"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_51"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_51"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_52"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_52"></td>
+              </tr>
+              <tr>
+                <td>C2</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_53"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_53"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_54"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_54"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_55"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_55"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_56"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_56"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_57"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_57"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_58"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_58"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_59"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_59"></td>
+              </tr>
+              <tr>
+                <td>C3</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_60"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_60"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_61"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_61"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_62"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_62"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_63"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_63"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_64"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_64"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_65"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_65"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_66"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_66"></td>
+              </tr>
+              <tr>
+                <td>C4</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_67"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_67"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_68"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_68"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_69"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_69"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_70"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_70"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_71"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_71"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_72"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_72"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_73"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_73"></td>
+              </tr>
+              <tr>
+                <td>C5</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_74"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_74"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_75"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_75"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_76"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_76"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_77"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_77"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_78"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_78"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_79"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_79"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_80"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_80"></td>
+              </tr>
+              <tr>
+                <td>C6</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_81"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_81"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_82"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_82"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_83"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_83"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_84"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_84"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_85"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_85"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_86"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_86"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_87"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_87"></td>
+              </tr>
+              <tr>
+                <td>C7</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_88"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_88"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_89"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_89"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_90"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_90"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_91"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_91"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_92"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_92"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_93"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_93"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_94"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_94"></td>
+              </tr>
+              <tr>
+                <td>T1</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_95"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_95"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_96"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_96"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_97"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_97"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_98"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_98"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_99"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_99"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_100"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_100"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_101"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_101"></td>
+              </tr>
+              <tr>
+                <td>T2</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_102"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_102"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_103"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_103"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_104"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_104"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_105"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_105"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_106"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_106"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_107"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_107"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_108"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_108"></td>
+              </tr>
+              <tr>
+                <td>T3</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_109"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_109"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_110"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_110"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_111"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_111"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_112"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_112"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_113"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_113"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_114"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_114"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_115"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_115"></td>
+              </tr>
+              <tr>
+                <td>T4</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_116"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_116"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_117"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_117"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_118"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_118"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_119"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_119"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_120"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_120"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_121"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_121"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_122"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_122"></td>
+              </tr>
+              <tr>
+                <td>T5</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_123"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_123"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_124"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_124"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_125"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_125"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_126"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_126"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_127"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_127"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_128"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_128"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_129"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_129"></td>
+              </tr>
+              <tr>
+                <td>T6</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_130"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_130"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_131"
+                        onclick="updateCheckBoxValue(name, this)" id="131"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_132"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_132"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_133"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_133"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_134"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_134"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_135"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_135"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_136"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_136"></td>
+              </tr>
+              <tr>
+                <td>T7</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_137"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_137"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_138"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_138"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_139"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_139"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_140"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_140"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_141"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_141"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_142"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_142"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_143"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_143"></td>
+              </tr>
+              <tr>
+                <td>T8</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_144"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_144"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_145"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_145"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_146"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_146"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_147"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_147"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_148"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_148"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_149"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_149"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_150"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_150"></td>
+              </tr>
+              <tr>
+                <td>T9</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_151"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_151"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_152"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_152"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_153"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_153"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_154"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_154"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_155"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_155"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_156"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_156"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_157"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_157"></td>
+              </tr>
+              <tr>
+                <td>T10</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_158"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_158"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_159"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_159"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_160"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_160"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_161"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_161"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_162"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_162"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_163"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_163"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_164"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_164"></td>
+              </tr>
+              <tr>
+                <td>T11</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_165"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_165"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_166"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_166"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_167"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_167"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_168"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_168"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_169"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_169"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_170"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_170"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_171"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_171"></td>
+              </tr>
+              <tr>
+                <td>T12</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_172"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_172"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_173"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_173"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_174"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_174"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_175"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_175"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_176"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_176"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_177"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_177"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_178"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_178"></td>
+              </tr>
+              <tr>
+                <td>L1</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_179"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_179"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_180"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_180"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_181"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_181"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_182"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_182"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_183"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_183"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_184"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_184"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_185"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_185"></td>
+              </tr>
+              <tr>
+                <td>L2</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_186"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_186"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_187"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_187"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_188"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_188"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_189"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_189"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_190"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_190"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_191"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_191"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_192"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_192"></td>
+              </tr>
+              <tr>
+                <td>L3</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_193"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_193"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_194"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_194"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_195"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_195"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_196"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_196"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_197"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_197"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_198"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_198"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_199"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_199"></td>
+              </tr>
+              <tr>
+                <td>L4</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_200"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_201"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_elem_202"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_203"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_204"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_205"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_206"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+              </tr>
+              <tr>
+                <td>L5</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_207"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_208"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_elem_209"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_210"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_211"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_212"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_213"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+              </tr>
+              <tr>
+                <td>S1</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_214"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_215"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_elem_216"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_217"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_218"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_219"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_220"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_221"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_222"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td
+                  style="
+                    border-right-width: 2px;
+                    border-style: solid;
+                    border-color: black;
+                  "
+                ><input class="form-check-input" type="checkbox" name="form_5_elem_223"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_224"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_225"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_226"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_elem_227"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-6">
+            <img src="./assets/symptom.jpg" />
+          </div>
+        </div>
+
+        <p class="text-muted">
+          **If applicable areas of foot pain (x) are indicated on the diagram to
+          the right. Areas of callusing are indicated with circles.
+        </p>
+
+        <table class="tabele table-bordered">
+          <tr>
+            <td rowspan="2">
+              <h4>Arch Heights:</h4>
+              <hr />
+              <div class="row text-center">
+                <div class="col-6">
+                  <h6>Weight bearing</h6>
+                </div>
+                <div class="col-3">Left</div>
+                <div class="col-3">Right</div>
+                <div class="col-6">High</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_228"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_229"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Medium</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_230"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_231"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Low</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_232"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_233"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+              </div>
+              <div class="row text-center">
+                <div class="col-6">
+                  <h6>NonWeight bearing</h6>
+                </div>
+                <div class="col-3">Left</div>
+                <div class="col-3">Right</div>
+                <div class="col-6">High</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_234"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_235"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Medium</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_236"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_237"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Low</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_238"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_239"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+              </div>
+              <div class="row text-center">
+                <div class="col-6">
+                  <h6>Gait</h6>
+                </div>
+                <div class="col-3">Left</div>
+                <div class="col-3">Right</div>
+                <div class="col-6">Toe in</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_240"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_241"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Straight</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_242"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_243"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Toe Out</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_244"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_245"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+              </div>
+              <div class="row text-center">
+                <div class="col-6">
+                  <h6>Gait Patterns</h6>
+                </div>
+                <div class="col-3">Left</div>
+                <div class="col-3">Right</div>
+                <div class="col-6">Toe in</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_246"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_247"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Straight</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_248"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_249"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Toe Out</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_250"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_251"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+              </div>
+            </td>
+            <td>
+              <h4>Additional Testing:</h4>
+              <hr />
+              <div class="row text-center">
+                <div class="col-6">
+                  <h6>One Legged Squat</h6>
+                </div>
+                <div class="col-3">Left</div>
+                <div class="col-3">Right</div>
+                <div class="col-6">High</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_252"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_253"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Medium</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_254"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_255"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Low</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_256"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_257"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+              </div>
+              <hr />
+              <div class="row text-center">
+                <div class="col-6">
+                  <h6>Equinus</h6>
+                </div>
+                <div class="col-3">Left</div>
+                <div class="col-3">Right</div>
+                <div class="col-6"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_258"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_259"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+              </div>
+            </td>
+            <td rowspan="2">
+              <h4>Ankle Range of Motion:</h4>
+              <hr />
+              <div class="row text-center">
+                <div class="col-6">
+                  <h6>Dorsi-flexion</h6>
+                </div>
+                <div class="col-3">Left</div>
+                <div class="col-3">Right</div>
+                <div class="col-6">Adequate</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_260"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_261"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Limited</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_262"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_263"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+              </div>
+              <hr />
+              <div class="row text-center">
+                <div class="col-6">
+                  <h6>General Foot Motion</h6>
+                </div>
+                <div class="col-3">Left</div>
+                <div class="col-3">Right</div>
+                <div class="col-6">Restricted</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_264"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_265"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Normal</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_266"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_267"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Hyper-mobile</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_268"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_269"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+              </div>
+              <hr />
+              <div class="row text-center">
+                <div class="col-6">
+                  <h6>Forefoot Varus</h6>
+                </div>
+                <div class="col-3">Left</div>
+                <div class="col-3">Right</div>
+                <div class="col-6">Mild</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_270"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_271"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Moderate</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_272"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_273"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Severe</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_274"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_275"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+              </div>
+              <hr />
+              <div class="row text-center">
+                <div class="col-6">
+                  <h6>Forefoot Valgus</h6>
+                </div>
+                <div class="col-3">Left</div>
+                <div class="col-3">Right</div>
+                <div class="col-6">Mild</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_276"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_277"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Moderate</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_278"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_279"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-6">Severe</div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_280"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+                <div class="col-3"><input class="form-check-input" type="checkbox" name="form_5_elem_281"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_1"></div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h4>Gait cycle Analysis:</h4>
+              <h5><label for="elem_282">Strike Pre-midstance Midstance Propulsion Comments:</label></h5>
+              <textarea rows="4" class="w-100" name="form_5_form_5_elem_282" id="elem_282"></textarea>
+            </td>
+          </tr>
+        </table>
+
+        <div class="row">
+          <div class="col-8">
+            <div class="row">
+              <div class="col-8">
+                <table class="table table-bordered table-sm">
+                  <tr>
+                    <th>Ankle and Foot</th>
+                    <th>L</th>
+                    <th>R</th>
+                    <th>Comments</th>
+                  </tr>
+                  <tr>
+                    <td>Pronation</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_283"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_283"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_284"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_284"></td>
+                    <td><input id="elem_285" name="form_5_form_5_elem_285" onkeyup="updateInputValue(name, this)" /></td>
+                  </tr>
+                  <tr>
+                    <td>Supination</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_286"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_286"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_287"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_287"></td>
+                    <td><input id="elem_288" name="form_5_form_5_elem_288" onkeyup="updateInputValue(name, this)" /></td>
+                  </tr>
+                  <tr>
+                    <td>Forefoot Varus</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_289"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_289"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_300"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_300"></td>
+                    <td><input id="elem_301" name="form_5_form_5_elem_301" onkeyup="updateInputValue(name, this)" /></td>
+                  </tr>
+                  <tr>
+                    <td>Forefoot Valgus</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_302"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_302"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_303"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_303"></td>
+                    <td><input id="elem_304" name="form_5_form_5_elem_304" onkeyup="updateInputValue(name, this)" /></td>
+                  </tr>
+                  <tr>
+                    <td>Anterior drawer</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_305"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_305"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_306"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_306"></td>
+                    <td><input id="elem_307" name="form_5_form_5_elem_307" onkeyup="updateInputValue(name, this)" /></td>
+                  </tr>
+                  <tr>
+                    <td>Talar tilt</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_308"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_308"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_309"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_309"></td>
+                    <td><input id="elem_310" name="form_5_form_5_elem_310" onkeyup="updateInputValue(name, this)" /></td>
+                  </tr>
+                  <tr>
+                    <td>Eversion</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_311"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_311"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_312"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_312"></td>
+                    <td><input id="elem_313" name="form_5_form_5_elem_313" onkeyup="updateInputValue(name, this)" /></td>
+                  </tr>
+                  <tr>
+                    <td>Kleiger's</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_314"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_314"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_315"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_315"></td>
+                    <td><input id="elem_316" name="form_5_form_5_elem_316" onkeyup="updateInputValue(name, this)" /></td>
+                  </tr>
+                  <tr>
+                    <td>Thompson's</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_317"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_317"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_318"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_318"></td>
+                    <td><input id="elem_319" name="form_5_form_5_elem_319" onkeyup="updateInputValue(name, this)" /></td>
+                  </tr>
+                  <tr>
+                    <td>Neuroma Squeeze</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_320"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_320"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_321"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_321"></td>
+                    <td><input id="elem_322" name="form_5_form_5_elem_322" onkeyup="updateInputValue(name, this)" /></td>
+                  </tr>
+                  <tr>
+                    <td>Homan's</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_323"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_323"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_324"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_324"></td>
+                    <td><input id="elem_325" name="form_5_form_5_elem_325" onkeyup="updateInputValue(name, this)" /></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-4">
+                <table class="table table-bordered table-sm">
+                  <tr>
+                    <td colspan="7">Neurological</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td colspan="2">Sense</td>
+                    <td colspan="2">Motor</td>
+                    <td colspan="2">Reflex</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>L</td>
+                    <td>R</td>
+                    <td>L</td>
+                    <td>R</td>
+                    <td>L</td>
+                    <td>R</td>
+                  </tr>
+                  <tr>
+                    <td>C5</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_326"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_326"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_327"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_327"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_328"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_328"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_329"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_329"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_330"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_330"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_331"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_331"></td>
+                  </tr>
+                  <tr>
+                    <td>C6</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_332"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_332"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_333"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_333"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_334"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_334"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_335"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_335"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_336"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_336"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_337"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_337"></td>
+                  </tr>
+                  <tr>
+                    <td>C7</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_338"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_338"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_339"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_339"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_340"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_340"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_341"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_341"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_342"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_342"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_343"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_343"></td>
+                  </tr>
+                  <tr>
+                    <td>C8</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_344"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_344"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_345"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_345"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_346"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_346"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_347"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_347"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_348"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_348"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_349"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_349"></td>
+                  </tr>
+                  <tr>
+                    <td>T1</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_350"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_350"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_351"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_351"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_352"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_352"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_353"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_353"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_354"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_354"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_355"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_355"></td>
+                  </tr>
+                  <tr>
+                    <td>L2</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_356"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_356"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_357"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_357"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_358"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_358"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_359"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_359"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_360"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_360"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_361"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_361"></td>
+                  </tr>
+                  <tr>
+                    <td>L3</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_362"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_362"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_363"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_363"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_364"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_364"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_365"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_365"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_366"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_366"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_367"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_367"></td>
+                  </tr>
+                  <tr>
+                    <td>L4</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_368"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_368"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_370"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_370"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_371"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_371"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_372"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_372"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_373"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_373"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_374"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_374"></td>
+                  </tr>
+                  <tr>
+                    <td>L5</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_375"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_375"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_376"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_376"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_377"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_377"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_378"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_378"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_379"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_379"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_380"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_380"></td>
+                  </tr>
+                  <tr>
+                    <td>S1</td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_381"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_381"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_382"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_382"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_383"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_383"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_384"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_384"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_385"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_385"></td>
+                    <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_386"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_386"></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <table class="table">
+              <tr>
+                <td style="padding: 0; width: 30%">
+                  <h5>Examination Results:</h5>
+                </td>
+                <td style="padding: 0" class="border" rowspan="2">
+                  <u>Left</u>
+                  <table class="table" style="margin: 0">
+                    <tr>
+                      <td><u>Mild</u></td>
+                      <td><u>Moderate</u></td>
+                      <td><u>Severe</u></td>
+                    </tr>
+                    <tr>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_387"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_387"></td>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_388"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_388"></td>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_389"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_389"></td>
+                    </tr>
+                    <tr>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_390"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_390"></td>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_391"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_391"></td>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_392"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_392"></td>
+                    </tr>
+                    <tr>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_393"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_393"></td>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_394"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_394"></td>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_395"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_395"></td>
+                    </tr>
+                  </table>
+                </td>
+                <td class="border" style="padding: 0" rowspan="2">
+                  <u>Right</u>
+                  <table class="table" style="margin: 0">
+                    <tr>
+                      <td><u>Mild</u></td>
+                      <td><u>Moderate</u></td>
+                      <td><u>Severe</u></td>
+                    </tr>
+                    <tr>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_396"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_396"></td>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_397"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_397"></td>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_398"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_398"></td>
+                    </tr>
+                    <tr>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_400"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_400"></td>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_401"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_401"></td>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_402"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_402"></td>
+                    </tr>
+                    <tr>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_403"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_403"></td>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_404"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_404"></td>
+                      <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_405"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_405"></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="border">
+                  <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_406"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_406">
+                        <label class="form-check-label" for="elem_407">Subtalar over pronation</div>
+                  <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_407"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_408">
+                        <label class="form-check-label" for="elem_408">Functional genu valgus</div>
+                  <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_409"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_409">
+                        <label class="form-check-label" for="elem_409">Supination</div>
+                  <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_410"
+                            onclick="updateCheckBoxValue(name, this)" id="elem_410">
+                        <label class="form-check-label" for="elem_1">Functional genu varus</div>
+                </td>
+              </tr>
+            </table>
+            <div class="border p-2">
+              <h4>Orthotic Recommendations:</h4>
+              <hr />
+              <table class="table text-center" id="your-table">
+                <tr>
+                  <td>Orthotic Type</td>
+                  <td>2mm</td>
+                  <td>3mm</td>
+                  <td>3.5mm</td>
+                  <td>4mm</td>
+                  <td>¾</td>
+                  <td>Sulcus</td>
+                  <td>Full Length</td>
+                </tr>
+                <tr>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_411"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_411"><label for="elem_411">Sportflex</label></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_412"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_412"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_413"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_413"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_414"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_414"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_415"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_415"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_416"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_416"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_417"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_417"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_418"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_418"></td>
+                </tr>
+                <tr>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_419"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_419"><label for="elem_419">Runflex</label></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_420"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_420"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_421"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_421"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_422"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_422"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_423"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_423"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_424"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_424"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_425"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_425"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_426"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_426"></td>
+                </tr>
+                <tr>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_427"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_427"><label for="elem-427">DressFlex</label></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_428"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_428"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_430"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_430"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_431"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_431"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_432"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_432"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_433"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_433"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_434"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_434"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_435"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_435"></td>
+                </tr>
+                <tr>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_436"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_436"><label for="elem-436">FashionFlex</label></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_437"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_437"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_438"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_438"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_439"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_439"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_440"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_440"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_441"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_441"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_442"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_442"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_443"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_443"></td>
+                </tr>
+                <tr>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_444"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_444"><label for="elem-444">Superflex</label></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_445"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_445"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_446"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_446"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_447"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_447"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_448"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_448"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_449"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_449"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_450"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_450"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_451"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_451"></td>
+                </tr>
+                <tr>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_452"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_452"><label for="elem_451">CushionFlex</label></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_453"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_453"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_454"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_454"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_455"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_455"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_456"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_456"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_457"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_457"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_458"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_458"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_460"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_460"></td>
+                </tr>
+                <tr>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_461"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_461"><label for="elem_461">Flex</label></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_462"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_462"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_463"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_463"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_464"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_464"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_465"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_465"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_466"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_466"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_467"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_467"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_468"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_468"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="display: inline-block;" class="form-check">
+                      <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_469"
+                          onclick="updateCheckBoxValue(name, this)" id="elem_469">
+                      <label class="form-check-label" for="elem_469">Other</label>
+                    </div>
+                    <input  style="width: 50px; display: inline-block;" />
+                  </td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_470"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_470"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_471"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_471"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_472"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_472"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_473"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_473"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_474"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_474"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_475"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_475"></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_476"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_476"></td>
+                </tr>
+                <tr>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_477"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_477"><label for="elem_477">Modifications:</label></td>
+                  <td colspan="3">
+                    <input class="form-check-input" type="checkbox" name="form_5_form_5_elem_478"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_478"><label for="elem_478">Vinyl Sandwich/Durasole</label>
+                  </td>
+                  <td colspan="2"><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_479"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_479"><label for="elem_479">Met pad</label></td>
+                  <td colspan="2"><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_480"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_480"><label for="elem_480">Other</label></td>
+                </tr>
+                <tr>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_481"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_481"><label for="elem_481">UBCL</label></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_482"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_482"><label for="elem_482">Ext Reat Post</label></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_483"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_483"><label for="elem_483">Heel Cushion</label></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_484"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_484"><label for="elem_484">1/16</label></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_485"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_485"><label for="elem_485">1/8</label></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_486"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_486"><label for="elem_486">Padding</label></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_487"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_487"><label for="elem_487">1/16</label></td>
+                  <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_488"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_488"><label for="elem_488">1/8</label></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="col-4">
+            <table class="table table-bordered table-sm">
+              <tr>
+                <td>Knee</td>
+                <td>L</td>
+                <td>R</td>
+                <td>Comments</td>
+              </tr>
+              <tr>
+                <td>Kneeling</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_489"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_489"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_490"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_490"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>Effusion</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_491"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_491"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_492"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_492"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>Valgus</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_493"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_493"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_494"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_494"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>Varus</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_495"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_495"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_496"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_496"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>Hyperextension</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_497"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_497"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_498"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_498"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>Bounce home</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_499"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_499"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_500"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_500"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>Posterior Sag</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_501"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_501"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_502"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_502"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>Anterior Drawer</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_503"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_503"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_504"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_504"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>Posterior Drawer</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_505"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_505"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_506"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_506"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>Solcum's test</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_507"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_507"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_508"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_508"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>Lachman's</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_509"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_509"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_510"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_510"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>Anterior Pivot</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_511"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_511"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_512"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_512"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>Apley's Distract</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_513"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_513"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_514"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_514"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>Joint line tender</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_515"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_515"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_516"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_516"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>McMurray's</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_517"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_517"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_518"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_518"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>Apley's grind</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_519"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_519"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_520"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_520"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+              <tr>
+                <td>Pat. Compression</td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_521"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_521"></td>
+                <td><input class="form-check-input" type="checkbox" name="form_5_form_5_elem_522"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_522"></td>
+                <td><input type="text" name="form_5_form_1_examination_txt" onkeyup="updateInputValue(name, this)"></td>
+              </tr>
+            </table>
+            <div style="height: 300px" class="border p-2">
+              <h5><label for="elem_523">Orthotic Testing/Observations</label></h5>
+              <textarea class="w-100" rows="10" id="elem_523" name="form_5_form_5_elem_523"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      var test_data = {}
+      var fileObject = new Object()
+      function updateInputValue(key, el) {
+        fileObject[key] = $(el).val()
+        console.log(fileObject)
+      }
+      function updateRadioValue(key, el) {
+        fileObject[key] = $(el).val() === "true"
+        console.log(fileObject)
+      }
+      function updateCheckBoxValue(key, el) {
+        fileObject[key] = $(el)[0].checked
+        console.log(fileObject)
+      }
+      function reset(data = test_data) {
+        $("form").trigger("reset")
+        $.each(data, function (key, value) {
+          if (typeof value == "string") {
+            $("[name="form_5_ + key + "]").val(value)
+          } else if (typeof value == "boolean") {
+            if ($("input[name="form_5_ + key + "]").attr("type") == "radio") {
+              $("input[name="form_5_ + key + "][value=" + value + "]").prop(
+                "checked",
+                true
+              )
+            } else {
+              $("input[name="form_5_ + key + "]")[0].checked = value
+            }
+          }
+        })
+      }
+      //firebase save and load data function
+      function loadData() {
+        var jsonToPost = new Object()
+        jsonToPost["action"] = "load"
+        jsonToPost["pageName"] = "softform_5"
+        $.ajax({
+          type: "POST",
+          //contentType: "text/xml",
+          dataType: "text",
+          url: "https://jeavensoftcdn.com/icarus/V2Update/test.php",
+          data: jsonToPost,
+          async: true,
+          success: function (data) {
+            var requestUrl = JSON.parse(data) //returned data as json need to be put back on the form
+            console.log("requestUrl:" + JSON.stringify(requestUrl))
+            resetData(JSON.parse(data))
+            //---
+          },
+          error: function (request, status, errorThrown) {
+            alert("Please Contact Admin!<br>" + errorThrown)
+          },
+        })
+      }
+      function saveData() {
+        var jsonToPost = new Object()
+        jsonToPost["pageName"] = "softform_5"
+        jsonToPost["action"] = "save"
+        jsonToPost["fileObject"] = fileObject
+        $.ajax({
+          type: "POST",
+          //contentType: "text/xml",
+          dataType: "text",
+          url: "https://jeavensoftcdn.com/icarus/V2Update/test.php",
+          data: jsonToPost,
+          async: true,
+          success: function (data) {
+            var requestUrl = data
+            console.log("requestUrl:" + requestUrl)
+
+            //---
+          },
+          error: function (request, status, errorThrown) {
+            alert("Please Contact Admin!<br>" + errorThrown)
+          },
+        })
+      }
+
+      function resetData(data = test_data) {
+        $("form").trigger("reset")
+        $.each(data, function (key, value) {
+          if ($("input[name="form_5_ + key + "]").attr("type") == "checkbox") {
+            $("input[name="form_5_ + key + "]")[0].checked = value === "true"
+          } else if ($("input[name="form_5_ + key + "]").attr("type") == "radio") {
+            $("input[name="form_5_ + key + "][value=" + value + "]").prop(
+              "checked",
+              true
+            )
+          } else {
+            $("[name="form_5_ + key + "]").val(value)
+          }
+        })
+      }
+      function print() {
+        html2canvas($("form"), {
+          onrendered: function (canvas) {
+            // $('#print_img').append(canvas);
+
+            if (
+              navigator.userAgent.indexOf("MSIE ") > 0 ||
+              navigator.userAgent.match(/Trident.*rv\:11\./)
+            ) {
+              var blob = canvas.msToBlob()
+
+              window.navigator.msSaveBlob(blob, "Test file.png")
+            } else {
+              var imgData = canvas.toDataURL("image/png")
+              // var doc = new jsPDF('p', 'mm', 'letter');
+
+              // var pwidth = doc.internal.pageSize.width;
+              // var pheight = doc.internal.pageSize.height;
+
+              // var imgHeight = canvas.height * pwidth / canvas.width;
+              // var heightLeft = imgHeight;
+              // var position = 20
+
+              // doc.addImage(imgData, 'PNG', 0, position, pwidth, imgHeight);
+
+              // heightLeft -= pheight;
+
+              // while (heightLeft >= 0) {
+              //   position = heightLeft - imgHeight;
+              //   doc.addPage();
+              //   doc.addImage(imgData, 'PNG', 0, position, pwidth, imgHeight);
+              //   heightLeft -= pheight;
+              // }
+              // // doc.save('ExportFile.pdf');
+
+              // var pdf = btoa(doc.output());
+              // console.log(imgData);
+              // if (pdf) {
+              $.ajax({
+                method: "POST",
+                url: "https://www.jeavensoft.com/solutions/ePOSDev/printer/imageToPDF.php",
+                dataType: "text",
+                data: { base64data: imgData },
+                success: function (data) {
+                  console.log("print_test", data)
+                },
+                error: function (error) {
+                  console.log("print_test", error)
+                },
+              })
+              // }
+            }
+          },
+        })
+      }
+    </script>
+  </body>
+</html>

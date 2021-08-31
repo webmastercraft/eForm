@@ -1,0 +1,1246 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+    <title>HMCC- Massage Examination 2019</title>
+    <style>
+        .container {
+            margin-top: 2em;
+            margin-bottom: 2em;
+            border: 2px solid #444;
+        }
+
+        .form-check-inline {
+            margin-right: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button type="button" onclick="reset()">Reset Test</button>
+    <button type="button" onclick="saveData()">Save Form</button>
+    <button type="button" onclick="loadData()">Load Form</button>
+    <button type="button" onclick="print()">Print</button>
+    <form>
+        <div class="container mt-5 p-4">
+            <div class="row">
+                <div class="col-8">
+                    <label for="elem_1">Patient Name:</label>
+                    <input onkeyup="updateInputValue(name, this)" id="elem_1" name="form_4_elem_1" />
+                </div>
+                <div class="col-4">
+                    <label for="elem_2">Patient #:</label>
+                    <input onkeyup="updateInputValue(name, this)" id="elem_2" name="form_4_elem_2" />
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <label for="elem_3"><b>Date: </b></label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem_3" name="form_4_elem_3" />
+                            </div>
+                            <div class="col">
+                                <label for="elem_4"><b>R.M.T: </b></label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem_4" name="form_4_elem_4" />
+                            </div>
+                            <div class="col">
+                                <label for="elem_5"><b>TX: </b></label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem_5" name="form_4_elem_5" />
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <label for="elem_6"><b>Date: </b></label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem_6" name="form_4_elem_6" />
+                            </div>
+                            <div class="col">
+                                <label for="elem_7"><b>R.M.T: </b></label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem_7" name="form_4_elem_7" />
+                            </div>
+                            <div class="col">
+                                <label for="elem_8"><b>TX: </b></label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem_8" name="form_4_elem_8" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <label for="elem_9">Patient Goals:</label><br>
+                                <textarea style="width: 100%;" name="form_4_elem_9" id="elem_9"></textarea>
+                            </div>
+                            <div class="col">
+                                <label for="elem_10">Symptoms:</label><br>
+                                <textarea style="width: 100%;" nam="form_4_elem_10" id="elem_10"></textarea>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <label for="elem_11">Patient Goals:</label><br>
+                                <textarea class="w-100" name="form_4_elem_11" id="elem_11"></textarea>
+                            </div>
+                            <div class="col">
+                                <label for="elem_12">Symptoms:</label><br>
+                                <textarea class="w-100" name="form_4_elem-12" id="elem_12"></textarea>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-7">
+                                <label for="elem_13">Palpation/Test:</label>
+                                <textarea class="w-100" id="elem_13" name="form_4_elem_13"></textarea>
+                                <label for="elem_14">Observations:</label>
+                                <textarea class="w-100" id="elem_14" name="form_4_elem_14"></textarea>
+                                <label for="elem_15">Consent for sensitive areas:</label>
+                                <input onkeyup="updateInputValue(name, this)" id="elem_15" name="form_4_elem_15" />
+                            </div>
+                            <div class="col-5">
+                                <img style="width: 100%;" src="./assets/symptom.jpg" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="elem_16">Gluteal:</label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem_16" name="form_4_elem_16" />
+                            </div>
+                            <div class="col">
+                                <label for="elem_17">Breast:</label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem_17" name="form_4_elem_17" />
+                            </div>
+                            <div class="col">
+                                <label for="elem_18">Abdominal:</label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem_18" name="form_4_elem_18" />
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col-7">
+                                <label for="elem_19">Palpation/Test:</label>
+                                <textarea class="w-100" id="elem_19" name="form_4_elem_19"></textarea>
+                                <label for="elem_20">Observations:</label>
+                                <textarea class="w-100" id="elem_20" name="form_4_elem_20"></textarea>
+                                <label for="elem_21">Consent for sensitive areas:</label>
+                                <input onkeyup="updateInputValue(name, this)" id="elem_21" name="form_4_elem_21" />
+                            </div>
+                            <div class="col-5">
+                                <img style="width: 100%;" src="./assets/symptom.jpg" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="elem_22">Gluteal:</label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem_22" name="form_4_elem_22" />
+                            </div>
+                            <div class="col">
+                                <label for="elem_23">Breast:</label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem_23" name="form_4_elem_23" />
+                            </div>
+                            <div class="col">
+                                <label for="elem_24">Abdominal:</label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem_24" name="form_4_elem_24" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="elem_25">Treatment:</label>
+                        <textarea class="w-100" id="elem_25" name="form_4_elem_25"></textarea>
+                        <label>Duration(mins):</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="1"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_26" id="radio_1">
+                            <label class="form-check-label" for="radio_1">
+                                30
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="2"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_26" id="radio_2">
+                            <label class="form-check-label" for="radio_2">
+                                45
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="3"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_26" id="radio_3">
+                            <label class="form-check-label" for="radio_3">
+                                60
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="4"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_26" id="radio_4">
+                            <label class="form-check-label" for="radio_4">
+                                90
+                            </label>
+                        </div>
+                        <label for="elem_27">Other:</label>
+                        <input name="form_4_elem_27" id="elem_27" style="max-width: 80px;" />
+                        <br>
+                        <label>Fee:(HST incl)</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="5"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_28" id="radio_5">
+                            <label class="form-check-label" for="radio_5">
+                                $65
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="6"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_28" id="radio_6">
+                            <label class="form-check-label" for="radio_6">
+                                $80
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="7"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_28" id="radio_7">
+                            <label class="form-check-label" for="radio_7">
+                                $95
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="8"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_28" id="radio_7">
+                            <label class="form-check-label" for="radio_7">
+                                $140
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="9"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_28" id="radio_8">
+                            <label class="form-check-label" for="radio_8">
+                                <b>MVA</b>
+                            </label>
+                        </div>
+                        <label for="elem_29">Other:</label>
+                        <input style="max-width: 80px;" name="form_4_elem_29" id="elem_29" />
+                        <br />
+                        <label>Time:</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="10"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_30" id="radio_9">
+                            <label class="form-check-label" for="radio_9">
+                                <b>AM</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="11"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_30" id="radio_10">
+                            <label class="form-check-label" for="radio_10">
+                                <b>PM</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="12"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_31" id="radio_11">
+                            <label class="form-check-label" for="radio_11">
+                                1
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="13"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_31" id="radio_12">
+                            <label class="form-check-label" for="radio_12">
+                                2
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="14"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_31" id="radio_13">
+                            <label class="form-check-label" for="radio_13">
+                                3
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="15"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_31" id="radio_14">
+                            <label class="form-check-label" for="radio_14">
+                                4
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="16"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_31" id="radio_15">
+                            <label class="form-check-label" for="radio_15">
+                                5
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="17"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_31" id="radio_16">
+                            <label class="form-check-label" for="radio_16">
+                                6
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="18"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_31" id="radio_17">
+                            <label class="form-check-label" for="radio_17">
+                                7
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="19"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_31" id="radio_18">
+                            <label class="form-check-label" for="radio_18">
+                                8
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="20"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_31" id="radio_19">
+                            <label class="form-check-label" for="radio_19">
+                                9
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="21"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_31" id="radio_20">
+                            <label class="form-check-label" for="radio_20">
+                                10
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="22"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_31" id="radio_21">
+                            <label class="form-check-label" for="radio_21">
+                                11
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="23"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_31" id="radio_22">
+                            <label class="form-check-label" for="radio_22">
+                                12
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="24"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_32" id="radio_23">
+                            <label class="form-check-label" for="radio_23">
+                                <b>15</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="25"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_32" id="radio_24">
+                            <label class="form-check-label" for="radio_24">
+                                <b>30</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="26"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_32" id="radio_25">
+                            <label class="form-check-label" for="radio_25">
+                                <b>45</b>
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <label for="elem_25">Treatment:</label>
+                        <textarea class="w-100" id="elem_25" name="form_4_elem_25"></textarea>
+                        <label>Duration(mins):</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="27"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_33" id="radio_26">
+                            <label class="form-check-label" for="radio_26">
+                                30
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="28"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_33" id="radio_27">
+                            <label class="form-check-label" for="radio_27">
+                                45
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="29"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_33" id="radio_28">
+                            <label class="form-check-label" for="radio_28">
+                                60
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="30"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_33" id="radio_29">
+                            <label class="form-check-label" for="radio_29">
+                                90
+                            </label>
+                        </div>
+                        <label for="elem_34">Other:</label>
+                        <input name="form_4_elem_34" id="elem_34" style="max-width: 80px;" />
+                        <br>
+                        <label>Fee:(HST incl)</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="31"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_35" id="radio_30">
+                            <label class="form-check-label" for="radio_30">
+                                $65
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="32"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_35" id="radio_31">
+                            <label class="form-check-label" for="radio_31">
+                                $80
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="33"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_35" id="radio_32">
+                            <label class="form-check-label" for="radio_32">
+                                $95
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="34"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_35" id="radio_33">
+                            <label class="form-check-label" for="radio_33">
+                                $140
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="35"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_35" id="radio_34">
+                            <label class="form-check-label" for="radio_34">
+                                <b>MVA</b>
+                            </label>
+                        </div>
+                        <label for="elem_36">Other:</label>
+                        <input style="max-width: 80px;" name="form_4_elem_36" id="elem_36" />
+                        <br />
+                        <label>Time:</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="36"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_37" id="radio_35">
+                            <label class="form-check-label" for="radio_35">
+                                <b>AM</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="37"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_37" id="radio_36">
+                            <label class="form-check-label" for="radio_36">
+                                <b>PM</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="38"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_38" id="radio_37">
+                            <label class="form-check-label" for="radio_37">
+                                1
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="39"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_38" id="radio_38">
+                            <label class="form-check-label" for="radio_38">
+                                2
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="40"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_38" id="radio_39">
+                            <label class="form-check-label" for="radio_39">
+                                3
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="41"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_38" id="radio_40">
+                            <label class="form-check-label" for="radio_40">
+                                4
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="42"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_38" id="radio_41">
+                            <label class="form-check-label" for="radio_41">
+                                5
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="43"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_38" id="radio_42">
+                            <label class="form-check-label" for="radio_42">
+                                6
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="44"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_38" id="radio_43">
+                            <label class="form-check-label" for="radio_43">
+                                7
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="45"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_38" id="radio_44">
+                            <label class="form-check-label" for="radio_44">
+                                8
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="46"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_38" id="radio_45">
+                            <label class="form-check-label" for="radio_45">
+                                9
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="47"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_38" id="radio_46">
+                            <label class="form-check-label" for="radio_46">
+                                10
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="48"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_38" id="radio_21">
+                            <label class="form-check-label" for="radio_21">
+                                11
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="50"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_38" id="radio_22">
+                            <label class="form-check-label" for="radio_22">
+                                12
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="51"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_39" id="radio_23">
+                            <label class="form-check-label" for="radio_23">
+                                <b>15</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="52"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_39" id="radio_24">
+                            <label class="form-check-label" for="radio_24">
+                                <b>30</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="53"
+                                onclick="updateRadioValue(name, this)" name="form_4_elem_39" id="radio_25">
+                            <label class="form-check-label" for="radio_25">
+                                <b>45</b>
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="elem_40">Self Care/Treatment Plan:</label>
+                        <textarea class="w-100" id="elem_40" name="form_4_elem_40"></textarea>
+                    </td>
+                    <td>
+                        <label for="elem_41">Self Care/Treatment Plan:</label>
+                        <textarea id="elem_41" name="form_4_elem_41" class="w-100"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <label for="elem__3"><b>Date: </b></label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem__3" name="form__4_elem_3" />
+                            </div>
+                            <div class="col">
+                                <label for="elem__4"><b>R.M.T: </b></label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem__4" name="form__4_elem_4" />
+                            </div>
+                            <div class="col">
+                                <label for="elem__5"><b>TX: </b></label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem__5" name="form__4_elem_5" />
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <label for="elem__6"><b>Date: </b></label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem__6" name="form__4_elem_6" />
+                            </div>
+                            <div class="col">
+                                <label for="elem__7"><b>R.M.T: </b></label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem__7" name="form__4_elem_7" />
+                            </div>
+                            <div class="col">
+                                <label for="elem__8"><b>TX: </b></label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem__8" name="form__4_elem_8" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <label for="elem__9">Patient Goals:</label><br>
+                                <textarea style="width: 100%;" name="form__4_elem_9" id="elem__9"></textarea>
+                            </div>
+                            <div class="col">
+                                <label for="elem__10">Symptoms:</label><br>
+                                <textarea style="width: 100%;" nam="form_4_elem_10" id="elem__10"></textarea>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <label for="elem__11">Patient Goals:</label><br>
+                                <textarea class="w-100" name="form__4_elem_11" id="elem__11"></textarea>
+                            </div>
+                            <div class="col">
+                                <label for="elem__12">Symptoms:</label><br>
+                                <textarea class="w-100" name="form__4_elem-12" id="elem__12"></textarea>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-7">
+                                <label for="elem__13">Palpation/Test:</label>
+                                <textarea class="w-100" id="elem__13" name="form__4_elem_13"></textarea>
+                                <label for="elem__14">Observations:</label>
+                                <textarea class="w-100" id="elem__14" name="form__4_elem_14"></textarea>
+                                <label for="elem__15">Consent for sensitive areas:</label>
+                                <input onkeyup="updateInputValue(name, this)" id="elem__15" name="form__4_elem_15" />
+                            </div>
+                            <div class="col-5">
+                                <img style="width: 100%;" src="./assets/symptom.jpg" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="elem__16">Gluteal:</label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem__16" name="form__4_elem_16" />
+                            </div>
+                            <div class="col">
+                                <label for="elem__17">Breast:</label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem__17" name="form__4_elem_17" />
+                            </div>
+                            <div class="col">
+                                <label for="elem__18">Abdominal:</label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem__18" name="form__4_elem_18" />
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col-7">
+                                <label for="elem__19">Palpation/Test:</label>
+                                <textarea class="w-100" id="elem__19" name="form__4_elem_19"></textarea>
+                                <label for="elem__20">Observations:</label>
+                                <textarea class="w-100" id="elem__20" name="form__4_elem_20"></textarea>
+                                <label for="elem__21">Consent for sensitive areas:</label>
+                                <input onkeyup="updateInputValue(name, this)" id="elem__21" name="form__4_elem_21" />
+                            </div>
+                            <div class="col-5">
+                                <img style="width: 100%;" src="./assets/symptom.jpg" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="elem__22">Gluteal:</label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem__22" name="form__4_elem_22" />
+                            </div>
+                            <div class="col">
+                                <label for="elem__23">Breast:</label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem__23" name="form__4_elem_23" />
+                            </div>
+                            <div class="col">
+                                <label for="elem__24">Abdominal:</label><br>
+                                <input onkeyup="updateInputValue(name, this)" id="elem__24" name="form__4_elem_24" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="elem__25">Treatment:</label>
+                        <textarea class="w-100" id="elem__25" name="form__4_elem_25"></textarea>
+                        <label>Duration(mins):</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="54"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_26" id="radio__1">
+                            <label class="form-check-label" for="radio__1">
+                                30
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="55"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_26" id="radio__2">
+                            <label class="form-check-label" for="radio__2">
+                                45
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="56"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_26" id="radio__3">
+                            <label class="form-check-label" for="radio__3">
+                                60
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="57"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_26" id="radio__4">
+                            <label class="form-check-label" for="radio__4">
+                                90
+                            </label>
+                        </div>
+                        <label for="elem__27">Other:</label>
+                        <input name="form__4_elem_27" id="elem__27" style="max-width: 80px;" />
+                        <br>
+                        <label>Fee:(HST incl)</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="58"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_28" id="radio__5">
+                            <label class="form-check-label" for="radio__5">
+                                $65
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="59"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_28" id="radio__6">
+                            <label class="form-check-label" for="radio__6">
+                                $80
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="60"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_28" id="radio__7">
+                            <label class="form-check-label" for="radio__7">
+                                $95
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="61"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_28" id="radio__7">
+                            <label class="form-check-label" for="radio__7">
+                                $140
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="62"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_28" id="radio__8">
+                            <label class="form-check-label" for="radio__8">
+                                <b>MVA</b>
+                            </label>
+                        </div>
+                        <label for="elem__29">Other:</label>
+                        <input style="max-width: 80px;" name="form__4_elem_29" id="elem__29" />
+                        <br />
+                        <label>Time:</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="63"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_30" id="radio__9">
+                            <label class="form-check-label" for="radio__9">
+                                <b>AM</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="64"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_30" id="radio__10">
+                            <label class="form-check-label" for="radio__10">
+                                <b>PM</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="65"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_31" id="radio__11">
+                            <label class="form-check-label" for="radio__11">
+                                1
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="66"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_31" id="radio__12">
+                            <label class="form-check-label" for="radio__12">
+                                2
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="67"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_31" id="radio__13">
+                            <label class="form-check-label" for="radio__13">
+                                3
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="68"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_31" id="radio__14">
+                            <label class="form-check-label" for="radio__14">
+                                4
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="69"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_31" id="radio__15">
+                            <label class="form-check-label" for="radio__15">
+                                5
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="70"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_31" id="radio__16">
+                            <label class="form-check-label" for="radio__16">
+                                6
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="71"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_31" id="radio__17">
+                            <label class="form-check-label" for="radio__17">
+                                7
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="72"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_31" id="radio__18">
+                            <label class="form-check-label" for="radio__18">
+                                8
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="73"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_31" id="radio__19">
+                            <label class="form-check-label" for="radio__19">
+                                9
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="74"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_31" id="radio__20">
+                            <label class="form-check-label" for="radio__20">
+                                10
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="75"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_31" id="radio__21">
+                            <label class="form-check-label" for="radio__21">
+                                11
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="76"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_31" id="radio__22">
+                            <label class="form-check-label" for="radio__22">
+                                12
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="77"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_32" id="radio__23">
+                            <label class="form-check-label" for="radio__23">
+                                <b>15</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="78"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_32" id="radio__24">
+                            <label class="form-check-label" for="radio__24">
+                                <b>30</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="79"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_32" id="radio__25">
+                            <label class="form-check-label" for="radio__25">
+                                <b>45</b>
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <label for="elem__25">Treatment:</label>
+                        <textarea class="w-100" id="elem__25" name="form__4_elem_25"></textarea>
+                        <label>Duration(mins):</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="80"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_33" id="radio__26">
+                            <label class="form-check-label" for="radio__26">
+                                30
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="81"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_33" id="radio__27">
+                            <label class="form-check-label" for="radio__27">
+                                45
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="82"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_33" id="radio__28">
+                            <label class="form-check-label" for="radio__28">
+                                60
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="83"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_33" id="radio__29">
+                            <label class="form-check-label" for="radio__29">
+                                90
+                            </label>
+                        </div>
+                        <label for="elem__34">Other:</label>
+                        <input name="form__4_elem_34" id="elem__34" style="max-width: 80px;" />
+                        <br>
+                        <label>Fee:(HST incl)</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="84"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_35" id="radio__30">
+                            <label class="form-check-label" for="radio__30">
+                                $65
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="85"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_35" id="radio__31">
+                            <label class="form-check-label" for="radio__31">
+                                $80
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="86"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_35" id="radio__32">
+                            <label class="form-check-label" for="radio__32">
+                                $95
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="87"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_35" id="radio__33">
+                            <label class="form-check-label" for="radio__33">
+                                $140
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="88"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_35" id="radio__34">
+                            <label class="form-check-label" for="radio__34">
+                                <b>MVA</b>
+                            </label>
+                        </div>
+                        <label for="elem__36">Other:</label>
+                        <input style="max-width: 80px;" name="form__4_elem_36" id="elem__36" />
+                        <br />
+                        <label>Time:</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="88"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_37" id="radio__35">
+                            <label class="form-check-label" for="radio__35">
+                                <b>AM</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="89"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_37" id="radio__36">
+                            <label class="form-check-label" for="radio__36">
+                                <b>PM</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="90"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_38" id="radio__37">
+                            <label class="form-check-label" for="radio__37">
+                                1
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="91"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_38" id="radio__38">
+                            <label class="form-check-label" for="radio__38">
+                                2
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="92"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_38" id="radio__39">
+                            <label class="form-check-label" for="radio__39">
+                                3
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="93"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_38" id="radio__40">
+                            <label class="form-check-label" for="radio__40">
+                                4
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="94"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_38" id="radio__41">
+                            <label class="form-check-label" for="radio__41">
+                                5
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="95"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_38" id="radio__42">
+                            <label class="form-check-label" for="radio__42">
+                                6
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="96"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_38" id="radio__43">
+                            <label class="form-check-label" for="radio__43">
+                                7
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="97"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_38" id="radio__44">
+                            <label class="form-check-label" for="radio__44">
+                                8
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="98"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_38" id="radio__45">
+                            <label class="form-check-label" for="radio__45">
+                                9
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="99"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_38" id="radio__46">
+                            <label class="form-check-label" for="radio__46">
+                                10
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="100"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_38" id="radio__21">
+                            <label class="form-check-label" for="radio__21">
+                                11
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="101"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_38" id="radio__22">
+                            <label class="form-check-label" for="radio__22">
+                                12
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="102"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_39" id="radio__23">
+                            <label class="form-check-label" for="radio__23">
+                                <b>15</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="103"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_39" id="radio__24">
+                            <label class="form-check-label" for="radio__24">
+                                <b>30</b>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="104"
+                                onclick="updateRadioValue(name, this)" name="form__4_elem_39" id="radio__25">
+                            <label class="form-check-label" for="radio__25">
+                                <b>45</b>
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="elem__40">Self Care/Treatment Plan:</label>
+                        <textarea class="w-100" id="elem__40" name="form__4_elem_40"></textarea>
+                    </td>
+                    <td>
+                        <label for="elem__41">Self Care/Treatment Plan:</label>
+                        <textarea id="elem__41" name="form__4_elem_41" class="w-100"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var test_data = {
+
+        }
+        var fileObject = new Object()
+        function updateInputValue(key, el) {
+            fileObject[key] = $(el).val();
+            console.log(fileObject);
+        }
+        function updateRadioValue(key, el) {
+            fileObject[key] = $(el).val();
+            console.log(fileObject);
+        }
+        function updateCheckBoxValue(key, el) {
+            fileObject[key] = $(el)[0].checked;
+            console.log(fileObject);
+        }
+        function reset(data = test_data) {
+            $('form').trigger("reset");
+            $.each(data, function (key, value) {
+                if (typeof value == 'string') {
+                    $('[name=' + key + ']').val(value);
+                } else if (typeof value == 'boolean') {
+                    if ($('input[name=' + key + ']').attr('type') == 'radio') {
+                        $('input[name=' + key + '][value=' + value + ']').prop("checked", true);
+                    } else {
+                        $('input[name=' + key + ']')[0].checked = value;
+                    }
+                }
+            })
+        }
+        //firebase save and load data function
+        function loadData() {
+            var jsonToPost = new Object()
+            jsonToPost['action'] = 'load'
+            jsonToPost['pageName'] = 'softform_4'
+            $.ajax({
+                type: 'POST',
+                //contentType: "text/xml",
+                dataType: 'text',
+                url: "https://jeavensoftcdn.com/icarus/V2Update/test.php",
+                data: jsonToPost,
+                async: true,
+                success: function (data) {
+                    var requestUrl = JSON.parse(data);//returned data as json need to be put back on the form   
+                    console.log("requestUrl:" + JSON.stringify(requestUrl));
+                    resetData(JSON.parse(data));
+                    //---
+                }, error: function (request, status, errorThrown) {
+                    alert("Please Contact Admin!<br>" + errorThrown)
+                }
+            });
+        }
+        function saveData() {
+            var jsonToPost = new Object()
+            jsonToPost['pageName'] = 'softform_4'
+            jsonToPost['action'] = 'save'
+            jsonToPost['fileObject'] = fileObject
+            $.ajax({
+                type: 'POST',
+                //contentType: "text/xml",
+                dataType: 'text',
+                url: "https://jeavensoftcdn.com/icarus/V2Update/test.php",
+                data: jsonToPost,
+                async: true,
+                success: function (data) {
+                    var requestUrl = data;
+                    console.log("requestUrl:" + requestUrl);
+
+                    //---
+                }, error: function (request, status, errorThrown) {
+                    alert("Please Contact Admin!<br>" + errorThrown)
+                }
+            });
+        }
+
+        function resetData(data = test_data) {
+            $('form').trigger("reset");
+            $.each(data, function (key, value) {
+                if ($('input[name=' + key + ']').attr('type') == 'checkbox') {
+                    $('input[name=' + key + ']')[0].checked = (value === 'true');
+                } else if ($('input[name=' + key + ']').attr('type') == 'radio') {
+                    $('input[name=' + key + '][value=' + value + ']').prop("checked", true);
+                } else {
+                    $('[name=' + key + ']').val(value);
+                }
+            })
+        }
+        function print() {
+            html2canvas($('form'), {
+                onrendered: function (canvas) {
+                    // $('#print_img').append(canvas);
+
+                    if (navigator.userAgent.indexOf("MSIE ") > 0 ||
+                        navigator.userAgent.match(/Trident.*rv\:11\./)) {
+                        var blob = canvas.msToBlob();
+
+                        window.navigator.msSaveBlob(blob, 'Test file.png');
+
+                    }
+                    else {
+                        var imgData = canvas.toDataURL('image/png');
+                        // var doc = new jsPDF('p', 'mm', 'letter');
+
+                        // var pwidth = doc.internal.pageSize.width;
+                        // var pheight = doc.internal.pageSize.height;
+
+                        // var imgHeight = canvas.height * pwidth / canvas.width;
+                        // var heightLeft = imgHeight;
+                        // var position = 20
+
+                        // doc.addImage(imgData, 'PNG', 0, position, pwidth, imgHeight);
+
+                        // heightLeft -= pheight;
+
+                        // while (heightLeft >= 0) {
+                        //   position = heightLeft - imgHeight;
+                        //   doc.addPage();
+                        //   doc.addImage(imgData, 'PNG', 0, position, pwidth, imgHeight);
+                        //   heightLeft -= pheight;
+                        // }
+                        // // doc.save('ExportFile.pdf');
+
+                        // var pdf = btoa(doc.output());
+                        // console.log(imgData); 
+                        // if (pdf) {
+                        $.ajax({
+                            method: "POST",
+                            url: "https://www.jeavensoft.com/solutions/ePOSDev/printer/imageToPDF.php",
+                            dataType: 'text',
+                            data: { base64data: imgData },
+                            success: function (data) {
+                                console.log("print_test", data);
+                            },
+                            error: function (error) {
+                                console.log("print_test", error);
+                            }
+                        });
+                        // }
+                    }
+
+
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

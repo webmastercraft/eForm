@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+    <title>H Neck Disability Index</title>
+    <style>
+        .container {
+            margin-top: 2em;
+            margin-bottom: 2em;
+            border: 2px solid #444;
+        }
+    </style>
+</head>
+
+<body>
+    <button type="button" onclick="reset()">Reset Test</button>
+    <button type="button" onclick="saveData()">Save Form</button>
+    <button type="button" onclick="loadData()">Load Form</button>
+    <button type="button" onclick="print()">Print</button>
+    <form>
+    <div class="container mt-5 p-4" style="position: relative;">
+        <div style="position: absolute;right: 5em;padding: 2em; border: 1px solid black;">
+            <h4>Office Use Only</h4>
+            <div style="margin-bottom: 1em">
+                <label for="elem_1">Name</label>
+                <input id="elem_1" name="form_7_elem1" onkeyup="updateInputValue(name, this)" />
+            </div>
+            <div>
+                <label for="elem_2">Date</label>
+                <input name="form_7_elem2" id="elem_2" onkeyup="updateInputValue(name, this)" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h3>Neck Disability Index</h3>
+                <p>
+                    This questionnaire has been designed to give us information as to how your neck pain has
+                    affected your ability to manage in everyday life. Please answer every section and <b>mark in each
+                        section only the one box that applies to you.</b> We realise you may consider that two or more
+                    statements in any one section relate to you, but please just mark the box that most closely
+                    describes your problem.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h4>Section 1: Pain Intensity</h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_3"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_3">
+                    <label class="form-check-label" for="elem_3">
+                        I have no pain at the moment
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_4"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_4">
+                    <label class="form-check-label" for="elem_4">The pain is very mild at the moment</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_5"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_5">
+                    <label class="form-check-label" for="elem_5">The pain is moderate at the moment</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_6"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_6">
+                    <label class="form-check-label" for="elem_6">The pain is fairly severe at the moment</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_7"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_7">
+                    <label class="form-check-label" for="elem_7">The pain is very severe at the moment</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_8"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_8">
+                    <label class="form-check-label" for="elem_8">The pain is the worst imaginable at the
+                        moment</label>
+                </div>
+                <h4>Section 2: Personal Care (Washing, Dressing, etc.)</h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_9"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_9">
+                    <label class="form-check-label" for="elem_9">I have no pain at the moment</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_10"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_10">
+                    <label class="form-check-label" for="elem_10">I can look after myself normally but it causes
+                        extra pain</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_11"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_11">
+                    <label class="form-check-label" for="elem_11">It is painful to look after myself and I am slow
+                        and careful</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_12"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_12">
+                    <label class="form-check-label" for="elem_12">I need some help but can manage most of my personal
+                        care</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_13"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_13">
+                    <label class="form-check-label" for="elem_13">I need help every day in most aspects of self
+                        care</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_14"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_14">
+                    <label class="form-check-label" for="elem_14">I do not get dressed, I wash with difficulty and
+                        stay in bed</label>
+                </div>
+                <h4>Section 3: Lifting</h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_15"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_15">
+                    <label class="form-check-label" for="elem_15">I can lift heavy weights without extra pain</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_16"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_16">
+                    <label class="form-check-label" for="elem_16">I can lift heavy weights but it gives extra
+                        pain</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_17"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_17">
+                    <label class="form-check-label" for="elem_17">Pain prevents me lifting heavy weights off the
+                        floor, but I can manage if
+                        they are conveniently placed, for example on a table</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_18"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_18">
+                    <label class="form-check-label" for="elem_18">Pain prevents me from lifting heavy weights but I
+                        can manage light to medium
+                        weights if they are conveniently positioned</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_19"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_19">
+                    <label class="form-check-label" for="elem_19">I can only lift very light weights</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_20"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_20">
+                    <label class="form-check-label" for="elem_20">I cannot lift or carry anything</label>
+                </div>
+            </div>
+
+            <div class="col">
+                <h4>Section 4: Reading</h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_21"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_21">
+                    <label class="form-check-label" for="elem_21">I can read as much as I want to with no pain in my
+                        neck
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_22"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_22">
+                    <label class="form-check-label" for="elem_22">I can read as much as I want to with slight pain in
+                        my neck
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_23"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_23">
+                    <label class="form-check-label" for="elem_23">I can read as much as I want with moderate pain in
+                        my neck
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_24"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_24">
+                    <label class="form-check-label" for="elem_24">I can’t read as much as I want because of moderate
+                        pain in my neck
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_25"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_25">
+                    <label class="form-check-label" for="elem_25">I can hardly read at all because of severe pain in
+                        my neck
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_26"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_26">
+                    <label class="form-check-label" for="elem_26">I cannot read at all
+                </div>
+                <h4>Section 5: Headaches</h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_27"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_27">
+                    <label class="form-check-label" for="elem_27">I have no headaches at all
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_28"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_28">
+                    <label class="form-check-label" for="elem_28">I have slight headaches, which come infrequently
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_29"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_29">
+                    <label class="form-check-label" for="elem_29">I have moderate headaches, which come infrequently
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_30"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_30">
+                    <label class="form-check-label" for="elem_30">I have moderate headaches, which come frequently
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_31"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_31">
+                    <label class="form-check-label" for="elem_31">I have severe headaches, which come frequently
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_32"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_32">
+                    <label class="form-check-label" for="elem_32">I have headaches almost all the time
+                </div>
+                <h4>Section 6: Concentration</h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_33"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_33">
+                    <label class="form-check-label" for="elem_33">I can concentrate fully when I want to with no
+                        difficulty
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_34"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_34">
+                    <label class="form-check-label" for="elem_34">I can concentrate fully when I want to with slight
+                        difficulty
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_35"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_35">
+                    <label class="form-check-label" for="elem_35">I have a fair degree of difficulty in concentrating
+                        when I want to
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_36"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_36">
+                    <label class="form-check-label" for="elem_36">I have a lot of difficulty in concentrating when I
+                        want to
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_37"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_37">
+                    <label class="form-check-label" for="elem_37">I have a great deal of difficulty in concentrating
+                        when I want to
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_38"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_38">
+                    <label class="form-check-label" for="elem_38">I cannot concentrate at all
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h4>Section 7: Work</h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_39"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_39">
+                    <label class="form-check-label" for="elem_39">I can do as much work as I want to</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_40"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_40">
+                    <label class="form-check-label" for="elem_40">I can only do my usual work, but no more</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_41"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_41">
+                    <label class="form-check-label" for="elem_41">I can do most of my usual work, but no more</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_42"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_42">
+                    <label class="form-check-label" for="elem_42">I cannot do my usual work</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_43"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_43">
+                    <label class="form-check-label" for="elem_43">I can hardly do any work at all</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_44"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_44">
+                    <label class="form-check-label" for="elem_44">I can’t do any work at all</label>
+                </div>
+                <h4>Section 8: Driving</h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_45"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_45">
+                    <label class="form-check-label" for="elem_45">I can drive my car without any neck pain</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_46"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_46">
+                    <label class="form-check-label" for="elem_46">I can drive my car as long as I want with slight
+                        pain in my neck</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_47"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_47">
+                    <label class="form-check-label" for="elem_47">I can drive my car as long as I want with moderate
+                        pain in my neck</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_48"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_48">
+                    <label class="form-check-label" for="elem_48">I can’t drive my car as long as I want because of
+                        moderate pain in my neck
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_49"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_49">
+                    <label class="form-check-label" for="elem_49">I can hardly drive at all because of severe pain in
+                        my neck</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_50"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_50">
+                    <label class="form-check-label" for="elem_50">I can’t drive my car at all</label>
+                </div>
+            </div>
+            <div class="col">
+                <h4>Section 9: Sleeping</h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_51"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_51">
+                    <label class="form-check-label" for="elem_51">I have no trouble sleeping
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_52"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_52">
+                    <label class="form-check-label" for="elem_52">My sleep is slightly disturbed (less than 1 hr
+                        sleepless)
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_53"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_53">
+                    <label class="form-check-label" for="elem_53">My sleep is mildly disturbed (1-2 hrs sleepless)
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_54"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_54">
+                    <label class="form-check-label" for="elem_54">My sleep is moderately disturbed (2-3 hrs
+                        sleepless)
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_55"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_55">
+                    <label class="form-check-label" for="elem_55">My sleep is greatly disturbed (3-5 hrs sleepless)
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_56"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_56">
+                    <label class="form-check-label" for="elem_56">My sleep is completely disturbed (5-7 hrs
+                        sleepless)
+                </div>
+
+                <h4>Section 10: Recreation</h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_57"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_57">
+                    <label class="form-check-label" for="elem_57">I am able to engage in all my recreation activities
+                        with no neck pain at all
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_58"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_58">
+                    <label class="form-check-label" for="elem_58">I am able to engage in all my recreation
+                        activities, with some pain in my
+                        neck
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_59"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_59">
+                    <label class="form-check-label" for="elem_59">I am able to engage in most, but not all of my
+                        usual recreation activities
+                        because ofpain in my neck
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_60"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_60">
+                    <label class="form-check-label" for="elem_60">I am able to engage in a few of my usual recreation
+                        activities because of
+                        pain in my neck
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_61"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_61">
+                    <label class="form-check-label" for="elem_61">I can hardly do any recreation activities because
+                        of pain in my neck
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="form_7_elem_62"
+                        onclick="updateCheckBoxValue(name, this)" id="elem_62">
+                    <label class="form-check-label" for="elem_62">I can’t do any recreation activities at all
+                </div>
+            </div>
+        </div>
+        <table clss="w-aws">
+            <tr style="border-width: 1px 0;">
+                <td><b>Score: _/50</b></td>
+                <td style="width: 30%"><b>Transform to percentage score x 100 = </b></td>
+                <td><b>%points </b></td>
+            </tr>
+            <tr>
+                <td colspn="2">Scoring: For each section the total possible score is 5: if the first statement is marked
+                    the section score = 0, if the last statement is marked it = 5. If all ten sections are
+                </td>
+                <td>
+                    Example:16 (total scored)<br />
+                    50 (total possible score) x 100 = 32%
+                </td>
+            </tr>
+            <tr>
+                <td colspn="2">If one section is missed or not applicable the score is calculated:
+                </td>
+                <td>
+                    16 (total scored)<br />
+                    45 (total possible score) x 100 = 35.5%
+                </td>
+            </tr>
+            <tr>
+                <td colspn="3">Minimum Detectable Change (90% confidence): 5 points or 10 %points
+                </td>
+            </tr>
+            <tr style="border-width: 1px 0;">
+                <td colspan="3">
+                    NDI developed by: Vernon, H. & Mior, S. (1991). The Neck Disability Index: A study of reliability
+                    and validity. Journal of Manipulative and Physiological Therapeutics. 14, 409-415
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var test_data = {
+
+        }
+        var fileObject = new Object()
+        function updateInputValue(key, el) {
+            fileObject[key] = $(el).val();
+            console.log(fileObject);
+        }
+        function updateRadioValue(key, el) {
+            fileObject[key] = ($(el).val() === 'true');
+            console.log(fileObject);
+        }
+        function updateCheckBoxValue(key, el) {
+            fileObject[key] = $(el)[0].checked;
+            console.log(fileObject);
+        }
+        function reset(data = test_data) {
+            $('form').trigger("reset");
+            $.each(data, function (key, value) {
+                if (typeof value == 'string') {
+                    $('[name=' + key + ']').val(value);
+                } else if (typeof value == 'boolean') {
+                    if ($('input[name=' + key + ']').attr('type') == 'radio') {
+                        $('input[name=' + key + '][value=' + value + ']').prop("checked", true);
+                    } else {
+                        $('input[name=' + key + ']')[0].checked = value;
+                    }
+                }
+            })
+        }
+        //firebase save and load data function
+        function loadData() {
+            var jsonToPost = new Object()
+            jsonToPost['action'] = 'load'
+            jsonToPost['pageName'] = 'softform_7'
+            $.ajax({
+                type: 'POST',
+                //contentType: "text/xml",
+                dataType: 'text',
+                url: "https://jeavensoftcdn.com/icarus/V2Update/test.php",
+                data: jsonToPost,
+                async: true,
+                success: function (data) {
+                    var requestUrl = JSON.parse(data);//returned data as json need to be put back on the form   
+                    console.log("requestUrl:" + JSON.stringify(requestUrl));
+                    resetData(JSON.parse(data));
+                    //---
+                }, error: function (request, status, errorThrown) {
+                    alert("Please Contact Admin!<br>" + errorThrown)
+                }
+            });
+        }
+        function saveData() {
+            var jsonToPost = new Object()
+            jsonToPost['pageName'] = 'softform_7'
+            jsonToPost['action'] = 'save'
+            jsonToPost['fileObject'] = fileObject
+            $.ajax({
+                type: 'POST',
+                //contentType: "text/xml",
+                dataType: 'text',
+                url: "https://jeavensoftcdn.com/icarus/V2Update/test.php",
+                data: jsonToPost,
+                async: true,
+                success: function (data) {
+                    var requestUrl = data;
+                    console.log("requestUrl:" + requestUrl);
+
+                    //---
+                }, error: function (request, status, errorThrown) {
+                    alert("Please Contact Admin!<br>" + errorThrown)
+                }
+            });
+        }
+
+        function resetData(data = test_data) {
+            $('form').trigger("reset");
+            $.each(data, function (key, value) {
+                if ($('input[name=' + key + ']').attr('type') == 'checkbox') {
+                    $('input[name=' + key + ']')[0].checked = (value === 'true');
+                } else if ($('input[name=' + key + ']').attr('type') == 'radio') {
+                    $('input[name=' + key + '][value=' + value + ']').prop("checked", true);
+                } else {
+                    $('[name=' + key + ']').val(value);
+                }
+            })
+        }
+        function print() {
+            html2canvas($('form'), {
+                onrendered: function (canvas) {
+                    // $('#print_img').append(canvas);
+
+                    if (navigator.userAgent.indexOf("MSIE ") > 0 ||
+                        navigator.userAgent.match(/Trident.*rv\:11\./)) {
+                        var blob = canvas.msToBlob();
+
+                        window.navigator.msSaveBlob(blob, 'Test file.png');
+
+                    }
+                    else {
+                        var imgData = canvas.toDataURL('image/png');
+                        // var doc = new jsPDF('p', 'mm', 'letter');
+
+                        // var pwidth = doc.internal.pageSize.width;
+                        // var pheight = doc.internal.pageSize.height;
+
+                        // var imgHeight = canvas.height * pwidth / canvas.width;
+                        // var heightLeft = imgHeight;
+                        // var position = 20
+
+                        // doc.addImage(imgData, 'PNG', 0, position, pwidth, imgHeight);
+
+                        // heightLeft -= pheight;
+
+                        // while (heightLeft >= 0) {
+                        //   position = heightLeft - imgHeight;
+                        //   doc.addPage();
+                        //   doc.addImage(imgData, 'PNG', 0, position, pwidth, imgHeight);
+                        //   heightLeft -= pheight;
+                        // }
+                        // // doc.save('ExportFile.pdf');
+
+                        // var pdf = btoa(doc.output());
+                        // console.log(imgData); 
+                        // if (pdf) {
+                        $.ajax({
+                            method: "POST",
+                            url: "https://www.jeavensoft.com/solutions/ePOSDev/printer/imageToPDF.php",
+                            dataType: 'text',
+                            data: { base64data: imgData },
+                            success: function (data) {
+                                console.log("print_test", data);
+                            },
+                            error: function (error) {
+                                console.log("print_test", error);
+                            }
+                        });
+                        // }
+                    }
+
+
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

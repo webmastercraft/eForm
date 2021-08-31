@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+
+    <title>HMCC- Massage Examination 2019</title>
+
+  </head>
+  <body>
+    <button type="button" onclick="reset()">Reset Test</button>
+    <button type="button" onclick="saveData()">Save Form</button>
+    <button type="button" onclick="loadData()">Load Form</button>
+    <button type="button" onclick="print()">Print</button>
+    <form>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-7" style="text-align:left;">
+                <label>Patient Name:</label>
+                <input type="text" name="form_3_form_2_patient_1" onkeyup="updateInputValue(name, this)" class="w-75" />
+            </div>
+            <div class="col-5" style="text-align: right;">
+                <div>
+                    <label>Patient #:</label>
+                    <input type="text" name="form_3_form_2_patient_1" onkeyup="updateInputValue(name, this)" class=""  />
+                </div>
+                <div class="mt-1">
+                    <label>Date:</label>
+                    <input type="text" name="form_3_form_2_patient_1" onkeyup="updateInputValue(name, this)" class="" />
+                </div>
+            </div>
+        </div>
+        <h5 class="text-center">
+            MASSAGE THERAPY  HISTORY AND EXAMINATION
+        </h5>
+        <h5>Case History:</h5>
+        <div class="row border">
+            <div class="col-12 border-bottom text-center">
+                <ul class="list-inline">
+                    <li class="list-inline-item">•Complaint(s)</li>
+                    <li class="list-inline-item">•Onset</li>
+                    <li class="list-inline-item">•Duration/Frequency</li>
+                    <li class="list-inline-item">•Intensity</li>
+                    <li class="list-inline-item">•Radiation </li>
+                    <li class="list-inline-item">•Progression</li>
+                    <li class="list-inline-item">•Location</li>
+                    <li class="list-inline-item">•Character of Pain</li>
+                    <li class="list-inline-item">•Associated Symptoms</li>
+                    <li class="list-inline-item">•Relieving Factors</li>
+                    <li class="list-inline-item">•Aggravating Factors</li>
+                    <li class="list-inline-item">•Past History: Trauma, Illness, Injuries, Treatment</li>
+                    <li class="list-inline-item">•Secondary Complaints</li>
+                    <li class="list-inline-item">•Family History</li>
+                    <li class="list-inline-item">•Lifestyle</li>
+                </ul>
+            </div>
+            <div class="col-12 p-3" style="height: 300px">
+                <textarea class="form-control h-100" name="form_3_case_histoty" onkeyup="updateInputValue(name, this)"></textarea>
+            </div>
+        </div>
+        <div class="row row-cols-2 row-cols-lg-2 mt-3" style="margin: 0 -1.5rem">
+            <div class="col">
+                <div class="border p-2">
+                    <h5>Client Goals:</h5>
+                    <div style="height: 100px">
+                        <textarea class="form-control h-100" name="form_3_client_goals_1" onkeyup="updateInputValue(name, this)"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="border p-2">
+                    <h5>Observations:</h5>
+                    <div style="height: 100px">
+                        <textarea class="form-control h-100" name="form_3_client_goals_2" onkeyup="updateInputValue(name, this)"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-2 row-cols-lg-2 mt-3 d-flex" style="margin: 0 -1.5rem;">
+            <div class="col">
+                <div class="border p-2" style="height: 500px;">
+                    <div class="d-flex m-2">
+                        <h6>Previous Message:</h6>
+                        <div class="custom-control custom-radio custom-control-inline mx-2">
+                            <input type="radio" name="form_3_previous_message" onclick='updateRadioValue(name, this)' class="custom-control-input" id="previous_message_1" value="true">
+                            <label class="custom-control-label" for="previous_message_1">Y</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline mx-2">
+                            <input type="radio" name="form_3_previous_message" onclick='updateRadioValue(name, this)' class="custom-control-input" id="previous_message_2" value="false">
+                            <label class="custom-control-label" for="previous_message_2">N</label>
+                        </div>
+                        <input type="text" name="form_3_previous_message_txt" onkeyup="updateInputValue(name, this)" class="w-50 ml-2 form-control form-control-sm" />
+                    </div>
+                    <div class="d-flex m-2">
+                        <h6>Exercise:</h6>
+                        <div class="custom-control custom-radio custom-control-inline mx-2">
+                            <input type="radio" name="form_3_exercise" onclick='updateRadioValue(name, this)' class="custom-control-input" id="exercise_1" value="true">
+                            <label class="custom-control-label" for="exercise_1">Y</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline mx-2">
+                            <input type="radio" name="form_3_exercise" onclick='updateRadioValue(name, this)' class="custom-control-input" id="exercise_2" value="false">
+                            <label class="custom-control-label" for="exercise_2">N</label>
+                        </div>
+                        <input type="text" name="form_3_exercise_txt" onkeyup="updateInputValue(name, this)" class="w-50 ml-2 form-control form-control-sm" />
+                    </div>
+                    <div class="d-flex m-2">
+                        <h6>Sleping Position:</h6>
+                        <div class="row mx-2">
+                            <div class="col-sm-6 custom-control custom-radio custom-control-inline">
+                                <input type="radio" name="form_3_sleping_position" onclick='updateRadioValue(name, this)' class="custom-control-input" id="sleping_position_1" value="true">
+                                <label class="custom-control-label" for="sleping_position_1">Side</label>
+                            </div>
+                            <div class="col-sm-6 custom-control custom-radio custom-control-inline">
+                                <input type="radio" name="form_3_sleping_position" onclick='updateRadioValue(name, this)' class="custom-control-input" id="sleping_position_2" value="true">
+                                <label class="custom-control-label" for="sleping_position_2">Back</label>
+                            </div>
+                            <div class="col-sm-6 custom-control custom-radio custom-control-inline">
+                                <input type="radio" name="form_3_sleping_position" onclick='updateRadioValue(name, this)' class="custom-control-input" id="sleping_position_3" value="true">
+                                <label class="custom-control-label" for="sleping_position_3">Front</label>
+                            </div>
+                            <div class="col-sm-6 custom-control custom-radio custom-control-inline">
+                                <input type="radio" name="form_3_sleping_position" onclick='updateRadioValue(name, this)' class="custom-control-input" id="sleping_position_4" value="true">
+                                <label class="custom-control-label" for="sleping_position_4">Semiprone</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex m-2">
+                        <h6>Supplements:</h6>
+                        <div class="custom-control custom-radio custom-control-inline mx-2">
+                            <input type="radio" name="form_3_supplements" onclick='updateRadioValue(name, this)' class="custom-control-input" id="supplements_1" value="true">
+                            <label class="custom-control-label" for="supplements_1">Multi</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline mx-2">
+                            <input type="radio" name="form_3_supplements" onclick='updateRadioValue(name, this)' class="custom-control-input" id="supplements_2" value="true">
+                            <label class="custom-control-label" for="supplements_2">B</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline mx-2">
+                            <input type="radio" name="form_3_supplements" onclick='updateRadioValue(name, this)' class="custom-control-input" id="supplements_3" value="true">
+                            <label class="custom-control-label" for="supplements_3">Ca</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline mx-2">
+                            <input type="radio" name="form_3_supplements" onclick='updateRadioValue(name, this)' class="custom-control-input" id="supplements_4" value="true">
+                            <label class="custom-control-label" for="supplements_4">EFA</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline mx-2">
+                            <input type="radio" name="form_3_supplements" onclick='updateRadioValue(name, this)' class="custom-control-input" id="supplements_5" value="true">
+                            <label class="custom-control-label" for="supplements_5">C</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline mx-2">
+                            <input type="radio" name="form_3_supplements" onclick='updateRadioValue(name, this)' class="custom-control-input" id="supplements_other" value="true">
+                            <label class="custom-control-label" for="supplements_other">Other</label>
+                            <input type="text" name="form_3_supplements_other_txt" onkeyup="updateInputValue(name, this)" class="w-50 ml-2 form-control form-control-sm d-inline" />
+                        </div>
+                    </div>
+                    <div>
+                        <h6>Medications:</h6>
+                        <textarea class="form-control" name="form_3_medications" onkeyup="updateInputValue(name, this)" style="height: 270px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <h5>Postural Analysis</h5>
+                <div class="border p-2" style="height: 468px">
+                    <div style="text-align: center;">
+                        <img src="./assets/symptom.jpg" class="w-100" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-2 d-flex">
+            <h6 class="mb-0 ml-1">Vitals:</h6>
+            <label>Height:</label>
+            <input type="text" name="form_3_vitals_height" onkeyup="updateInputValue(name, this)" class="ml-2 form-control form-control-sm w-auto" />
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;Weight:</label>
+            <input type="text" name="form_3_vitals_weight" onkeyup="updateInputValue(name, this)" class="ml-2 form-control form-control-sm w-auto" />
+            <label>lbs. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Body Mass Index:</label>
+            <input type="text" name="form_3_vitals_body" onkeyup="updateInputValue(name, this)" class="ml-2 form-control form-control-sm w-auto" />
+        </div>
+        <div class="mt-2 d-flex">
+            <label class="font-weight-bold">B.P.:</label>
+            <label>&nbsp;(R)</label>
+            <input type="text" name="form_3_bp_r" onkeyup="updateInputValue(name, this)" class="ml-2 form-control form-control-sm w-auto" />
+            <label>&nbsp;&nbsp;&nbsp;(L)</label>
+            <input type="text" name="form_3_bp_l" onkeyup="updateInputValue(name, this)" class="ml-2 form-control form-control-sm w-auto" />
+            <label>&nbsp;&nbsp;&nbsp;Pulse Rate:</label>
+            <input type="text" name="form_3_bp_pulse" onkeyup="updateInputValue(name, this)" class="ml-2 form-control form-control-sm w-auto" />
+            <label>&nbsp;&nbsp;&nbsp;Respiratory Rate:</label>
+            <input type="text" name="form_3_bp_respiratory" onkeyup="updateInputValue(name, this)" class="ml-2 form-control form-control-sm w-auto" />
+        </div>
+        <div class="row">
+            <div class="col p-3">
+                <div class="border p-2">
+                    <h5>Palpation:</h5>
+                    <div style="height: 200px;">
+                        <textarea class="form-control h-100" name="form_3_palpation" onkeyup="updateInputValue(name, this)"></textarea>
+                    </div>
+                </div>
+                <div class="border p-2 mt-2">
+                    <h5>Orthopedics:</h5>
+                    <div style="height: 500px;">
+                        <textarea class="form-control h-100" name="form_3_orthopedics" onkeyup="updateInputValue(name, this)"></textarea>
+                    </div>
+                </div>
+                <div class="border p-2 mt-3">
+                    <h5>Comments:</h5>
+                    <div style="height: 200px;">
+                        <textarea class="form-control h-100" name="form_3_comments" onkeyup="updateInputValue(name, this)"></textarea>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-7">
+                            <h6>Informed Consent to received:</h6>
+                        </div>
+                        <div class="col-5">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="form_3_assessment" onclick="updateCheckBoxValue(name, this)" id="assessment">
+                                <label class="form-check-label" for="assessment">Assessment</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="form_3_treatment" onclick="updateCheckBoxValue(name, this)" id="treatment">
+                                <label class="form-check-label" for="treatment">Treatment</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col p-3">
+                <div class="border p-3">
+                    <h5>Range or Motion</h5>
+                    <span style="padding-left: 1em">> Limit</span>
+                    <ul>
+                        <li>Mild Pain</li>
+                        <li>Moderate Pain</li>
+                        <li>Severe Pain</li>
+                    </ul>
+                </div>
+                <div class="mt-3">
+                    <div class="row">
+                        <div class="col text-center">
+                            <div class="border mb-2" style="height: 200px">
+                                <img src="./assets/3.png" class="w-100 h-100">
+                            </div>
+                            <input type="text" name="form_3_image_txt_1" onkeyup="updateInputValue(name, this)" class="form-control" />
+                        </div>
+                        <div class="col text-center">
+                            <div class="border mb-2" style="height: 200px">
+                                <img src="./assets/3.png" class="w-100 h-100">
+                            </div>
+                            <input type="text" name="form_3_image_txt_2" onkeyup="updateInputValue(name, this)" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="border p-3 mt-3">
+                    <label>Contraindications to Massage:</label>
+                    <input type="text" name="form_3_contraindications_massage" onkeyup="updateInputValue(name, this)" class="form-control" />
+                </div>
+                <div class="border p-3">
+                    <h6>Treatment Plan:</h6>
+                    <div class="mb-2">
+                        <label>Treatment of Goals:</label>
+                        <input type="text" name="form_3_treatment_goals" onkeyup="updateInputValue(name, this)" class="form-control" />
+                    </div>
+                    <div>
+                        <label>Focus of Treatment:</label>
+                        <input type="text" name="form_3_focus_treatment" onkeyup="updateInputValue(name, this)" class="form-control" />
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col">
+                            <label>Frequency:</label>
+                            <input type="text" name="form_3_frequency" onkeyup="updateInputValue(name, this)" class="form-control d-inline w-auto" />
+                        </div>
+                        <div class="col">
+                            <label>Duration:</label> 
+                            <input type="text" name="form_3_duration" onkeyup="updateInputValue(name, this)" class="form-control d-inline w-auto" />
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-4">Areas to be treated:</div>
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col p-0">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="form_3_treated" onclick='updateRadioValue(name, this)' class="custom-control-input" id="treated_1" value="true">
+                                        <label class="custom-control-label" for="treated_1">C/S</label>
+                                    </div>
+                                </div>
+                                <div class="col p-0">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="form_3_treated" onclick='updateRadioValue(name, this)' class="custom-control-input" id="treated_2" value="true">
+                                        <label class="custom-control-label" for="treated_2">T/S</label>
+                                    </div>
+                                </div>
+                                <div class="col p-0">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="form_3_treated" onclick='updateRadioValue(name, this)' class="custom-control-input" id="treated_3" value="true">
+                                        <label class="custom-control-label" for="treated_3">L/S</label>
+                                    </div>
+                                </div>
+                                <div class="col p-0">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="form_3_treated" onclick='updateRadioValue(name, this)' class="custom-control-input" id="treated_4" value="true">
+                                        <label class="custom-control-label" for="treated_4">Shoulders</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col p-0">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="form_3_treated" onclick='updateRadioValue(name, this)' class="custom-control-input" id="treated_5" value="true">
+                                        <label class="custom-control-label" for="treated_5">Gluteal</label>
+                                    </div>
+                                </div>
+                                <div class="col p-0">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="form_3_treated" onclick='updateRadioValue(name, this)' class="custom-control-input" id="treated_6" value="true">
+                                        <label class="custom-control-label" for="treated_6">Abs</label>
+                                    </div>
+                                </div>
+                                <div class="col p-0">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="form_3_treated" onclick='updateRadioValue(name, this)' class="custom-control-input" id="treated_7" value="true">
+                                        <label class="custom-control-label" for="treated_7">Pecs</label>
+                                    </div>
+                                </div>
+                                <div class="col p-0">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="form_3_treated" onclick='updateRadioValue(name, this)' class="custom-control-input" id="treated_8" value="true">
+                                        <label class="custom-control-label" for="treated_8">TMJ</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col p-0">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="form_3_treated" onclick='updateRadioValue(name, this)' class="custom-control-input" id="treated_9" value="true">
+                                        <label class="custom-control-label" for="treated_9">Leg (R/L)</label>
+                                    </div>
+                                </div>
+                                <div class="col p-0">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="form_3_treated" onclick='updateRadioValue(name, this)' class="custom-control-input" id="treated_10" value="true">
+                                        <label class="custom-control-label" for="treated_10">Arm (R/L)</label>
+                                    </div>
+                                </div>
+                                <div class="col p-0">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="form_3_treated" onclick='updateRadioValue(name, this)' class="custom-control-input" id="treated_11" value="true">
+                                        <label class="custom-control-label" for="treated_11">Full Body</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 p-0">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="form_3_treated" onclick='updateRadioValue(name, this)' class="custom-control-input" id="treated_12" value="true">
+                                        <label class="custom-control-label" for="treated_12">Other</label>
+                                    </div>
+                                </div>
+                                <div class="col-9 p-0">
+                                    <input type="text" name="form_3_treated_txt" onkeyup="updateInputValue(name, this)" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2 row">
+                        <div class="col">
+                            <label>Remedial exercises:</label> 
+                            <input type="text" name="form_3_remedial_exercises" onkeyup="updateInputValue(name, this)" class="form-control d-inline w-auto" />
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col d-flex">
+                            <label>Discussed with Patient:</label> 
+                            <div class="custom-control custom-radio custom-control-inline ms-3">
+                                <input type="radio" name="form_3_discussed_patient" onclick='updateRadioValue(name, this)' class="custom-control-input" id="discussed_patient_1" value="true">
+                                <label class="custom-control-label" for="discussed_patient_1">Y</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline ms-3">
+                                <input type="radio" name="form_3_discussed_patient" onclick='updateRadioValue(name, this)' class="custom-control-input" id="discussed_patient_2" value="false">
+                                <label class="custom-control-label" for="discussed_patient_2">N</label>
+                            </div>
+                        </div>
+                        <div class="col d-flex">
+                            <label>Consent:</label> 
+                            <div class="custom-control custom-radio custom-control-inline ms-3">
+                                <input type="radio" name="form_3_consent" onclick='updateRadioValue(name, this)' class="custom-control-input" id="consent_1" value="true">
+                                <label class="custom-control-label" for="consent_1">Y</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline ms-3 ">
+                                <input type="radio" name="form_3_consent" onclick='updateRadioValue(name, this)' class="custom-control-input" id="consent_2" value="false">
+                                <label class="custom-control-label" for="consent_2">N</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2 row">
+                        <div class="col">
+                            <label>Anticipated Response to treatment:</label> 
+                            <input type="text" name="form_3_anticipated_response" onkeyup="updateInputValue(name, this)" class="form-control d-inline w-auto" />
+                        </div>
+                    </div>
+                    <div class="mt-2 row">
+                        <div class="col">
+                            <label>Re-assessment scheduled:</label> 
+                            <input type="text" name="form_3_re_assessment" onkeyup="updateInputValue(name, this)" class="form-control d-inline w-auto" />
+                        </div>
+                    </div>
+                    <div class="mt-2 row">
+                        <div class="col">
+                            <label>Referrals:</label> 
+                            <input type="text" name="form_3_referrals" onkeyup="updateInputValue(name, this)" class="form-control d-inline w-auto" />
+                        </div>
+                    </div>
+                    <div class="mt-4 row">
+                        <div class="col">
+                            <label>Patient signature:</label> 
+                            <input type="text" name="form_3_patient_signature" onkeyup="updateInputValue(name, this)" class="form-control d-inline w-auto" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+    
+  </body>
+  <script type="text/javascript">
+    var test_data = {
+        
+    }
+    var fileObject=new Object()
+    function updateInputValue(key, el){
+        fileObject[key]=$(el).val();
+        console.log(fileObject);
+    }
+    function updateRadioValue(key, el){
+        fileObject[key]=($(el).val() === 'true');
+        console.log(fileObject);
+    }
+    function updateCheckBoxValue(key, el){
+        fileObject[key]=$(el)[0].checked;
+        console.log(fileObject);
+    }
+    function reset(data = test_data) {
+        $('form').trigger("reset");
+        $.each(data, function(key, value) {
+            if(typeof value == 'string') {
+                $('[name='+key+']').val(value);
+            } else if(typeof value == 'boolean') {
+                if ($('input[name='+key+']').attr('type') == 'radio') {
+                    $('input[name='+key+'][value='+value+']').prop("checked",true);
+                } else {
+                    $('input[name='+key+']')[0].checked = value;
+                }
+            }
+        })
+    }
+    //firebase save and load data function
+    function loadData(){
+        var jsonToPost=new Object()
+        jsonToPost['action']='load'
+        jsonToPost['pageName']='softform_3'
+        $.ajax({
+            type: 'POST',
+            //contentType: "text/xml",
+            dataType: 'text',
+            url: "https://jeavensoftcdn.com/icarus/V2Update/test.php",
+            data: jsonToPost,
+            async: true,
+            success: function (data) {
+                    var requestUrl = JSON.parse(data);//returned data as json need to be put back on the form   
+                    console.log("requestUrl:"+JSON.stringify(requestUrl));
+                    resetData(JSON.parse(data));
+                //---
+            },error: function (request,status,errorThrown) {    
+                alert("Please Contact Admin!<br>"+errorThrown)
+            }
+        });
+    }
+    function saveData(){
+        var jsonToPost=new Object()
+        jsonToPost['pageName']='softform_3'
+        jsonToPost['action']='save'
+        jsonToPost['fileObject']=fileObject
+        $.ajax({
+            type: 'POST',
+            //contentType: "text/xml",
+            dataType: 'text',
+            url: "https://jeavensoftcdn.com/icarus/V2Update/test.php",
+            data: jsonToPost,
+            async: true,
+            success: function (data) {
+                    var requestUrl = data;
+                    console.log("requestUrl:"+requestUrl);
+                    
+                //---
+            },error: function (request,status,errorThrown) {    
+                alert("Please Contact Admin!<br>"+errorThrown)
+            }
+        });
+    }
+
+    function resetData(data = test_data) {
+        $('form').trigger("reset");
+        $.each(data, function(key, value) {
+            if ($('input[name='+key+']').attr('type') == 'checkbox') {
+                $('input[name='+key+']')[0].checked = (value === 'true');
+            } else if ($('input[name='+key+']').attr('type') == 'radio') {
+                $('input[name='+key+'][value='+value+']').prop("checked",true);
+            } else {
+                $('[name='+key+']').val(value);
+            }
+        })
+    }
+    function print(){
+        html2canvas($('form'), {
+            onrendered: function(canvas) {
+                // $('#print_img').append(canvas);
+
+            if (navigator.userAgent.indexOf("MSIE ") > 0 || 
+                navigator.userAgent.match(/Trident.*rv\:11\./)) {
+                var blob = canvas.msToBlob();
+
+                window.navigator.msSaveBlob(blob,'Test file.png');
+
+            }
+            else   {
+                var imgData = canvas.toDataURL('image/png');
+                // var doc = new jsPDF('p', 'mm', 'letter');
+
+                // var pwidth = doc.internal.pageSize.width;
+                // var pheight = doc.internal.pageSize.height;
+
+                // var imgHeight = canvas.height * pwidth / canvas.width;
+                // var heightLeft = imgHeight;
+                // var position = 20
+
+                // doc.addImage(imgData, 'PNG', 0, position, pwidth, imgHeight);
+
+                // heightLeft -= pheight;
+
+                // while (heightLeft >= 0) {
+                //   position = heightLeft - imgHeight;
+                //   doc.addPage();
+                //   doc.addImage(imgData, 'PNG', 0, position, pwidth, imgHeight);
+                //   heightLeft -= pheight;
+                // }
+                // // doc.save('ExportFile.pdf');
+
+                // var pdf = btoa(doc.output());
+                // console.log(imgData); 
+                // if (pdf) {
+                    $.ajax({
+                        method: "POST",
+                        url: "https://www.jeavensoft.com/solutions/ePOSDev/printer/imageToPDF.php",
+                        dataType: 'text',
+                        data: {base64data: imgData},
+                        success: function(data) {
+                            console.log("print_test", data);
+                        },
+                        error: function(error) {
+                            console.log("print_test", error);
+                        }
+                    });
+                // }
+             }
+
+
+            }
+            });
+    }
+  </script>
+</html>

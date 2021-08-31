@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+    <title>L Oswestry 2</title>
+    <style>
+        .container {
+            margin-top: 2em;
+            margin-bottom: 2em;
+            border: 2px solid #444;
+        }
+    </style>
+</head>
+
+<body>
+    <button type="button" onclick="reset()">Reset Test</button>
+    <button type="button" onclick="saveData()">Save Form</button>
+    <button type="button" onclick="loadData()">Load Form</button>
+    <button type="button" onclick="print()">Print</button>
+    <form>
+        <div class="container mt-5 p-4">
+            <p>
+                Please Read: This questionnaire is designed to enable us to understand how much your neck pain has
+                affected
+                your
+                ability to manage everyday activities. Please answer each Section by circling the <b>ONE CHOICE</b> that
+                most applies to you.
+                We realize that you may feel that more than one statement may relate to you, but Please <b>just circle
+                    the
+                    one choice
+                    which closely describes your problem right now.</b>
+            </p>
+            <div class="row">
+                <div class="col">
+                    <div class="border my-3 p-2">
+                        <h5>SECTION 1--Pain Intensity</h5>
+                        <ol type="A">
+                            <li>I have no pain at the moment</li>
+                            <li>The pain is mild at the moment.</li>
+                            <li>The pain comes and goes and is moderate.</li>
+                            <li>The pain is moderate and does not vary much.</li>
+                            <li>The pain is severe but comes and goes.</li>
+                            <li>The pain is severe and does not vary much.</li>
+                            </ul>
+                    </div>
+                    <div class="border my-3 p-2">
+                        <h5>SECTION 2--Personal Care (Washing, Dressing etc.)</h5>
+                        <ol>
+                            <li>I can look after myself without causing extra pain.</li>
+                            <li>I can look after myself normally but it causes extra pain.</li>
+                            <li>It is painful to look after myself and I am slow and careful.</li>
+                            <li>I need some help, but manage most of my personal care.</li>
+                            <li>I need help every day in most aspects of self-care.</li>
+                            <li>I do not get dressed, I wash with difficulty and stay in bed.</li>
+                        </ol>
+                    </div>
+                    <div class="border my-3 p-2">
+                        <h5>SECTION 3--Lifting</h5>
+                        <ol type="A">
+                            <li>I can lift heavy weights without extra pain.</li>
+                            <li>I can lift heavy weights, but it causes extra pain.</li>
+                            <li>Pain prevents me from lifting heavy weights off the floor but I can if they are
+                                conveniently
+                                positioned, for example on a table.</li>
+                            <li>Pain prevents me from lifting heavy weights, but I can manage light to medium weights if
+                                they are conveniently positioned.</li>
+                            <li>I can lift very light weights.</li>
+                            <li>I cannot lift or carry anything at all.</li>
+                        </ol>
+                    </div>
+                    <div class="border my-3 p-2">
+                        <h5>SECTION 4 --Reading</h5>
+                        <ol type="A">
+                            <li>I can read as much as I want to with no pain in my neck.</li>
+                            <li>I can read as much as I want with slight pain in my neck.</li>
+                            <li>I can read as much as I want with moderate pain in my neck.</li>
+                            <li>I cannot read as much as I want because of moderate pain in my neck.</li>
+                            <li>I cannot read as much as I want because of severe pain in my neck.</li>
+                            <li>I cannot read at all</li>
+                        </ol>
+                    </div>
+                    <div class="border my-3 p-2">
+                        <h5>SECTION 5--Headache</h5>
+                        <ol type="A">
+                            <li>I have no headaches at all.</li>
+                            <li>I have slight headaches which come infrequently.</li>
+                            <li>I have moderate headaches which come in-frequently.</li>
+                            <li>I have moderate headaches which come frequently.</li>
+                            <li>I have severe headaches which come frequently.</li>
+                            <li>I have headaches almost all the time.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="border my-3 p-2">
+                        <h5>SECTION 6 -- Concentration</h5>
+                        <ol type="A">
+                            <li>I can concentrate fully when I want to with no difficulty.</li>
+                            <li>I can concentrate fully when I want to with slight difficulty.</li>
+                            <li>I have a fair degree of difficulty in concentrating when I want to.</li>
+                            <li>I have a lot of difficulty in concentrating when I want to.</li>
+                            <li>I have a great deal of difficulty in concentrating when I want to.</li>
+                            <li>I cannot concentrate at all.</li>
+                        </ol>
+                    </div>
+                    <div class="border my-3 p-2">
+                        <h5>SECTION 7--Work</h5>
+                        <ol type="A">
+                            <li>I can do as much work as I want to.</li>
+                            <li>I can only do my usual work, but no more.</li>
+                            <li>I can do most of my usual work, but no more.</li>
+                            <li>I cannot do my usual work.</li>
+                            <li>I can hardly do any work at all.</li>
+                            <li>I cannot do any work at all.</li>
+                        </ol>
+                    </div>
+                    <div class="border my-3 p-2">
+                        <h5>SECTION 8--Driving</h5>
+                        <ol type="A">
+                            <li>I can drive my car without neck pain.</li>
+                            <li>I can drive my car as long as I want with slight pain in my neck.</li>
+                            <li>I can drive my car as long as I want with moderate pain in my neck.</li>
+                            <li>I cannot drive my car as long as I want because of moderate pain in my neck.</li>
+                            <li>I can hardly drive my car at all because of severe pain in my neck.</li>
+                            <li>I cannot drive my car at all.</li>
+                        </ol>
+                    </div>
+                    <div class="border my-3 p-2">
+                        <h5>SECTION 9--Sleeping</h5>
+                        <ol type="A">
+                            <li>I have no trouble sleeping</li>
+                            <li>My sleep is slightly disturbed (less than 1 hour sleepless).</li>
+                            <li>My sleep is mildly disturbed (1-2 hours sleepless).</li>
+                            <li>My sleep is moderately disturbed (2-3 hours sleepless).</li>
+                            <li>My sleep is greatly disturbed (3-5 hours sleepless).</li>
+                            <li>My sleep is completely disturbed (5-7 hours sleepless).</li>
+                        </ol>
+                    </div>
+                    <div class="border my-3 p-2">
+                        <h5>SECTION 10--Recreation</h5>
+                        <ol type="A">
+                            <li>I am able engage in all recreational activities with no pain in my neck at all.</li>
+                            <li>I am able engage in all recreational activities with some pain in my neck.</li>
+                            <li>I am able engage in most, but not all recreational activities because of pain in my
+                                neck.
+                            </li>
+                            <li>I am able engage in a few of my usual recreational activities because of pain in my
+                                neck.
+                            </li>
+                            <li>I can hardly do any recreational activities because of pain in my neck.</li>
+                            <li>I cannot do any recreational activities all all.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="elem_1">SIGNATURE: </label>
+                    <input onkeyup="updateInputValue(name, this)" id="elem_1" name="form_9_elem_1" />
+                    <label for="elem_2">DATE:</label>
+                    <input onkeyup="updateInputValue(name, this)" id="elem_2" name="form_9_elem_2"
+                        style="margin-bottom: 1em;" />
+                    <br />
+                    <label for="elem_3">DISABILITY INDEX SCORE:</label> &nbsp;&nbsp; %
+                    <input onkeyup="updateInputValue(name, this)" id="elem_3" name="form_9_elem_3" type="text" />
+                </div>
+                <div class="col">
+                    <b>
+                        © Vernon H and Hagino C, 1991<br />
+                        (with permission from Fairbank J)
+                    </b>
+                </div>
+            </div>
+            <div style="border: 4px double black;" class="p-3">
+                <h4>THE NECK DISABILITY INDEX QUESTIONNAIRE</h4>
+                <label for="elem_4">NAME </label>
+                <input onkeyup="updateInputValue(name, this)" id="elem_4" name="form_9_elem_4"
+                    style="margin-bottom: 1em;" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="elem_5">DATE</label> <input onkeyup="updateInputValue(name, this)" id="elem_5"
+                    name="form_9_elem_5" />
+                <p>How long have you had neck pain <input onkeyup="updateInputValue(name, this)" name="form_9_elem_6" />
+                    years <input onkeyup="updateInputValue(name, this)" name="form_9_elem_7" />
+                    months <input onkeyup="updateInputValue(name, this)" name="form_9_elem_8" /> weeks</p>
+                <p>
+                    On the diagram below, please indicate where you are experiencing pain or other symptoms, right now.
+                    Please complete both sides of this form.
+                </p>
+            </div>
+            <div class="text-center">
+                <img style="width: 70%;" src="./assets/anatomy.png" />
+            </div>
+        </div>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var test_data = {
+
+        }
+        var fileObject = new Object()
+        function updateInputValue(key, el) {
+            fileObject[key] = $(el).val();
+            console.log(fileObject);
+        }
+        function updateRadioValue(key, el) {
+            fileObject[key] = ($(el).val() === 'true');
+            console.log(fileObject);
+        }
+        function updateCheckBoxValue(key, el) {
+            fileObject[key] = $(el)[0].checked;
+            console.log(fileObject);
+        }
+        function reset(data = test_data) {
+            $('form').trigger("reset");
+            $.each(data, function (key, value) {
+                if (typeof value == 'string') {
+                    $('[name=' + key + ']').val(value);
+                } else if (typeof value == 'boolean') {
+                    if ($('input[name=' + key + ']').attr('type') == 'radio') {
+                        $('input[name=' + key + '][value=' + value + ']').prop("checked", true);
+                    } else {
+                        $('input[name=' + key + ']')[0].checked = value;
+                    }
+                }
+            })
+        }
+        //firebase save and load data function
+        function loadData() {
+            var jsonToPost = new Object()
+            jsonToPost['action'] = 'load'
+            jsonToPost['pageName'] = 'softform_9'
+            $.ajax({
+                type: 'POST',
+                //contentType: "text/xml",
+                dataType: 'text',
+                url: "https://jeavensoftcdn.com/icarus/V2Update/test.php",
+                data: jsonToPost,
+                async: true,
+                success: function (data) {
+                    var requestUrl = JSON.parse(data);//returned data as json need to be put back on the form   
+                    console.log("requestUrl:" + JSON.stringify(requestUrl));
+                    resetData(JSON.parse(data));
+                    //---
+                }, error: function (request, status, errorThrown) {
+                    alert("Please Contact Admin!<br>" + errorThrown)
+                }
+            });
+        }
+        function saveData() {
+            var jsonToPost = new Object()
+            jsonToPost['pageName'] = 'softform_9'
+            jsonToPost['action'] = 'save'
+            jsonToPost['fileObject'] = fileObject
+            $.ajax({
+                type: 'POST',
+                //contentType: "text/xml",
+                dataType: 'text',
+                url: "https://jeavensoftcdn.com/icarus/V2Update/test.php",
+                data: jsonToPost,
+                async: true,
+                success: function (data) {
+                    var requestUrl = data;
+                    console.log("requestUrl:" + requestUrl);
+
+                    //---
+                }, error: function (request, status, errorThrown) {
+                    alert("Please Contact Admin!<br>" + errorThrown)
+                }
+            });
+        }
+
+        function resetData(data = test_data) {
+            $('form').trigger("reset");
+            $.each(data, function (key, value) {
+                if ($('input[name=' + key + ']').attr('type') == 'checkbox') {
+                    $('input[name=' + key + ']')[0].checked = (value === 'true');
+                } else if ($('input[name=' + key + ']').attr('type') == 'radio') {
+                    $('input[name=' + key + '][value=' + value + ']').prop("checked", true);
+                } else {
+                    $('[name=' + key + ']').val(value);
+                }
+            })
+        }
+        function print() {
+            html2canvas($('form'), {
+                onrendered: function (canvas) {
+                    // $('#print_img').append(canvas);
+
+                    if (navigator.userAgent.indexOf("MSIE ") > 0 ||
+                        navigator.userAgent.match(/Trident.*rv\:11\./)) {
+                        var blob = canvas.msToBlob();
+
+                        window.navigator.msSaveBlob(blob, 'Test file.png');
+
+                    }
+                    else {
+                        var imgData = canvas.toDataURL('image/png');
+                        // var doc = new jsPDF('p', 'mm', 'letter');
+
+                        // var pwidth = doc.internal.pageSize.width;
+                        // var pheight = doc.internal.pageSize.height;
+
+                        // var imgHeight = canvas.height * pwidth / canvas.width;
+                        // var heightLeft = imgHeight;
+                        // var position = 20
+
+                        // doc.addImage(imgData, 'PNG', 0, position, pwidth, imgHeight);
+
+                        // heightLeft -= pheight;
+
+                        // while (heightLeft >= 0) {
+                        //   position = heightLeft - imgHeight;
+                        //   doc.addPage();
+                        //   doc.addImage(imgData, 'PNG', 0, position, pwidth, imgHeight);
+                        //   heightLeft -= pheight;
+                        // }
+                        // // doc.save('ExportFile.pdf');
+
+                        // var pdf = btoa(doc.output());
+                        // console.log(imgData); 
+                        // if (pdf) {
+                        $.ajax({
+                            method: "POST",
+                            url: "https://www.jeavensoft.com/solutions/ePOSDev/printer/imageToPDF.php",
+                            dataType: 'text',
+                            data: { base64data: imgData },
+                            success: function (data) {
+                                console.log("print_test", data);
+                            },
+                            error: function (error) {
+                                console.log("print_test", error);
+                            }
+                        });
+                        // }
+                    }
+
+
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

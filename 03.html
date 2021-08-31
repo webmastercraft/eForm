@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Single Page | One</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+
+
+	<style type="text/css">
+		.logo {
+			margin-top: 15px;
+		}
+		hr {
+			background: black;
+		    height: 2px;
+		    margin: 20px 0;
+		}
+		.container {
+			border: 2px solid black;
+			margin-bottom: 30px;
+		}
+		.container:last-of-type, .infomation {
+			border: none;
+		}
+		.infomation a {
+			display: block;
+		    color: black;
+		    text-decoration: underline;
+		    font-size: 25px;
+		    font-weight: 600;
+		}
+		.row {
+			border-bottom: 2px solid black;
+		}
+		.container .row:last-child {
+			border-bottom: none;
+		}
+		.input_group {
+			width: 49.5%;
+			display: inline-block;
+		}
+		input, select {
+			margin-top: -10px;
+			margin-bottom: 10px;
+		}
+		input.city {
+			width: 50%;
+			display: inline-block;
+			margin-top: 0;
+		}
+		input.postal {
+			width: 20%;
+			display: inline-block;
+		}
+		input.phone {
+			width: 70%;
+		}
+		input.fax {
+			width: 75%;
+		}
+		input.medication {
+			width: 80%;
+		}
+		.postal-text {
+			margin-left: 15px;
+		}
+		.row .col-sm-6:first-child {
+			border-right: 2px solid black;
+		}
+		.single-line {
+			padding: 10px 15px;
+		}
+		.single-line input {
+			margin: 0;
+			display: inline-block;
+		}
+		.bottom {
+			display: inline-flex;
+		}
+		.bottom a {
+			color: black;
+			margin-right: 15px;
+		}
+		.bottom > div:last-child a {
+			margin-right: 0;
+		}
+		.desciption {
+			display: inline-block;
+			width: 85%;
+			color: black;
+			text-decoration: underline;
+			margin-bottom: 15px;
+		}
+	</style>
+</head>
+<body>
+	<div class="text-center logo">
+	  <h1>My First Bootstrap Page</h1>
+	</div>
+	<hr>
+	<div class="container infomation">
+		<div class="row">
+			<div class="col-sm-12 text-center">
+				<a href="#">
+					Referral Form for Chronic Pain Management
+				</a>
+				<a href="#">
+					Please fax completed form to: (416) 789-2253
+				</a>
+			</div>
+		</div>
+	</div>
+    <button type="button" onclick="reset()">Reset Test</button>
+	<button type="button" onclick="saveData()">Save Form</button>
+	<button type="button" onclick="loadData()">Load Form</button>
+	<button type="button" onclick="print()">Print</button>
+	<form>
+	<div name='mainDivTag' class='mainDivTag' id='mainDivTag'>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<p>Patient name (Last Name, First Name):</p>
+				<input type="text" name="patient_last_name" onkeyup="updateInputValue(name, this)" class="col-sm-6 input_group form-control" placeholder="">
+				<input type="text" name="patient_first_name" onkeyup="updateInputValue(name, this)" class="col-sm-6 input_group form-control" placeholder="">
+			</div>
+			<div class="col-sm-6">
+				<p>Patient Phone Number:</p>
+				<input type="text" name="patient_phone_number" onkeyup="updateInputValue(name, this)" class="col-sm-12 phone2 form-control" placeholder="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<p>Date of birth (DD/MM/YY):</p>
+				<input type="text" name="birth" onkeyup="updateInputValue(name, this)" class="col-sm-12 date form-control" placeholder="">
+			</div>
+			<div class="col-sm-6">
+				<p>OHIP card number (including version code):</p>
+				<input type="text" name="ohip_number" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p>Patient address:</p>
+				<input type="text" name="address" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+				<span>City : </span><input type="text" name="city" onkeyup="updateInputValue(name, this)" class="city form-control" placeholder="">
+				<span class="postal-text">Postal Code : </span><input type="text" name="postal_code" onkeyup="updateInputValue(name, this)" class="postal form-control" placeholder="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<p>Referring physician:</p>
+				<input type="text" name="physician" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+			</div>
+			<div class="col-sm-6">
+				<p>Signature:</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 single-line">
+				<div class="col-sm-12">
+					<span>Phone Number : </span><input type="text" name="phone_number" onkeyup="updateInputValue(name, this)" class="phone form-control" placeholder="">
+				</div>
+				<div class="col-sm-12" style="margin-top: 5px;">
+					<span>Fax Number : </span><input type="text" name="fax_number" onkeyup="updateInputValue(name, this)" class="fax form-control" placeholder="">
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<p>Billing number:</p>
+				<input type="text" name="bill_number" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p>Please select location:</p>
+				<select class="col-sm-12 form-control" name="location" onchange="updateInputValue(name, this)">
+					<option value="1">801 Eglinton Ave</option>
+					<option value="2">Suite 100</option>
+					<option value="3">Toronto, Ontario M5N 1E3</option>
+					<option value="4">715 AVE</option>
+					<option value="5">Suite 106</option>
+					<option value="6">Markham. Ontarrio L3R 1A3</option>
+				</select>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<p>Reason for Referral:</p>
+				<input type="text" name="referral" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control">
+				<p>**Exclusion criteria: Cancer Pain, <18 years old, urgent/emergent cases, addiction, poorly controlled mood discorders, pain < 3 months in duretion</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<p>Previous inverstigations (please append reports eg: X-Ray, U/S. CT scan. MRI, bone scan, EMG)</p>
+				<input type="text" name="inverstigations" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+			</div>
+			<div class="col-sm-6">
+				<p>Previous treatments:(eg: epidural, rhizotomy, nerve block, trigger points, steroid injections, surgical, other)</p>
+				<input type="text" name="treatments" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 single-line">
+				<span>Current medication: </span><input type="text" name="medication" onkeyup="updateInputValue(name, this)" class="medication form-control" placeholder="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<p>Previous practitioner(s) seen for pain management: eg. physiotherapist, chiropractor, RMT, psychologist, dietitian</p>
+				<input type="text" name="practitioner" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+			</div>
+			<div class="col-sm-6">
+				<p>Specialist(s) seen for pain:</p>
+				<input type="text" name="pain" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12  text-center">
+				<a href="#" class="desciption">
+					Incomplete referrals will be returned. Appropriate care will resume once one of our physicians  have seen the patient. Some services are not covered under OHIP (your patient will be informed if input box required)
+				</a>
+				<input type="text" name="desciption" onkeyup="updateInputValue(name, this)" style="width: 100%" class="form-control">
+				
+				<div class="bottom text-center">
+					<div>CareAdvlsor Tel: <a href="tel:905 829-4877">905 829-4877</a></div>
+					<div>Fax: <a href="tel:1 866 570-5597">1 866 570-5597</a></div>
+					<div>Email: <a href="mailto:riealticareadvlsor@dlexus360.com">riealticareadvlsor@dlexus360.com </a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</form>
+		<script type="text/javascript" src="//cdn.rawgit.com/niklasvh/html2canvas/0.5.0-alpha2/dist/html2canvas.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js	"></script>	
+
+	<script type="text/javascript">
+		$(document).ready(function(){  
+	        $('.phone').inputmask('(99)-999-9999');  
+	        $('.phone2').inputmask('(99)-9999-9999');  
+	        $('.date').inputmask("date",{
+			     mask: "1-2-y", 
+			     placeholder: "dd-mm-yyyy", 
+			     leapday: "-02-29", 
+			     separator: "-", 
+			     alias: "dd-mm-yyyy"
+			});
+	    });  
+	</script>
+</body>
+<script type="text/javascript">
+	var test_data = {
+        address: "12312",
+		bill_number: "12312",
+		birth: "12-12-2012",
+		city: "12312",
+		desciption: "12312312312",
+		fax_number: "1231",
+		inverstigations: "12312",
+		location: "4",
+		medication: "12312312",
+		ohip_number: "12312",
+		pain: "12312",
+		patient_first_name: "2",
+		patient_last_name: "1",
+		patient_phone_number: "(12)-3123-1231",
+		phone_number: "(12)-312-3123",
+		physician: "12312",
+		postal_code: "1231",
+		practitioner: "123123",
+		referral: "12312",
+		treatments: "123123",
+    }
+	var fileObject=new Object()
+	function updateInputValue(key, el){
+		fileObject[key]=$(el).val();
+		console.log(fileObject);
+	}
+	function updateRadioValue(key, el){
+		fileObject[key]=($(el).val() === 'true');
+		console.log(fileObject);
+	}
+    function updateCheckBoxValue(key, el){
+        fileObject[key]=$(el)[0].checked;
+        console.log(fileObject);
+    }
+    function reset(data = test_data) {
+    	$('form').trigger("reset");
+        $.each(data, function(key, value) {
+            if(typeof value == 'string') {
+                $('[name='+key+']').val(value);
+            } else if(typeof value == 'boolean') {
+                if ($('input[name='+key+']').attr('type') == 'radio') {
+                    $('input[name='+key+'][value='+value+']').prop("checked",true);
+                } else {
+                    $('input[name='+key+']')[0].checked = value;
+                }
+            }
+        })
+    }
+    //firebase save and load data function
+	function loadData(){
+		var jsonToPost=new Object()
+		jsonToPost['action']='load'
+		jsonToPost['pageName']='one'
+		$.ajax({
+			type: 'POST',
+			//contentType: "text/xml",
+			dataType: 'text',
+			url: "https://jeavensoftcdn.com/icarus/V2Update/test.php",
+			data: jsonToPost,
+			async: true,
+			success: function (data) {
+					var requestUrl = JSON.parse(data);//returned data as json need to be put back on the form	
+					console.log("requestUrl:"+JSON.stringify(requestUrl));
+					resetData(JSON.parse(data));
+				//---
+			},error: function (request,status,errorThrown) {	
+				alert("Please Contact Admin!<br>"+errorThrown)
+			}
+		});
+	}
+	function saveData(){
+		var jsonToPost=new Object()
+		jsonToPost['pageName']='one'
+		jsonToPost['action']='save'
+		jsonToPost['fileObject']=fileObject
+		$.ajax({
+			type: 'POST',
+			//contentType: "text/xml",
+			dataType: 'text',
+			url: "https://jeavensoftcdn.com/icarus/V2Update/test.php",
+			data: jsonToPost,
+			async: true,
+			success: function (data) {
+					var requestUrl = data;
+					console.log("requestUrl:"+requestUrl);
+					
+				//---
+			},error: function (request,status,errorThrown) {	
+				alert("Please Contact Admin!<br>"+errorThrown)
+			}
+		});
+	}
+
+	function resetData(data = test_data) {
+		$('form').trigger("reset");
+        $.each(data, function(key, value) {
+            $('[name='+key+']').val(value);
+        })
+    }
+	// function print(){
+			
+	// 		var headstr = "<h2>Vaccination Record: Name (DoB: DOB</h2>";
+ //            var footstr = "<h2>Printed By: </h2>";
+ //            var newstr = document.all.item('mainDivTag').innerHTML;
+ //            var oldstr = document.body.innerHTML;
+ //            document.body.innerHTML = headstr + newstr + footstr;
+	// 		document.body.style.padding='50px'
+ //            window.print();
+ //            document.body.innerHTML = oldstr;
+ //           return false;
+	// }
+    function print(){
+        html2canvas($('form'), {
+            onrendered: function(canvas) {
+                // $('#print_img').append(canvas);
+
+	            if (navigator.userAgent.indexOf("MSIE ") > 0 || 
+	                navigator.userAgent.match(/Trident.*rv\:11\./)) {
+	                var blob = canvas.msToBlob();
+
+	                window.navigator.msSaveBlob(blob,'Test file.png');
+
+	            }
+	            else   {
+	                var imgData = canvas.toDataURL('image/png');
+	                var doc = new jsPDF('p', 'mm', 'letter');
+
+	                var pwidth = doc.internal.pageSize.width;
+	                var pheight = doc.internal.pageSize.height;
+
+	                var imgHeight = canvas.height * pwidth / canvas.width;
+	                var heightLeft = imgHeight;
+	                var position = 20
+
+	                doc.addImage(imgData, 'PNG', 0, position, pwidth, imgHeight);
+
+	                heightLeft -= pheight;
+
+	                while (heightLeft >= 0) {
+	                  position = heightLeft - imgHeight;
+	                  doc.addPage();
+	                  doc.addImage(imgData, 'PNG', 0, position, pwidth, imgHeight);
+	                  heightLeft -= pheight;
+	                }
+	                // doc.save('ExportFile.pdf');
+
+	             //    var blob = doc.output('blob');
+
+		            // var formData = new FormData();
+		            // formData.append('pdf', blob);
+
+		            // $.ajax('https://www.jeavensoft.com/solutions/ePOSDev/printer/aImageToPDF.php',
+		            // {
+		            //     method: 'POST',
+		            //     data: formData,
+		            //     processData: false,
+		            //     contentType: false,
+		            //     success: function(data){console.log(data)},
+		            //     error: function(data){console.log(data)}
+		            // });
+
+		            // var pdf = doc.output("https://www.jeavensoft.com/solutions/ePOSDev/printer/imageToPDF/123.pdf"); 
+		            
+		            var pdf = btoa(doc.output()); 
+				    $.ajax({
+				      method: "POST",
+				      url: "https://www.jeavensoft.com/solutions/ePOSDev/printer/aImageToPDF.php",
+				      data: {data: pdf},
+				    }).done(function(data){
+				       console.log(data);
+				    });
+	             }
+	        }
+	    });
+	}
+</script>
+</html>
