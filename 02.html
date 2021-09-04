@@ -9,10 +9,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
-    <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.debug.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
 
 
     <style>
@@ -21,7 +19,7 @@
             margin-bottom: 2em;
             border: 1px solid #444;
         }
-        .container > .row > .col {
+        .group > .row > .col {
             border: 1px solid #444;
         }
         .vertical-text {
@@ -38,15 +36,27 @@
         h5 .custom-control-label {
             font-weight: normal;
         }
-        .container:last-of-type {
-            border-width: 2px;
+        .title {
+            border: 1px solid;
+            border-bottom: none;
+            margin: auto -15px;
+            padding: 0 15px;
+        }
+        .group:last-of-type > .row {
+            border: 1px solid;
+            border-top: none;
         }
     </style>
 </head>
 <body>
-    
-    <form>
-    <div class="container">
+    <div style='padding:10px'>
+        <button type="button" onclick="reset()">Reset Test</button>
+        <button type="button" onclick="saveData()">Save Form</button>
+        <button type="button" onclick="loadData()">Load Form</button>
+        <button type="button" onclick="print()">Print</button>
+    </div>
+    <form class="container">
+    <div class="group">
         <div class="row">
             <div class="col">
                 <fieldset>
@@ -658,399 +668,397 @@
         </div>
     </div>
 
-    <div class="container">
-        <div>
-            <h5>Physical Examination</h5>
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="hr">HR:</label>
-                                <input type="text" name="hr" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" id="hr" aria-describedby="emailHelp">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="bp">BP:</label>
-                                <input type="text" name="bp" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" id="bp" aria-describedby="emailHelp">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="rr">RR:</label>
-                                <input type="text" name="rr" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" id="rr" aria-describedby="emailHelp">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="ht">HT:</label>
-                                <input type="text" name="ht" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" id="ht" aria-describedby="emailHelp">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="wt">WT:</label>
-                                <input type="text" name="wt" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" id="wt" aria-describedby="emailHelp">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="bmi">BMI:</label>
-                                <input type="text" name="bmi" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" id="bmi" aria-describedby="emailHelp">
-                            </div>
+    <div class="group">
+        <h5 class="title">Physical Examination</h5>
+        <div class="row border-bottom-0">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="hr">HR:</label>
+                            <input type="text" name="hr" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" id="hr" aria-describedby="emailHelp">
                         </div>
                     </div>
-                </div>
-                <div class="col-md-5 d-flex">
-                    <label class="align-self-center" style="margin:0;">
-                        Waist Circumference:
-                        <hr style="margin: .1em 0;">
-                        Hip Circumference:
-                    </label>
-                    <div class="form-group align-self-center" style="margin: 0 0 0 .5em;">
-                        <input type="text" name="waist" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" />
-                        <hr style="margin: 0.1em 0;">
-                        <input type="text" name="hip" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" />
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="bp">BP:</label>
+                            <input type="text" name="bp" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" id="bp" aria-describedby="emailHelp">
+                        </div>
                     </div>
-                    <label class="align-self-center ml-1">Ratio:</label>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="rr">RR:</label>
+                            <input type="text" name="rr" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" id="rr" aria-describedby="emailHelp">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="ht">HT:</label>
+                            <input type="text" name="ht" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" id="ht" aria-describedby="emailHelp">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="wt">WT:</label>
+                            <input type="text" name="wt" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" id="wt" aria-describedby="emailHelp">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="bmi">BMI:</label>
+                            <input type="text" name="bmi" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" id="bmi" aria-describedby="emailHelp">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="row">
-                        <small class="text-muted col-md-2 offset-md-4 p-0">Normal</small>
-                        <small class="text-muted col-md-2 p-0">Abnormal</small>
-                        <small class="text-muted col-md-4">Remarks</small>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-4">Eyes:</label>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="eyes_check" id="eyes_check_1">
-                                <label class="form-check-label" for="eyes_check_1"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="eyes_check" id="eyes_check_2">
-                                <label class="form-check-label" for="eyes_check_2"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control form-control-sm" type="text" name="eyes" onkeyup="updateInputValue(name, this)" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-4">Nose:</label>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="nose_check" id="nose_check_1">
-                                <label class="form-check-label" for="nose_check_1"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="nose_check" id="nose_check_2">
-                                <label class="form-check-label" for="nose_check_2"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control form-control-sm" type="text" name="nose" onkeyup="updateInputValue(name, this)" />
+            <div class="col-md-5 d-flex">
+                <label class="align-self-center" style="margin:0;">
+                    Waist Circumference:
+                    <hr style="margin: .1em 0;">
+                    Hip Circumference:
+                </label>
+                <div class="form-group align-self-center" style="margin: 0 0 0 .5em;">
+                    <input type="text" name="waist" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" />
+                    <hr style="margin: 0.1em 0;">
+                    <input type="text" name="hip" onkeyup="updateInputValue(name, this)" class="form-control form-control-sm" />
+                </div>
+                <label class="align-self-center ml-1">Ratio:</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="row">
+                    <small class="text-muted col-md-2 offset-md-4 p-0">Normal</small>
+                    <small class="text-muted col-md-2 p-0">Abnormal</small>
+                    <small class="text-muted col-md-4">Remarks</small>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-4">Eyes:</label>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="eyes_check" id="eyes_check_1">
+                            <label class="form-check-label" for="eyes_check_1"></label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-4">Ears:</label>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="ears_check" id="ears_check_1">
-                                <label class="form-check-label" for="ears_check_1"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="ears_check" id="ears_check_2">
-                                <label class="form-check-label" for="ears_check_2"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control form-control-sm" type="text" name="ears" onkeyup="updateInputValue(name, this)" />
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="eyes_check" id="eyes_check_2">
+                            <label class="form-check-label" for="eyes_check_2"></label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-4">Mouth/Throat:</label>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="mouth_check" id="mouth_check_1">
-                                <label class="form-check-label" for="mouth_check_1"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="mouth_check" id="mouth_check_2">
-                                <label class="form-check-label" for="mouth_check_2"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control form-control-sm" type="text" name="mouth" onkeyup="updateInputValue(name, this)" />
+                    <div class="col-md-4">
+                        <input class="form-control form-control-sm" type="text" name="eyes" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-4">Nose:</label>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="nose_check" id="nose_check_1">
+                            <label class="form-check-label" for="nose_check_1"></label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-4">Neck/Thyroid:</label>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="neck_check" id="neck_check_1">
-                                <label class="form-check-label" for="neck_check_1"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="neck_check" id="neck_check_2">
-                                <label class="form-check-label" for="neck_check_2"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control form-control-sm" type="text" name="neck" onkeyup="updateInputValue(name, this)" />
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="nose_check" id="nose_check_2">
+                            <label class="form-check-label" for="nose_check_2"></label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-4">CVS:</label>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="cvs_check" id="cvs_check_1">
-                                <label class="form-check-label" for="cvs_check_1"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="cvs_check" id="cvs_check_2">
-                                <label class="form-check-label" for="cvs_check_2"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control form-control-sm" type="text" name="cvs" onkeyup="updateInputValue(name, this)" />
+                    <div class="col-md-4">
+                        <input class="form-control form-control-sm" type="text" name="nose" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-4">Ears:</label>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="ears_check" id="ears_check_1">
+                            <label class="form-check-label" for="ears_check_1"></label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-4">Resp:</label>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="resp_check" id="resp_check_1">
-                                <label class="form-check-label" for="resp_check_1"></label>
-                            </div>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="ears_check" id="ears_check_2">
+                            <label class="form-check-label" for="ears_check_2"></label>
                         </div>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="resp_check" id="resp_check_2">
-                                <label class="form-check-label" for="resp_check_2"></label>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <input class="form-control form-control-sm" type="text" name="ears" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-4">Mouth/Throat:</label>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="mouth_check" id="mouth_check_1">
+                            <label class="form-check-label" for="mouth_check_1"></label>
                         </div>
-                        <div class="col-md-4">
-                            <input class="form-control form-control-sm" type="text" name="resp" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="mouth_check" id="mouth_check_2">
+                            <label class="form-check-label" for="mouth_check_2"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <input class="form-control form-control-sm" type="text" name="mouth" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-4">Neck/Thyroid:</label>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="neck_check" id="neck_check_1">
+                            <label class="form-check-label" for="neck_check_1"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="neck_check" id="neck_check_2">
+                            <label class="form-check-label" for="neck_check_2"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <input class="form-control form-control-sm" type="text" name="neck" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-4">CVS:</label>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="cvs_check" id="cvs_check_1">
+                            <label class="form-check-label" for="cvs_check_1"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="cvs_check" id="cvs_check_2">
+                            <label class="form-check-label" for="cvs_check_2"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <input class="form-control form-control-sm" type="text" name="cvs" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-4">Resp:</label>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="resp_check" id="resp_check_1">
+                            <label class="form-check-label" for="resp_check_1"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="resp_check" id="resp_check_2">
+                            <label class="form-check-label" for="resp_check_2"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <input class="form-control form-control-sm" type="text" name="resp" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group row">
+                    <label class="col-form-label col-md-12">Snellen sight card: </label>
+                    <div class="col-md-12 d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="snellen_r" onclick="updateCheckBoxValue(name, this)" id="snellen_r">
+                            <label class="form-check-label" for="snellen_r">
+                                R
+                            </label>
+                        </div>
+                        <div class="form-check ml-3">
+                            <input class="form-check-input" type="checkbox" name="snellen_l" onclick="updateCheckBoxValue(name, this)" id="snellen_l">
+                            <label class="form-check-label" for="snellen_l">
+                                L
+                            </label>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-12">Snellen sight card: </label>
-                        <div class="col-md-12 d-flex">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="snellen_r" onclick="updateCheckBoxValue(name, this)" id="snellen_r">
-                                <label class="form-check-label" for="snellen_r">
-                                    R
-                                </label>
-                            </div>
-                            <div class="form-check ml-3">
-                                <input class="form-check-input" type="checkbox" name="snellen_l" onclick="updateCheckBoxValue(name, this)" id="snellen_l">
-                                <label class="form-check-label" for="snellen_l">
-                                    L
-                                </label>
-                            </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-12">Whispered voice test: </label>
+                    <div class="col-md-12 d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="whispered_r" onclick="updateCheckBoxValue(name, this)" value="" id="whispered_r">
+                            <label class="form-check-label" for="whispered_r">
+                                R
+                            </label>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-12">Whispered voice test: </label>
-                        <div class="col-md-12 d-flex">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="whispered_r" onclick="updateCheckBoxValue(name, this)" value="" id="whispered_r">
-                                <label class="form-check-label" for="whispered_r">
-                                    R
-                                </label>
-                            </div>
-                            <div class="form-check ml-3">
-                                <input class="form-check-input" type="checkbox" name="whispered_l" onclick="updateCheckBoxValue(name, this)" value="" id="whispered_l">
-                                <label class="form-check-label" for="whispered_l">
-                                    L
-                                </label>
-                            </div>
+                        <div class="form-check ml-3">
+                            <input class="form-check-input" type="checkbox" name="whispered_l" onclick="updateCheckBoxValue(name, this)" value="" id="whispered_l">
+                            <label class="form-check-label" for="whispered_l">
+                                L
+                            </label>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <div class="row">
-                        <small class="text-muted col-md-2 offset-md-4 p-0">Normal</small>
-                        <small class="text-muted col-md-2 p-0">Abnormal</small>
-                        <small class="text-muted col-md-4">Remarks</small>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-4">Breasts:</label>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="breasts_check" id="breasts_check_1">
-                                <label class="form-check-label" for="breasts_check_1"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="breasts_check" id="breasts_check_2">
-                                <label class="form-check-label" for="breasts_check_2"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control form-control-sm" type="text" name="breasts" onkeyup="updateInputValue(name, this)" />
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <small class="text-muted col-md-2 offset-md-4 p-0">Normal</small>
+                    <small class="text-muted col-md-2 p-0">Abnormal</small>
+                    <small class="text-muted col-md-4">Remarks</small>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-4">Breasts:</label>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="breasts_check" id="breasts_check_1">
+                            <label class="form-check-label" for="breasts_check_1"></label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-4">Abdo:</label>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="abdo_check" id="abdo_check_1">
-                                <label class="form-check-label" for="abdo_check_1"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="abdo_check" id="abdo_check_2">
-                                <label class="form-check-label" for="abdo_check_2"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control form-control-sm" type="text" name="abdo" onkeyup="updateInputValue(name, this)" />
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="breasts_check" id="breasts_check_2">
+                            <label class="form-check-label" for="breasts_check_2"></label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-4">Ano-Rectum:</label>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="ano_rectum_check" id="ano_rectum_check_1">
-                                <label class="form-check-label" for="ano_rectum_check_1"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="ano_rectum_check" id="ano_rectum_check_2">
-                                <label class="form-check-label" for="ano_rectum_check_2"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control form-control-sm" type="text" name="ano_rectum" onkeyup="updateInputValue(name, this)" />
+                    <div class="col-md-4">
+                        <input class="form-control form-control-sm" type="text" name="breasts" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-4">Abdo:</label>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="abdo_check" id="abdo_check_1">
+                            <label class="form-check-label" for="abdo_check_1"></label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-4">Pelvic:</label>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="pelvic_check" id="pelvic_check_1">
-                                <label class="form-check-label" for="pelvic_check_1"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="pelvic_check" id="pelvic_check_2">
-                                <label class="form-check-label" for="pelvic_check_2"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control form-control-sm" type="text" name="pelvic" onkeyup="updateInputValue(name, this)" />
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="abdo_check" id="abdo_check_2">
+                            <label class="form-check-label" for="abdo_check_2"></label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-md-3 offset-md-4">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="pelvic_pap_check" name="pelvic_pap_check" onclick="updateCheckBoxValue(name, this)">
-                                <label class="custom-control-label" for="pelvic_pap_check">Pap</label>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <input class="form-control form-control-sm" type="text" name="pelvic_pap_txt" onkeyup="updateInputValue(name, this)" />
+                    <div class="col-md-4">
+                        <input class="form-control form-control-sm" type="text" name="abdo" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-4">Ano-Rectum:</label>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="ano_rectum_check" id="ano_rectum_check_1">
+                            <label class="form-check-label" for="ano_rectum_check_1"></label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-4">Neuro:</label>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="neuro_check" id="neuro_check_1">
-                                <label class="form-check-label" for="neuro_check_1"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="neuro_check" id="neuro_check_2">
-                                <label class="form-check-label" for="neuro_check_2"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control form-control-sm" type="text" name="neuro" onkeyup="updateInputValue(name, this)" />
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="ano_rectum_check" id="ano_rectum_check_2">
+                            <label class="form-check-label" for="ano_rectum_check_2"></label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-4">Derm:</label>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="derm_check" id="derm_check_1">
-                                <label class="form-check-label" for="derm_check_1"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="derm_check" id="derm_check_2">
-                                <label class="form-check-label" for="derm_check_2"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control form-control-sm" type="text" name="derm" onkeyup="updateInputValue(name, this)" />
+                    <div class="col-md-4">
+                        <input class="form-control form-control-sm" type="text" name="ano_rectum" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-4">Pelvic:</label>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="pelvic_check" id="pelvic_check_1">
+                            <label class="form-check-label" for="pelvic_check_1"></label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-4">MSK/Joints:</label>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="msk_joints_check" id="msk_joints_check_1">
-                                <label class="form-check-label" for="msk_joints_check_1"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="msk_joints_check" id="msk_joints_check_2">
-                                <label class="form-check-label" for="msk_joints_check_2"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control form-control-sm" type="text" name="msk_joints" onkeyup="updateInputValue(name, this)" />
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="pelvic_check" id="pelvic_check_2">
+                            <label class="form-check-label" for="pelvic_check_2"></label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-4">Extremities:</label>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="extremities_check" id="extremities_check_1">
-                                <label class="form-check-label" for="extremities_check_1"></label>
-                            </div>
+                    <div class="col-md-4">
+                        <input class="form-control form-control-sm" type="text" name="pelvic" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3 offset-md-4">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="pelvic_pap_check" name="pelvic_pap_check" onclick="updateCheckBoxValue(name, this)">
+                            <label class="custom-control-label" for="pelvic_pap_check">Pap</label>
                         </div>
-                        <div class="col-md-2 d-flex">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="extremities_check" id="extremities_check_2">
-                                <label class="form-check-label" for="extremities_check_2"></label>
-                            </div>
+                    </div>
+                    <div class="col-md-5">
+                        <input class="form-control form-control-sm" type="text" name="pelvic_pap_txt" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-4">Neuro:</label>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="neuro_check" id="neuro_check_1">
+                            <label class="form-check-label" for="neuro_check_1"></label>
                         </div>
-                        <div class="col-md-4">
-                            <input class="form-control form-control-sm" type="text" name="extremities" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="neuro_check" id="neuro_check_2">
+                            <label class="form-check-label" for="neuro_check_2"></label>
                         </div>
+                    </div>
+                    <div class="col-md-4">
+                        <input class="form-control form-control-sm" type="text" name="neuro" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-4">Derm:</label>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="derm_check" id="derm_check_1">
+                            <label class="form-check-label" for="derm_check_1"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="derm_check" id="derm_check_2">
+                            <label class="form-check-label" for="derm_check_2"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <input class="form-control form-control-sm" type="text" name="derm" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-4">MSK/Joints:</label>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="msk_joints_check" id="msk_joints_check_1">
+                            <label class="form-check-label" for="msk_joints_check_1"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="msk_joints_check" id="msk_joints_check_2">
+                            <label class="form-check-label" for="msk_joints_check_2"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <input class="form-control form-control-sm" type="text" name="msk_joints" onkeyup="updateInputValue(name, this)" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-4">Extremities:</label>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="true" onclick="updateRadioValue(name, this)" name="extremities_check" id="extremities_check_1">
+                            <label class="form-check-label" for="extremities_check_1"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="false" onclick="updateRadioValue(name, this)" name="extremities_check" id="extremities_check_2">
+                            <label class="form-check-label" for="extremities_check_2"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <input class="form-control form-control-sm" type="text" name="extremities" onkeyup="updateInputValue(name, this)" />
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row" style="border-style: solid; border-color: black; border-width: 2px 0;">
+        <div class="row">
             <table class="table table-bordered table-sm" style="margin-bottom: 0;">
                 <thead style="background-color: #cccccc4d;">
                     <tr class="text-center">
@@ -1239,18 +1247,12 @@
                 </tbody>
             </table>
         </div>
-        <div class="mb-3">
+        <div class="row" style="padding: 15px;">
             <label>Assessment and Plans: </label>
             <textarea rows="7" class="form-control" name="assessment" onkeyup="updateInputValue(name, this)"></textarea>
         </div>
     </div>
     </form>
-	<div style='padding:10px'>
-		<button type="button" onclick="reset()">Reset Test</button>
-		<button type="button" onclick="saveData()">Save Form</button>
-		<button type="button" onclick="loadData()">Load Form</button>
-		<button type="button" onclick="print()">Print</button>
-	<div>
 </body>
 <script>
     var test_data = {
@@ -1416,52 +1418,57 @@
         })
     }
 	function print(){
-		//get image from div tag...if we have two main div tag....it shoud be two images..."container"
-		//once you have the 1 or 2 or 3 image....make ajax call to the fpdf file and pass the data as base64img
-		//on php site....use fpdf to save the images...as ONE single PDF
-				
-		var jsonToPost=new Object()
-		jsonToPost['data']="{base64data1},{base64data2}"		
-		$.ajax({
-			type: 'POST',
-			//contentType: "text/xml",
-			dataType: 'text',
-			url: "https://www.jeavensoft.com/solutions/ePOSDev/printer/imageToPDF.php",
-			data: jsonToPost,
-			async: true,
-			success: function (data) {
-					var requestUrl = data;
-					console.log("requestUrl:"+requestUrl);
-					
-				//---
-			},error: function (request,status,errorThrown) {	
-				alert("Please Contact Admin!<br>"+errorThrown)
-			}
-		});
-		
-		// alert("Genrate PDF of the page, and save local using javascript, you can take a screeen shot and use jsPDF")
+		html2canvas($('form'), {
+            onrendered: function(canvas) {
+                $('#print_img').append(canvas);
+                if (navigator.userAgent.indexOf("MSIE ") > 0 || 
+                    navigator.userAgent.match(/Trident.*rv\:11\./)) {
+                    var blob = canvas.msToBlob();
 
-        // var doc = new jsPDF('p', 'pt', 'a4');
+                    window.navigator.msSaveBlob(blob,'Test file.png');
+                }
+                else   {
+                    var imgData = canvas.toDataURL('image/png', 0.1);
+                    var doc = new jsPDF('p', 'mm', 'letter', true);
 
-        // source = $('form')[0];
+                    var pwidth = doc.internal.pageSize.width - 30;
+                    var pheight = doc.internal.pageSize.height;
 
-        // doc.fromHTML(
-        //     source,
-        //     30,
-        //     30, 
-        //     {
-        //       'width': 1140,
-        //     }
-        // );
-        // doc.save('sample-file.pdf')
+                    var imgHeight = canvas.height * pwidth / canvas.width;
+                    var heightLeft = imgHeight;
+                    var position = 20
 
-        //var pdf = new jsPDF('p', 'mm', [297,210]);//page size
-         //var options = {
-            // pagesplit: true
-            //};
-         //pdf.addHTML($('form')[0],options, function () {//data to print
-             //pdf.save('Test.pdf');
-         ///});
+                    doc.addImage(imgData, 'JPEG', 15, position, pwidth, imgHeight, undefined, 'FAST');
+
+                    heightLeft -= pheight;
+
+                    while (heightLeft >= 0) {
+                      position = heightLeft - imgHeight;
+                      doc.addPage();
+                      doc.addImage(imgData, 'JPEG', 15, position + 21, pwidth, imgHeight, undefined, 'FAST');
+                      heightLeft -= pheight;
+                    }
+                    // doc.save('ExportFile.pdf');
+
+                    var blob = doc.output('blob');
+
+                    var formData = new FormData();
+                    formData.append('pdf', blob);
+                    formData.append('name', 'softform_02');
+
+                    $.ajax(
+                    {
+                        method: 'POST',
+                        url: "./printJSPDF.php",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(data){console.log(data)},
+                        error: function(data){console.log(data)}
+                    });
+                }
+            }
+        });
 	}
 </script>
 </html>

@@ -21,9 +21,9 @@
     <button type="button" onclick="reset()">Reset Test</button>
     <button type="button" onclick="saveData()">Save Form</button>
     <button type="button" onclick="loadData()">Load Form</button>
-    <button type="button" onclick="print()">Print</button>
-    <form>
-    <div class="container mt-5 p-4">
+    <!-- <button type="button" onclick="print()">Print</button> -->
+    <button type="button" onclick="printJSPDF()">Print</button>
+    <form class="container mt-5 p-4">
         <div>
             <label>Re:</label>
             <input class="w-50" type="text" name="form_1_re" onkeyup="updateInputValue(name, this)" />
@@ -167,10 +167,7 @@
             <br />
             Dr. Mark Renzoni  D.C., R.M.T., H.B.Sc.
         </p>
-    </div>
     </form>
-
-    
   </body>
   <script type="text/javascript">
     var test_data = {
@@ -210,7 +207,6 @@
         jsonToPost['pageName']='softform_1'
         $.ajax({
             type: 'POST',
-            //contentType: "text/xml",
             dataType: 'text',
             url: "https://jeavensoftcdn.com/icarus/V2Update/test.php",
             data: jsonToPost,
@@ -219,7 +215,6 @@
                     var requestUrl = JSON.parse(data);//returned data as json need to be put back on the form   
                     console.log("requestUrl:"+JSON.stringify(requestUrl));
                     resetData(JSON.parse(data));
-                //---
             },error: function (request,status,errorThrown) {    
                 alert("Please Contact Admin!<br>"+errorThrown)
             }
@@ -232,16 +227,13 @@
         jsonToPost['fileObject']=fileObject
         $.ajax({
             type: 'POST',
-            //contentType: "text/xml",
             dataType: 'text',
             url: "https://jeavensoftcdn.com/icarus/V2Update/test.php",
             data: jsonToPost,
             async: true,
             success: function (data) {
-                    var requestUrl = data;
-                    console.log("requestUrl:"+requestUrl);
-                    
-                //---
+                var requestUrl = data;
+                console.log("requestUrl:"+requestUrl);
             },error: function (request,status,errorThrown) {    
                 alert("Please Contact Admin!<br>"+errorThrown)
             }
@@ -261,61 +253,54 @@
         })
     }
     function print(){
+        $.ajax({
+            method: "POST",
+            url: "https://jeavensoft.com/eForm/print1.php",
+            dataType: 'text',
+            data: {data: $('form').html()},
+            success: function(data) {
+                console.log("print_success", data);
+            },
+            error: function(error) {
+                console.log("print_fail", error);
+            }
+        });
+    }
+    function printJSPDF(){
         html2canvas($('form'), {
             onrendered: function(canvas) {
-                // $('#print_img').append(canvas);
+                if (navigator.userAgent.indexOf("MSIE ") > 0 || 
+                    navigator.userAgent.match(/Trident.*rv\:11\./)) {
+                    var blob = canvas.msToBlob();
 
-            if (navigator.userAgent.indexOf("MSIE ") > 0 || 
-                navigator.userAgent.match(/Trident.*rv\:11\./)) {
-                var blob = canvas.msToBlob();
+                    window.navigator.msSaveBlob(blob,'Test file.png');
 
-                window.navigator.msSaveBlob(blob,'Test file.png');
+                }
+                else   {
+                    var imgData = canvas.toDataURL('image/png', 0.1);
+                    var doc = new jsPDF('p', 'mm', 'letter', true);
 
+                    var pwidth = doc.internal.pageSize.width - 30;
+                    var pheight = doc.internal.pageSize.height;
+
+                    var imgHeight = canvas.height * pwidth / canvas.width;
+                    var heightLeft = imgHeight;
+                    var position = 20
+
+                    doc.addImage(imgData, 'JPEG', 15, position, pwidth, imgHeight, undefined, 'FAST');
+
+                    heightLeft -= pheight;
+
+                    while (heightLeft >= 0) {
+                      position = heightLeft - imgHeight;
+                      doc.addPage();
+                      doc.addImage(imgData, 'JPEG', 15, position, pwidth, imgHeight, undefined, 'FAST');
+                      heightLeft -= pheight;
+                    }
+                    doc.save('ExportFile.pdf');
+                 }
             }
-            else   {
-                var imgData = canvas.toDataURL('image/png');
-                // var doc = new jsPDF('p', 'mm', 'letter');
-
-                // var pwidth = doc.internal.pageSize.width;
-                // var pheight = doc.internal.pageSize.height;
-
-                // var imgHeight = canvas.height * pwidth / canvas.width;
-                // var heightLeft = imgHeight;
-                // var position = 20
-
-                // doc.addImage(imgData, 'PNG', 0, position, pwidth, imgHeight);
-
-                // heightLeft -= pheight;
-
-                // while (heightLeft >= 0) {
-                //   position = heightLeft - imgHeight;
-                //   doc.addPage();
-                //   doc.addImage(imgData, 'PNG', 0, position, pwidth, imgHeight);
-                //   heightLeft -= pheight;
-                // }
-                // // doc.save('ExportFile.pdf');
-
-                // var pdf = btoa(doc.output());
-                // console.log(imgData); 
-                // if (pdf) {
-                    $.ajax({
-                        method: "POST",
-                        url: "https://www.jeavensoft.com/solutions/ePOSDev/printer/imageToPDF.php",
-                        dataType: 'text',
-                        data: {base64data: imgData},
-                        success: function(data) {
-                            console.log("print_test", data);
-                        },
-                        error: function(error) {
-                            console.log("print_test", error);
-                        }
-                    });
-                // }
-             }
-
-
-            }
-            });
+        });
     }
   </script>
 </html>

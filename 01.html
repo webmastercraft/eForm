@@ -9,6 +9,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>  
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
 
 	<style type="text/css">
 		.container {
@@ -31,7 +33,7 @@
 			border: 2px solid darkblue;
 			font-weight: 700;
 			/*width: 90%;*/
-			margin: 0 -15px;
+			margin: 0.5rem -15px;
 		}
 		.single-line {
 			display: inline-block;
@@ -79,1110 +81,1111 @@
 	<button type="button" onclick="reset()">Reset Test</button>
 	<button type="button" onclick="saveData()">Save Form</button>
 	<button type="button" onclick="loadData()">Load Form</button>
-	<form>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-3">
-				<p>Patient's Last Name</p>
-				<input type="text" name="patient_last_name_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
+	<button type="button" onclick="print()">print</button>
+	<form class="container mb-5 mt-5">
+		<div class="mt-2">
+			<div class="row">
+				<div class="col-sm-3">
+					<p>Patient's Last Name</p>
+					<input type="text" name="patient_last_name_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
+				</div>
+				<div class="col-sm-3 border-right">
+					<p>Patient's First Name</p>
+					<input type="text" name="patient_first_name_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
+				</div>
 			</div>
-			<div class="col-sm-3 border-right">
-				<p>Patient's First Name</p>
-				<input type="text" name="patient_first_name_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
-			</div>
-		</div>
 
-		<div class="row">
-			<div class="col-sm-5">
-				<p>Address-number, street name</p>
-				<input type="text" name="address" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-			<div class="col-sm-1 border-right">
-				<p>Apt/Suite/Unit</p>
-				<input type="text" name="apt_suite_unit" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-4">
-				<p>City/Town</p>
-				<input type="text" name="city_town" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-			<div class="col-sm-1">
-				<p>Province</p>
-				<input type="text" name="province" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-			<div class="col-sm-1 border-right">
-				<p>Postal Code</p>
-				<input type="text" name="postal_code" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-			<div class="col-sm-3">
-				<p>Patient's Last Name</p>
-				<input type="text" name="patient_last_name_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
-			</div>
-			<div class="col-sm-3">
-				<p>Patient's First Name</p>
-				<input type="text" name="patient_first_name_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-2">
-				<p>Telephone-Home</p>
-				<input type="text" name="tel_phone_home" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-			<div class="col-sm-2">
-				<p>Telephone-Wbrk</p>
-				<input type="text" name="tel_phone_wbrk" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-			<div class="col-sm-2 border-right">
-				<p>Language</p>
-				<input type="text" name="language" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-			<div class="col-sm-2">
-				<p>Patient's Occupation</p>
-				<input type="text" name="occupation1" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
-			</div>
-			<div class="col-sm-3">
-				<p>Patient's Educational level</p>
-				<input type="text" name="educational_level1" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
-			</div>
-			<div class="col-sm-1">
-				<p>Age</p>
-				<input type="text" name="age1" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-2">
-				<p>Date of birth</p>
-				<input type="text" name="date_birth" onkeyup="updateInputValue(name, this)" class="col-sm-12 date form-control" placeholder="">
-			</div>
-			<div class="col-sm-1">
-				<p>Age</p>
-				<input type="text" name="age2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-			<div class="col-sm-1">
-				<p>Occupation</p>
-				<input type="text" name="occupation2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-			<div class="col-sm-2 border-right">
-				<p>Educational level</p>
-				<input type="text" name="educational_level2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-			<div class="col-sm-6">
-				<p>Ethnic or Racial backgrounds: Mother/Father</p>
-				<input type="text" name="ethnic" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-2">
-				<p>OHIP No.</p>
-				<input type="text" name="ohip_no" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-			<div class="col-sm-2">
-				<p>Patient File No.</p>
-				<input type="text" name="patient_file_no" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-			<div class="col-sm-2 border-right">
-				<p>Maritalstatus</p>
-				<input type="text" name="maritalstatus" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-			<div class="col-sm-2">
-				<p>Birth attendant</p>
-				<input type="text" name="birth_attendant" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
-			</div>
-			<div class="col-sm-2">
-				<p>Newborn care</p>
-				<input type="text" name="newborn_care" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
-			</div>
-			<div class="col-sm-2">
-				<p>Family Physician</p>
-				<input type="text" name="family_physician" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6 border-right">
-				<p>Allergies or Sensitivities (descibe reaction details)</p>
-				<input type="text" name="allergies" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-			<div class="col-sm-6">
-				<p>Medications/Herbals</p>
-				<input type="text" name="medications" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="text-center title">
-			Pregnancy Summary
-		</div>
-		<div class="row m-0">
-			<div class="col-sm-8 border-top-0 border-right">
-				<div class="row m-0">
-					<div class="col-sm-8 border-top-0 border-right">
-						<div class="row">
-							<div class="col-sm-6 single-line border-top-0">
-								<span>LMP </span> <input type="data" name="lmp" onkeyup="updateInputValue(name, this)" class="form-control ">
-							</div>
-							<div class="col-sm-6 border-top-0">
-								Certain 
-								<div class="form-group single-line">
-			                        <div class="custom-control custom-radio custom-control-inline">
-			                            <input type="radio" onclick='updateRadioValue(name, this)' id="lmp_certain_1" name="lmp_certain" class="custom-control-input" value="true">
-			                            <label class="custom-control-label" for="lmp_certain_1">Yes</label>
-			                        </div>
-			                        <div class="custom-control custom-radio custom-control-inline">
-			                            <input type="radio" onclick='updateRadioValue(name, this)' id="lmp_certain_2" name="lmp_certain" class="custom-control-input" value="false">
-			                            <label class="custom-control-label" for="lmp_certain_2">No</label>
-			                        </div>
-			                    </div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6 single-line">
-								<span>Cycle q </span> <input type="text" name="cycle" onkeyup="updateInputValue(name, this)" class="form-control ">
-							</div>
-							<div class="col-sm-6">
-								Certain 
-								<div class="form-group single-line">
-			                        <div class="custom-control custom-radio custom-control-inline">
-			                            <input type="radio" onclick='updateRadioValue(name, this)' id="cycle_certain_1" name="cycle_certain" class="custom-control-input" value="true">
-			                            <label class="custom-control-label" for="cycle_certain_1">Yes</label>
-			                        </div>
-			                        <div class="custom-control custom-radio custom-control-inline">
-			                            <input type="radio" onclick='updateRadioValue(name, this)' id="cycle_certain_2" name="cycle_certain" class="custom-control-input" value="false">
-			                            <label class="custom-control-label" for="cycle_certain_2">No</label>
-			                        </div>
-			                    </div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6 single-line">
-								<span>Contraceptive type </span> <input type="text" name="contraceptive" onkeyup="updateInputValue(name, this)" class="form-control ">
-							</div>
-							<div class="col-sm-6 single-line">
-								<span>Last Used </span> <input type="text" name="last_used" onkeyup="updateInputValue(name, this)" class="form-control date">
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4 border-top-0">
-						<p>EDB (by dates)</p>
-						<textarea class="col-sm-12 form-control" name="edb" onkeyup="updateInputValue(name, this)"></textarea>
-					</div>
+			<div class="row">
+				<div class="col-sm-5">
+					<p>Address-number, street name</p>
+					<input type="text" name="address" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
 				</div>
-				<div class="row m-0">
-					<div class="col-sm-2 border-right">
-						<p>Gravida</p>	
-						<input type="text" name="gravida" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control">
-					</div>
-					<div class="col-sm-2 border-right">
-						<p>Term</p>	
-						<input type="text" name="term" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control">
-					</div>
-					<div class="col-sm-2 border-right">
-						<p>Premature</p>	
-						<input type="text" name="premature" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control">
-					</div>
-					<div class="col-sm-2 border-right">
-						<p>Abortuses</p>	
-						<input type="text" name="abortuses" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control">
-					</div>
-					<div class="col-sm-4">
-						<p>Living</p>	
-						<input type="text" name="living" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control">
-					</div>
+				<div class="col-sm-1 border-right">
+					<p>Apt/Suite/Unit</p>
+					<input type="text" name="apt_suite_unit" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
 				</div>
 			</div>
-			<div class="col-sm-4 border-top-0">
-				<div class="row m-0">
-					<div class="col-sm-6 border-top-0">
-						Final EDB
-					</div>
-					<div class="col-sm-6 border-top-0">
-						<p>Dating Method</p>
-						<div class="custom-control custom-checkbox">
-	                        <input type="checkbox" name="dating_method_1" onkeyup="updateInputValue(name, this)" class="custom-control-input" id="dating_method_1">
-	                        <label class="custom-control-label" for="dating_method_1">Dates</label>
-	                    </div>
-	                    <div class="custom-control custom-checkbox">
-	                        <input type="checkbox" name="dating_method_2" onkeyup="updateInputValue(name, this)" class="custom-control-input" id="dating_method_2">
-	                        <label class="custom-control-label" for="dating_method_2">T<span class="num-span">1</span>US</label>
-	                    </div>
-	                    <div class="custom-control custom-checkbox">
-	                        <input type="checkbox" name="dating_method_3" onkeyup="updateInputValue(name, this)" class="custom-control-input" id="dating_method_3">
-	                        <label class="custom-control-label" for="dating_method_3">T<span class="num-span">2</span>US</label>
-	                    </div>
-	                    <div class="custom-control custom-checkbox">
-	                        <input type="checkbox" name="dating_method_4" onkeyup="updateInputValue(name, this)" class="custom-control-input" id="dating_method_4">
-	                        <label class="custom-control-label" for="dating_method_4">ART (e.g.IVF)</label>
-	                    </div>
-					</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<p>City/Town</p>
+					<input type="text" name="city_town" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+				</div>
+				<div class="col-sm-1">
+					<p>Province</p>
+					<input type="text" name="province" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+				</div>
+				<div class="col-sm-1 border-right">
+					<p>Postal Code</p>
+					<input type="text" name="postal_code" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+				</div>
+				<div class="col-sm-3">
+					<p>Patient's Last Name</p>
+					<input type="text" name="patient_last_name_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
+				</div>
+				<div class="col-sm-3">
+					<p>Patient's First Name</p>
+					<input type="text" name="patient_first_name_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2">
+					<p>Telephone-Home</p>
+					<input type="text" name="tel_phone_home" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+				</div>
+				<div class="col-sm-2">
+					<p>Telephone-Wbrk</p>
+					<input type="text" name="tel_phone_wbrk" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+				</div>
+				<div class="col-sm-2 border-right">
+					<p>Language</p>
+					<input type="text" name="language" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+				</div>
+				<div class="col-sm-2">
+					<p>Patient's Occupation</p>
+					<input type="text" name="occupation1" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
+				</div>
+				<div class="col-sm-3">
+					<p>Patient's Educational level</p>
+					<input type="text" name="educational_level1" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
+				</div>
+				<div class="col-sm-1">
+					<p>Age</p>
+					<input type="text" name="age1" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2">
+					<p>Date of birth</p>
+					<input type="text" name="date_birth" onkeyup="updateInputValue(name, this)" class="col-sm-12 date form-control" placeholder="">
+				</div>
+				<div class="col-sm-1">
+					<p>Age</p>
+					<input type="text" name="age2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+				</div>
+				<div class="col-sm-1">
+					<p>Occupation</p>
+					<input type="text" name="occupation2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+				</div>
+				<div class="col-sm-2 border-right">
+					<p>Educational level</p>
+					<input type="text" name="educational_level2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+				</div>
+				<div class="col-sm-6">
+					<p>Ethnic or Racial backgrounds: Mother/Father</p>
+					<input type="text" name="ethnic" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2">
+					<p>OHIP No.</p>
+					<input type="text" name="ohip_no" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+				</div>
+				<div class="col-sm-2">
+					<p>Patient File No.</p>
+					<input type="text" name="patient_file_no" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+				</div>
+				<div class="col-sm-2 border-right">
+					<p>Maritalstatus</p>
+					<input type="text" name="maritalstatus" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+				</div>
+				<div class="col-sm-2">
+					<p>Birth attendant</p>
+					<input type="text" name="birth_attendant" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
+				</div>
+				<div class="col-sm-2">
+					<p>Newborn care</p>
+					<input type="text" name="newborn_care" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
+				</div>
+				<div class="col-sm-2">
+					<p>Family Physician</p>
+					<input type="text" name="family_physician" onkeyup="updateInputValue(name, this)" class="col-sm-12 input_group form-control" placeholder="">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 border-right">
+					<p>Allergies or Sensitivities (descibe reaction details)</p>
+					<input type="text" name="allergies" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
+				</div>
+				<div class="col-sm-6">
+					<p>Medications/Herbals</p>
+					<input type="text" name="medications" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control" placeholder="">
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="container">
-		<div class="text-center title">
-			Obstetrical History
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<table class="table table-sm table-bordered">
-					<thead>
-						<th>No.</th>
-						<th>Year</th>
-						<th>SEX<br>(M/F)</th>
-						<th>Gest.age<br>(weeks)</th>
-						<th>Brith<br>weight</th>
-						<th>length of<br>labour</th>
-						<th>Place<br>of birth</th>
-						<th>Type of<br>delivery</th>
-						<th>Comments regarding pregnancy and birth</th>
-					</thead>
-					<tbody>
-						<tr>
-							<td><input type="text" name="table_no_1" onkeyup="updateInputValue(name, this)" class="numeric col-sm-12 form-control"></td>
-							<td><input type="text" name="table_year_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_sex_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_gest_age_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_birth_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_birth_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_labour_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_delivery_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_pregnancy_birth_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-						</tr>
-						<tr>
-							<td><input type="text" name="table_no_2" onkeyup="updateInputValue(name, this)" class="numeric col-sm-12 form-control"></td>
-							<td><input type="text" name="table_year_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_sex_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_gest_age_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_birth_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_birth_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_labour_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_delivery_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_pregnancy_birth_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-						</tr>
-						<tr>
-							<td><input type="text" name="table_no_3" onkeyup="updateInputValue(name, this)" class="numeric col-sm-12 form-control"></td>
-							<td><input type="text" name="table_year_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_sex_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_gest_age_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_birth_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_birth_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_labour_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_delivery_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_pregnancy_birth_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-						</tr>
-						<tr>
-							<td><input type="text" name="table_no_4" onkeyup="updateInputValue(name, this)" class="numeric col-sm-12 form-control"></td>
-							<td><input type="text" name="table_year_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_sex_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_gest_age_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_birth_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_birth_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_labour_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_delivery_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_pregnancy_birth_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-						</tr>
-						<tr>
-							<td><input type="text" name="table_no_5" onkeyup="updateInputValue(name, this)" class="numeric col-sm-12 form-control"></td>
-							<td><input type="text" name="table_year_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_sex_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_gest_age_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_birth_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_birth_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_labour_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_delivery_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_pregnancy_birth_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-						</tr>
-						<tr>
-							<td><input type="text" name="table_no_6" onkeyup="updateInputValue(name, this)" class="numeric col-sm-12 form-control"></td>
-							<td><input type="text" name="table_year_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_sex_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_gest_age_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_birth_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_birth_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_labour_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_delivery_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td><input type="text" name="table_pregnancy_birth_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-						</tr>
-					</tbody>
-				</table>
+		<div class="">
+			<div class="text-center title">
+				Pregnancy Summary
 			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-7">
-				<div class="row m-0">
-					<div class="text-center title col-sm-12  border-right-0" style="margin-left: 0px;">
-						Medical History and Physical Exam (provide details in comments)
-					</div>
-					<div class="col-sm-4 border-right border-top-0">
-						<p class="ol-title">Current pregnancy</p>
-						<ol>
-		                    <li>Bleeding
-		                    	<div class="form-group">
-		                    		<div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_1_1" name="medical_history_1" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_1_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_1_2" name="medical_history_1_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_1_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Nausea, vomiting
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_2_1" name="medical_history_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_2_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_2_2" name="medical_history_2_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_2_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Smoking<input type="text" name="medical_history_smoking" onkeyup="updateInputValue(name, this)" class="form-control width-50" id="medical_history_smoking">cig/day
-			                    <div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_3_1" name="medical_history_3" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_3_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_3_2" name="medical_history_3_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_3_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Alcohol, street drugs
-			                    <div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_4_1" name="medical_history_4" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_4_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_4_2" name="medical_history_4_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_4_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Occup/Environ. risks
-			                    <div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_5_1" name="medical_history_5" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_5_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_5_2" name="medical_history_5_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_5_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Detary restictions
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_6_1" name="medical_history_6" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_6_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_6_2" name="medical_history_6_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_6_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Calcium adequate
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_7_1" name="medical_history_7" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_7_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_7_2" name="medical_history_7_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_7_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Preconceptual folate
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_8_1" name="medical_history_8" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_8_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_8_2" name="medical_history_8_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_8_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                </ol>					
-		                <p class="ol-title">Medical History</p>
-						<ol start="9">
-		                    <li>Hypertension
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_9_1" name="medical_history_9" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_9_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_9_2" name="medical_history_9_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_9_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Endocrine
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_10_1" name="medical_history_10" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_10_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_10_2" name="medical_history_10_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_10_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Urinary tract 
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_11_1" name="medical_history_11" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_11_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_11_2" name="medical_history_11_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_11_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Cardiac/Pulmonary
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_12_1" name="medical_history_12" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_12_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_12_2" name="medical_history_12_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_12_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Liver, hepatitis, GI 
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_13_1" name="medical_history_13" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_13_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_13_2" name="medical_history_13_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_13_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Gynaecology/ Breast 
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_14_1" name="medical_history_14" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_14_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_14_2" name="medical_history_14_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_14_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Hem./Immunology 
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_15_1" name="medical_history_15" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_15_1">No</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_15_2" name="medical_history_15_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_15_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Surgery
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_16_1" name="medical_history_16" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_16_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_16_2" name="medical_history_16_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_16_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Blood transfusion 
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_17_1" name="medical_history_17" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_17_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_17_2" name="medical_history_17_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_17_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Anaesthetic compl.
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_18_1" name="medical_history_18" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_18_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_18_2" name="medical_history_18_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_18_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Psychiatric
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_19_1" name="medical_history_19" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_19_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_19_2" name="medical_history_19_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_19_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Epilepsy/ Neurological 
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_20_1" name="medical_history_20" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_20_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_20_2" name="medical_history_20_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_20_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Other
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_21_1" name="medical_history_21" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_21_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_21_2" name="medical_history_21_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_21_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                </ol>					
-					</div>
-					<div class="col-sm-4 border-right border-top-0">
-						<p class="ol-title">Genetic History</p>
-						<ol start="22">
-		                    <li>At risk population(e.g.: Ashkenazi consanguinity , CF, sickle cell. Tay Sachs. thalassemia)
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_22_1" name="medical_history_22" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_22_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_22_2" name="medical_history_22_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_22_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Developmental delay
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_23_1" name="medical_history_23" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_23_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_23_2" name="medical_history_23_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_23_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Congenital anomalies
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_24_1" name="medical_history_24" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_24_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_24_2" name="medical_history_24_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_24_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Chromosomal disorders
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_25_1" name="medical_history_25" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_25_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_25_2" name="medical_history_25_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_25_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Genetic disorders
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_26_1" name="medical_history_26" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_26_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_26_2" name="medical_history_26_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_26_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                </ol>
-		                <p class="ol-title">Infectious Disease</p>
-						<ol start="27">
-		                    <li>Varicella susceptible 
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_27_1" name="medical_history_27" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_27_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_27_2" name="medical_history_27_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_27_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>STDs / HSV / BV 
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_28_1" name="medical_history_28" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_28_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_28_2" name="medical_history_28_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_28_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Tuberculosis risk
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_29_1" name="medical_history_29" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_29_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_29_2" name="medical_history_29_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_29_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Other
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_30_1" name="medical_history_30" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_30_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_30_2" name="medical_history_30_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_30_2">Yes</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                </ol>
-		                <p class="ol-title">Psychosocial</p>
-						<ol start="31">
-		                    <li>Poor social support
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_31_1" name="medical_history_31" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_31_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_31_2" name="medical_history_31_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_31_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Relationship problems
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_32_1" name="medical_history_32" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_32_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_32_2" name="medical_history_32_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_32_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Emotional/Depression
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_33_1" name="medical_history_33" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_33_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_33_2" name="medical_history_33_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_33_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Substance abuse
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_34_1" name="medical_history_34" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_34_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_34_2" name="medical_history_34_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_34_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Family violence
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_35_1" name="medical_history_35" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_35_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_35_2" name="medical_history_35_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_35_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Parenting concerns
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_36_1" name="medical_history_36" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_36_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_36_2" name="medical_history_36_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_36_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Relig./Cultural issues
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_37_1" name="medical_history_37" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_37_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_37_2" name="medical_history_37_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_37_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                </ol>
-					</div>
-					<div class="col-sm-4 border-right border-top-0">
-						<p class="ol-title">Current pregnancy</p>
-						<ol start="38">
-		                    <li>At risk population (e.g.: DM, DVT/PE, PIH/HT, postpartum depression, thyroid) 
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_38_1" name="medical_history_38" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_38_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_38_2" name="medical_history_38_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_38_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                </ol>
-		                <p class="ol-title">Physical Examination</p>
-		                <p class="">
-		                	Ht.<input type="text" name="medical_history_ht" onkeyup="updateInputValue(name, this)" class="form-control width-50" id="medical_history_ht"> 
-		                	Wt.<input type="text" name="medical_history_wt" onkeyup="updateInputValue(name, this)" class="form-control width-50" id="medical_history_wt">
-		                </p>
-		                <p class="">
-		                	BMI<input type="text" name="medical_history_bmi" onkeyup="updateInputValue(name, this)" class="form-control width-50" id="medical_history_bmi"> 
-		                	BP <input type="text" name="medical_history_bp" onkeyup="updateInputValue(name, this)" class="form-control width-50" id="medical_history_bp">
-		                </p>
-		                <ol start="39">
-		                    <li>Thyroid
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_39_1" name="medical_history_39" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_39_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_39_2" name="medical_history_39_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_39_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-		                    <li>Chest
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_40_1" name="medical_history_40" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_40_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_40_2" name="medical_history_40_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_40_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-
-		                    <li>Breasts
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_41_1" name="medical_history_41" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_41_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_41_2" name="medical_history_41_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_41_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-
-		                    <li>Cardiovascular
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_42_1" name="medical_history_42" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_42_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_42_2" name="medical_history_42_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_42_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-
-		                    <li>Abdomen
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_43_1" name="medical_history_43" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_43_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_43_2" name="medical_history_43_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_43_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-
-		                    <li>Varicosities / Extrm.
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_44_1" name="medical_history_44" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_44_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_44_2" name="medical_history_44_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_44_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-
-		                    <li>External genitalia 
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_45_1" name="medical_history_45" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_45_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_45_2" name="medical_history_45_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_45_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-
-		                    <li>Cervix, vagina 
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_46_1" name="medical_history_46" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_46_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_46_2" name="medical_history_46_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_46_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-
-		                    <li>Uterus
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_47_1" name="medical_history_47" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_47_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_47_2" name="medical_history_47_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_47_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-
-		                    <li>Size:<input type="text" name="medical_history_size_week" onkeyup="updateInputValue(name, this)" class="form-control width-50" id="medical_history_size_week">weeks
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_48_1" name="medical_history_48" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_48_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_48_2" name="medical_history_48_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_48_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-
-		                    <li>Adnexae
-		                    	<div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_49_1" name="medical_history_49" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_49_1">Yes</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_49_2" name="medical_history_49_2" class="custom-control-input" value="true">
-                                        <label class="custom-control-label" for="medical_history_49_2">No</label>
-                                    </div>
-                                </div>
-		                    </li>
-
-		                    <li>Other
-		                    	<div class="form-group">
-		                    		<input type="text" name="medical_history_other" onkeyup="updateInputValue" class="form-control">
-                                </div>
-		                    </li>
-		                </ol>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-5 m-0">
-				<div class="text-center title col-sm-12" style="margin-left: 0;">
-					Initial Laboratory Investigations
-				</div>
-				<table class="table table-sm table-bordered">
-					<thead>
-						<th>Test</th>
-						<th>Result</th>
-						<th>Test</th>
-						<th>Result</th>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Hb</td>
-							<td><input type="text" name="hb" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td colspan="2" rowspan="2">
-								<p>HIV</p>
-								<div class="form-group single-line">
-			                        <div class="custom-control custom-checkbox">
-				                        <input type="checkbox" name="hiv" onclick="updateCheckBoxValue(name, this)" class="custom-control-input" id="Bleeding">
-				                        <label class="custom-control-label" for="Bleeding">Counseled and test declined</label>
+			<div class="row m-0">
+				<div class="col-sm-8 border-top-0 border-right">
+					<div class="row m-0">
+						<div class="col-sm-8 border-top-0 border-right">
+							<div class="row">
+								<div class="col-sm-6 single-line border-top-0">
+									<span>LMP </span> <input type="data" name="lmp" onkeyup="updateInputValue(name, this)" class="form-control ">
+								</div>
+								<div class="col-sm-6 border-top-0">
+									Certain 
+									<div class="form-group single-line">
+				                        <div class="custom-control custom-radio custom-control-inline">
+				                            <input type="radio" onclick='updateRadioValue(name, this)' id="lmp_certain_1" name="lmp_certain" class="custom-control-input" value="true">
+				                            <label class="custom-control-label" for="lmp_certain_1">Yes</label>
+				                        </div>
+				                        <div class="custom-control custom-radio custom-control-inline">
+				                            <input type="radio" onclick='updateRadioValue(name, this)' id="lmp_certain_2" name="lmp_certain" class="custom-control-input" value="false">
+				                            <label class="custom-control-label" for="lmp_certain_2">No</label>
+				                        </div>
 				                    </div>
-			                    </div>
-			                </td>
-						</tr>
-						<tr>
-							<td>MCV</td>
-							<td><input type="text" name="table_pregnancy_birth_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-						</tr>
-						<tr>
-							<td>ABO</td>
-							<td><input type="text" name="abo" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td rowspan="2">
-								<p>LAST Pap</p>
-								<input type="text" name="last_pap" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control date">
-							</td>
-							<td rowspan="2"></td>
-						</tr>
-						<tr>
-							<td>Rh</td>
-							<td><input type="text" name="rh" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-						</tr>
-						<tr>
-							<td>Antibody Screen</td>
-							<td><input type="text" name="antibody_screen" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td>CG/Chlamydia</td>
-							<td><input type="text" name="cg_chlamydia" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-						</tr>
-						<tr>
-							<td>Rubella immune</td>
-							<td><input type="text" name="rubella_immune" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td>Urine C&S</td>
-							<td><input type="text" name="urine_c_s" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-						</tr>
-						<tr>
-							<td>HBsAg</td>
-							<td><input type="text" name="hbsag" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>VDRL</td>
-							<td><input type="text" name="verl" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>Sickle Cell</td>
-							<td><input type="text" name="sickle_cell" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-							<td></td>
-							<td></td>
-						</tr>
-						
-					</tbody>
-				</table>
-				<table class="table table-sm table-bordered">
-					<thead>
-						<th>Prenatal Genetic Investigations</th>
-						<th>Result</th>
-					</thead>
-					<tbody>
-						<tr>
-							<td>a) All ages-MSS, IPS, FTS</td>
-							<td><input type="text" name="prenatal_genetic_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-						</tr>
-						<tr>
-							<td>b) Age > 35 at EDN-CVS/amnio</td>
-							<td><input type="text" name="prenatal_genetic_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-						</tr>
-						<tr>
-							<td>c) If a or b declined, or twins, then MSAFP</td>
-							<td><input type="text" name="prenatal_genetic_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
-						</tr>
-						<tr>
-							<td>d) Counseled and test declined, or too late</td>
-							<td class="text-center"><input type="checkbox" name="prenatal_genetic_check" onclick="updateCheckBoxValue(name, this)"></td>
-						</tr>
-					</tbody>
-				</table>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-6 single-line">
+									<span>Cycle q </span> <input type="text" name="cycle" onkeyup="updateInputValue(name, this)" class="form-control ">
+								</div>
+								<div class="col-sm-6">
+									Certain 
+									<div class="form-group single-line">
+				                        <div class="custom-control custom-radio custom-control-inline">
+				                            <input type="radio" onclick='updateRadioValue(name, this)' id="cycle_certain_1" name="cycle_certain" class="custom-control-input" value="true">
+				                            <label class="custom-control-label" for="cycle_certain_1">Yes</label>
+				                        </div>
+				                        <div class="custom-control custom-radio custom-control-inline">
+				                            <input type="radio" onclick='updateRadioValue(name, this)' id="cycle_certain_2" name="cycle_certain" class="custom-control-input" value="false">
+				                            <label class="custom-control-label" for="cycle_certain_2">No</label>
+				                        </div>
+				                    </div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-6 single-line">
+									<span>Contraceptive type </span> <input type="text" name="contraceptive" onkeyup="updateInputValue(name, this)" class="form-control ">
+								</div>
+								<div class="col-sm-6 single-line">
+									<span>Last Used </span> <input type="text" name="last_used" onkeyup="updateInputValue(name, this)" class="form-control date">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4 border-top-0">
+							<p>EDB (by dates)</p>
+							<textarea class="col-sm-12 form-control" name="edb" onkeyup="updateInputValue(name, this)"></textarea>
+						</div>
+					</div>
+					<div class="row m-0">
+						<div class="col-sm-2 border-right">
+							<p>Gravida</p>	
+							<input type="text" name="gravida" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control">
+						</div>
+						<div class="col-sm-2 border-right">
+							<p>Term</p>	
+							<input type="text" name="term" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control">
+						</div>
+						<div class="col-sm-2 border-right">
+							<p>Premature</p>	
+							<input type="text" name="premature" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control">
+						</div>
+						<div class="col-sm-2 border-right">
+							<p>Abortuses</p>	
+							<input type="text" name="abortuses" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control">
+						</div>
+						<div class="col-sm-4">
+							<p>Living</p>	
+							<input type="text" name="living" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control">
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 border-top-0">
+					<div class="row m-0">
+						<div class="col-sm-6 border-top-0">
+							Final EDB
+						</div>
+						<div class="col-sm-6 border-top-0">
+							<p>Dating Method</p>
+							<div class="custom-control custom-checkbox">
+		                        <input type="checkbox" name="dating_method_1" onkeyup="updateInputValue(name, this)" class="custom-control-input" id="dating_method_1">
+		                        <label class="custom-control-label" for="dating_method_1">Dates</label>
+		                    </div>
+		                    <div class="custom-control custom-checkbox">
+		                        <input type="checkbox" name="dating_method_2" onkeyup="updateInputValue(name, this)" class="custom-control-input" id="dating_method_2">
+		                        <label class="custom-control-label" for="dating_method_2">T<span class="num-span">1</span>US</label>
+		                    </div>
+		                    <div class="custom-control custom-checkbox">
+		                        <input type="checkbox" name="dating_method_3" onkeyup="updateInputValue(name, this)" class="custom-control-input" id="dating_method_3">
+		                        <label class="custom-control-label" for="dating_method_3">T<span class="num-span">2</span>US</label>
+		                    </div>
+		                    <div class="custom-control custom-checkbox">
+		                        <input type="checkbox" name="dating_method_4" onkeyup="updateInputValue(name, this)" class="custom-control-input" id="dating_method_4">
+		                        <label class="custom-control-label" for="dating_method_4">ART (e.g.IVF)</label>
+		                    </div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="container">
-		<div class="text-center title">
-			Coments
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<textarea class="col-sm-12 form-control" name="comments" onkeyup="updateInputValue(name, this)" style="height: 150px;"></textarea>
+		<div class="">
+			<div class="text-center title">
+				Obstetrical History
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<table class="table table-sm table-bordered">
+						<thead>
+							<th>No.</th>
+							<th>Year</th>
+							<th>SEX<br>(M/F)</th>
+							<th>Gest.age<br>(weeks)</th>
+							<th>Brith<br>weight</th>
+							<th>length of<br>labour</th>
+							<th>Place<br>of birth</th>
+							<th>Type of<br>delivery</th>
+							<th>Comments regarding pregnancy and birth</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="text" name="table_no_1" onkeyup="updateInputValue(name, this)" class="numeric col-sm-12 form-control"></td>
+								<td><input type="text" name="table_year_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_sex_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_gest_age_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_birth_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_birth_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_labour_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_delivery_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_pregnancy_birth_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+							</tr>
+							<tr>
+								<td><input type="text" name="table_no_2" onkeyup="updateInputValue(name, this)" class="numeric col-sm-12 form-control"></td>
+								<td><input type="text" name="table_year_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_sex_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_gest_age_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_birth_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_birth_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_labour_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_delivery_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_pregnancy_birth_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+							</tr>
+							<tr>
+								<td><input type="text" name="table_no_3" onkeyup="updateInputValue(name, this)" class="numeric col-sm-12 form-control"></td>
+								<td><input type="text" name="table_year_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_sex_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_gest_age_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_birth_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_birth_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_labour_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_delivery_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_pregnancy_birth_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+							</tr>
+							<tr>
+								<td><input type="text" name="table_no_4" onkeyup="updateInputValue(name, this)" class="numeric col-sm-12 form-control"></td>
+								<td><input type="text" name="table_year_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_sex_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_gest_age_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_birth_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_birth_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_labour_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_delivery_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_pregnancy_birth_4" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+							</tr>
+							<tr>
+								<td><input type="text" name="table_no_5" onkeyup="updateInputValue(name, this)" class="numeric col-sm-12 form-control"></td>
+								<td><input type="text" name="table_year_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_sex_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_gest_age_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_birth_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_birth_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_labour_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_delivery_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_pregnancy_birth_5" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+							</tr>
+							<tr>
+								<td><input type="text" name="table_no_6" onkeyup="updateInputValue(name, this)" class="numeric col-sm-12 form-control"></td>
+								<td><input type="text" name="table_year_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_sex_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_gest_age_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_birth_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_birth_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_labour_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_delivery_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td><input type="text" name="table_pregnancy_birth_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="container bottom">
-		<div class="row">
-			<div class="col-sm-4">
-				Signature
-			</div>
-			<div class="col-sm-2 border-right" style="border-right: 2px solid darkblue !important;">
-				Date
-			</div>
-			<div class="col-sm-4">
-				Signature
-			</div>
-			<div class="col-sm-2">
-				Date
+		<div class="">
+			<div class="row">
+				<div class="col-sm-7">
+					<div class="row m-0">
+						<div class="text-center title col-sm-12  border-right-0" style="margin-left: 0px;">
+							Medical History and Physical Exam (provide details in comments)
+						</div>
+						<div class="col-sm-4 border-right border-top-0">
+							<p class="ol-title">Current pregnancy</p>
+							<ol>
+			                    <li>Bleeding
+			                    	<div class="form-group">
+			                    		<div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_1_1" name="medical_history_1" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_1_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_1_2" name="medical_history_1_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_1_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Nausea, vomiting
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_2_1" name="medical_history_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_2_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_2_2" name="medical_history_2_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_2_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Smoking<input type="text" name="medical_history_smoking" onkeyup="updateInputValue(name, this)" class="form-control width-50" id="medical_history_smoking">cig/day
+				                    <div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_3_1" name="medical_history_3" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_3_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_3_2" name="medical_history_3_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_3_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Alcohol, street drugs
+				                    <div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_4_1" name="medical_history_4" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_4_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_4_2" name="medical_history_4_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_4_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Occup/Environ. risks
+				                    <div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_5_1" name="medical_history_5" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_5_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_5_2" name="medical_history_5_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_5_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Detary restictions
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_6_1" name="medical_history_6" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_6_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_6_2" name="medical_history_6_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_6_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Calcium adequate
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_7_1" name="medical_history_7" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_7_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_7_2" name="medical_history_7_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_7_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Preconceptual folate
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_8_1" name="medical_history_8" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_8_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_8_2" name="medical_history_8_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_8_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                </ol>					
+			                <p class="ol-title">Medical History</p>
+							<ol start="9">
+			                    <li>Hypertension
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_9_1" name="medical_history_9" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_9_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_9_2" name="medical_history_9_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_9_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Endocrine
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_10_1" name="medical_history_10" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_10_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_10_2" name="medical_history_10_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_10_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Urinary tract 
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_11_1" name="medical_history_11" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_11_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_11_2" name="medical_history_11_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_11_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Cardiac/Pulmonary
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_12_1" name="medical_history_12" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_12_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_12_2" name="medical_history_12_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_12_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Liver, hepatitis, GI 
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_13_1" name="medical_history_13" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_13_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_13_2" name="medical_history_13_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_13_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Gynaecology/ Breast 
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_14_1" name="medical_history_14" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_14_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_14_2" name="medical_history_14_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_14_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Hem./Immunology 
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_15_1" name="medical_history_15" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_15_1">No</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_15_2" name="medical_history_15_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_15_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Surgery
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_16_1" name="medical_history_16" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_16_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_16_2" name="medical_history_16_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_16_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Blood transfusion 
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_17_1" name="medical_history_17" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_17_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_17_2" name="medical_history_17_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_17_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Anaesthetic compl.
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_18_1" name="medical_history_18" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_18_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_18_2" name="medical_history_18_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_18_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Psychiatric
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_19_1" name="medical_history_19" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_19_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_19_2" name="medical_history_19_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_19_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Epilepsy/ Neurological 
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_20_1" name="medical_history_20" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_20_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_20_2" name="medical_history_20_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_20_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Other
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_21_1" name="medical_history_21" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_21_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_21_2" name="medical_history_21_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_21_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                </ol>					
+						</div>
+						<div class="col-sm-4 border-right border-top-0">
+							<p class="ol-title">Genetic History</p>
+							<ol start="22">
+			                    <li>At risk population(e.g.: Ashkenazi consanguinity , CF, sickle cell. Tay Sachs. thalassemia)
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_22_1" name="medical_history_22" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_22_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_22_2" name="medical_history_22_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_22_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Developmental delay
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_23_1" name="medical_history_23" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_23_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_23_2" name="medical_history_23_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_23_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Congenital anomalies
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_24_1" name="medical_history_24" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_24_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_24_2" name="medical_history_24_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_24_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Chromosomal disorders
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_25_1" name="medical_history_25" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_25_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_25_2" name="medical_history_25_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_25_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Genetic disorders
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_26_1" name="medical_history_26" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_26_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_26_2" name="medical_history_26_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_26_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                </ol>
+			                <p class="ol-title">Infectious Disease</p>
+							<ol start="27">
+			                    <li>Varicella susceptible 
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_27_1" name="medical_history_27" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_27_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_27_2" name="medical_history_27_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_27_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>STDs / HSV / BV 
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_28_1" name="medical_history_28" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_28_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_28_2" name="medical_history_28_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_28_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Tuberculosis risk
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_29_1" name="medical_history_29" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_29_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_29_2" name="medical_history_29_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_29_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Other
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_30_1" name="medical_history_30" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_30_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_30_2" name="medical_history_30_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_30_2">Yes</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                </ol>
+			                <p class="ol-title">Psychosocial</p>
+							<ol start="31">
+			                    <li>Poor social support
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_31_1" name="medical_history_31" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_31_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_31_2" name="medical_history_31_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_31_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Relationship problems
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_32_1" name="medical_history_32" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_32_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_32_2" name="medical_history_32_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_32_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Emotional/Depression
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_33_1" name="medical_history_33" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_33_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_33_2" name="medical_history_33_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_33_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Substance abuse
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_34_1" name="medical_history_34" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_34_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_34_2" name="medical_history_34_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_34_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Family violence
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_35_1" name="medical_history_35" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_35_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_35_2" name="medical_history_35_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_35_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Parenting concerns
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_36_1" name="medical_history_36" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_36_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_36_2" name="medical_history_36_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_36_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Relig./Cultural issues
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_37_1" name="medical_history_37" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_37_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_37_2" name="medical_history_37_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_37_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                </ol>
+						</div>
+						<div class="col-sm-4 border-right border-top-0">
+							<p class="ol-title">Current pregnancy</p>
+							<ol start="38">
+			                    <li>At risk population (e.g.: DM, DVT/PE, PIH/HT, postpartum depression, thyroid) 
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_38_1" name="medical_history_38" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_38_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_38_2" name="medical_history_38_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_38_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                </ol>
+			                <p class="ol-title">Physical Examination</p>
+			                <p class="">
+			                	Ht.<input type="text" name="medical_history_ht" onkeyup="updateInputValue(name, this)" class="form-control width-50" id="medical_history_ht"> 
+			                	Wt.<input type="text" name="medical_history_wt" onkeyup="updateInputValue(name, this)" class="form-control width-50" id="medical_history_wt">
+			                </p>
+			                <p class="">
+			                	BMI<input type="text" name="medical_history_bmi" onkeyup="updateInputValue(name, this)" class="form-control width-50" id="medical_history_bmi"> 
+			                	BP <input type="text" name="medical_history_bp" onkeyup="updateInputValue(name, this)" class="form-control width-50" id="medical_history_bp">
+			                </p>
+			                <ol start="39">
+			                    <li>Thyroid
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_39_1" name="medical_history_39" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_39_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_39_2" name="medical_history_39_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_39_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+			                    <li>Chest
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_40_1" name="medical_history_40" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_40_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_40_2" name="medical_history_40_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_40_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+
+			                    <li>Breasts
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_41_1" name="medical_history_41" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_41_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_41_2" name="medical_history_41_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_41_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+
+			                    <li>Cardiovascular
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_42_1" name="medical_history_42" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_42_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_42_2" name="medical_history_42_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_42_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+
+			                    <li>Abdomen
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_43_1" name="medical_history_43" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_43_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_43_2" name="medical_history_43_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_43_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+
+			                    <li>Varicosities / Extrm.
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_44_1" name="medical_history_44" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_44_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_44_2" name="medical_history_44_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_44_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+
+			                    <li>External genitalia 
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_45_1" name="medical_history_45" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_45_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_45_2" name="medical_history_45_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_45_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+
+			                    <li>Cervix, vagina 
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_46_1" name="medical_history_46" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_46_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_46_2" name="medical_history_46_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_46_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+
+			                    <li>Uterus
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_47_1" name="medical_history_47" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_47_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_47_2" name="medical_history_47_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_47_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+
+			                    <li>Size:<input type="text" name="medical_history_size_week" onkeyup="updateInputValue(name, this)" class="form-control width-50" id="medical_history_size_week">weeks
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_48_1" name="medical_history_48" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_48_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_48_2" name="medical_history_48_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_48_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+
+			                    <li>Adnexae
+			                    	<div class="form-group">
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_49_1" name="medical_history_49" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_49_1">Yes</label>
+	                                    </div>
+	                                    <div class="custom-control custom-checkbox custom-control-inline">
+	                                        <input onclick='updateCheckBoxValue(name, this)' type="checkbox" id="medical_history_49_2" name="medical_history_49_2" class="custom-control-input" value="true">
+	                                        <label class="custom-control-label" for="medical_history_49_2">No</label>
+	                                    </div>
+	                                </div>
+			                    </li>
+
+			                    <li>Other
+			                    	<div class="form-group">
+			                    		<input type="text" name="medical_history_other" onkeyup="updateInputValue" class="form-control">
+	                                </div>
+			                    </li>
+			                </ol>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-5 m-0">
+					<div class="text-center title col-sm-12" style="margin-left: 0;">
+						Initial Laboratory Investigations
+					</div>
+					<table class="table table-sm table-bordered">
+						<thead>
+							<th>Test</th>
+							<th>Result</th>
+							<th>Test</th>
+							<th>Result</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Hb</td>
+								<td><input type="text" name="hb" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td colspan="2" rowspan="2">
+									<p>HIV</p>
+									<div class="form-group single-line">
+				                        <div class="custom-control custom-checkbox">
+					                        <input type="checkbox" name="hiv" onclick="updateCheckBoxValue(name, this)" class="custom-control-input" id="Bleeding">
+					                        <label class="custom-control-label" for="Bleeding">Counseled and test declined</label>
+					                    </div>
+				                    </div>
+				                </td>
+							</tr>
+							<tr>
+								<td>MCV</td>
+								<td><input type="text" name="table_pregnancy_birth_6" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+							</tr>
+							<tr>
+								<td>ABO</td>
+								<td><input type="text" name="abo" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td rowspan="2">
+									<p>LAST Pap</p>
+									<input type="text" name="last_pap" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control date">
+								</td>
+								<td rowspan="2"></td>
+							</tr>
+							<tr>
+								<td>Rh</td>
+								<td><input type="text" name="rh" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+							</tr>
+							<tr>
+								<td>Antibody Screen</td>
+								<td><input type="text" name="antibody_screen" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td>CG/Chlamydia</td>
+								<td><input type="text" name="cg_chlamydia" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+							</tr>
+							<tr>
+								<td>Rubella immune</td>
+								<td><input type="text" name="rubella_immune" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td>Urine C&S</td>
+								<td><input type="text" name="urine_c_s" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+							</tr>
+							<tr>
+								<td>HBsAg</td>
+								<td><input type="text" name="hbsag" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>VDRL</td>
+								<td><input type="text" name="verl" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Sickle Cell</td>
+								<td><input type="text" name="sickle_cell" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+								<td></td>
+								<td></td>
+							</tr>
+							
+						</tbody>
+					</table>
+					<table class="table table-sm table-bordered">
+						<thead>
+							<th>Prenatal Genetic Investigations</th>
+							<th>Result</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>a) All ages-MSS, IPS, FTS</td>
+								<td><input type="text" name="prenatal_genetic_1" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+							</tr>
+							<tr>
+								<td>b) Age > 35 at EDN-CVS/amnio</td>
+								<td><input type="text" name="prenatal_genetic_2" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+							</tr>
+							<tr>
+								<td>c) If a or b declined, or twins, then MSAFP</td>
+								<td><input type="text" name="prenatal_genetic_3" onkeyup="updateInputValue(name, this)" class="col-sm-12 form-control"></td>
+							</tr>
+							<tr>
+								<td>d) Counseled and test declined, or too late</td>
+								<td class="text-center"><input type="checkbox" name="prenatal_genetic_check" onclick="updateCheckBoxValue(name, this)"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
-	</div>
+		<div class="">
+			<div class="text-center title">
+				Coments
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<textarea class="col-sm-12 form-control" name="comments" onkeyup="updateInputValue(name, this)" style="height: 150px;"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="mt-2 bottom">
+			<div class="row">
+				<div class="col-sm-4">
+					Signature
+				</div>
+				<div class="col-sm-2 border-right" style="border-right: 2px solid darkblue !important;">
+					Date
+				</div>
+				<div class="col-sm-4">
+					Signature
+				</div>
+				<div class="col-sm-2">
+					Date
+				</div>
+			</div>
+		</div>
 	</form>
 	<script type="text/javascript">
 		$(document).ready(function(){  
@@ -1406,5 +1409,57 @@
             }
         })
     }
+    function print(){
+		html2canvas($('form'), {
+            onrendered: function(canvas) {
+                if (navigator.userAgent.indexOf("MSIE ") > 0 || 
+                    navigator.userAgent.match(/Trident.*rv\:11\./)) {
+                    var blob = canvas.msToBlob();
+
+                    window.navigator.msSaveBlob(blob,'Test file.png');
+                }
+                else   {
+                    var imgData = canvas.toDataURL('image/png', 0.1);
+                    var doc = new jsPDF('p', 'mm', 'letter', true);
+
+                    var pwidth = doc.internal.pageSize.width - 30;
+                    var pheight = doc.internal.pageSize.height;
+
+                    var imgHeight = canvas.height * pwidth / canvas.width;
+                    var heightLeft = imgHeight;
+                    var position = 20
+
+                    doc.addImage(imgData, 'JPEG', 15, position, pwidth, imgHeight, undefined, 'FAST');
+
+                    heightLeft -= pheight;
+
+                    while (heightLeft >= 0) {
+                      position = heightLeft - imgHeight;
+                      doc.addPage();
+                      doc.addImage(imgData, 'JPEG', 15, position + 21, pwidth, imgHeight, undefined, 'FAST');
+                      heightLeft -= pheight;
+                    }
+                    // doc.save('ExportFile.pdf');
+
+                    var blob = doc.output('blob');
+
+                    var formData = new FormData();
+                    formData.append('pdf', blob);
+                    formData.append('name', 'softform_01');
+
+                    $.ajax(
+                    {
+                        method: 'POST',
+                        url: "./printJSPDF.php",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(data){console.log(data)},
+                        error: function(data){console.log(data)}
+                    });
+                }
+            }
+        });
+	}
 </script>
 </html>
