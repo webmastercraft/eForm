@@ -22,11 +22,11 @@
     <button type="button" onclick="saveData()">Save Form</button>
     <button type="button" onclick="loadData()">Load Form</button>
     <!-- <button type="button" onclick="print()">Print</button> -->
-    <button type="button" onclick="printJSPDF()">Print</button>
+    <button type="button" onclick="print()">Print</button>
     <form class="container mt-5 p-4">
         <div>
             <label>Re:</label>
-            <input class="w-50" type="text" name="form_1_re" onkeyup="updateInputValue(name, this)" />
+            <input class="w-50" type="text" name="form_1_0" onkeyup="updateInputValue(name, this)" />
         </div>
         <p>To Whom It May Concern:</p>
         <p>Surgical stockings  have been prescribed for the above-mentioned patient insured by your company.</p>
@@ -34,63 +34,63 @@
         <div class="row">
             <div class="col">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="form_1_symptoms_1" onclick="updateCheckBoxValue(name, this)" id="symptoms_1">
+                    <input class="form-check-input" type="checkbox" name="form_1_1_check" onclick="updateCheckBoxValue(name, this)" id="symptoms_1">
                     <label class="form-check-label" for="symptoms_1">tired legs and feet</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="form_1_symptoms_2" onclick="updateCheckBoxValue(name, this)" id="symptoms_2">
+                    <input class="form-check-input" type="checkbox" name="form_1_3_check" onclick="updateCheckBoxValue(name, this)" id="symptoms_2">
                     <label class="form-check-label" for="symptoms_2">aching, fatigued legs</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="form_1_symptoms_3" onclick="updateCheckBoxValue(name, this)" id="symptoms_3">
+                    <input class="form-check-input" type="checkbox" name="form_1_5_check" onclick="updateCheckBoxValue(name, this)" id="symptoms_3">
                     <label class="form-check-label" for="symptoms_3">ankle and  leg swelling</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="form_1_symptoms_4" onclick="updateCheckBoxValue(name, this)" id="symptoms_4">
+                    <input class="form-check-input" type="checkbox" name="form_1_7_check" onclick="updateCheckBoxValue(name, this)" id="symptoms_4">
                     <label class="form-check-label" for="symptoms_4">poor circulation</label>
                 </div>
             </div>
             <div class="col">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="form_1_symptoms_5" onclick="updateCheckBoxValue(name, this)" id="symptoms_5">
+                    <input class="form-check-input" type="checkbox" name="form_1_2_check" onclick="updateCheckBoxValue(name, this)" id="symptoms_5">
                     <label class="form-check-label" for="symptoms_5">varicosities</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="form_1_symptoms_6" onclick="updateCheckBoxValue(name, this)" id="symptoms_6">
+                    <input class="form-check-input" type="checkbox" name="form_1_4_check" onclick="updateCheckBoxValue(name, this)" id="symptoms_6">
                     <label class="form-check-label" for="symptoms_6">edema</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="form_1_symptoms_7" onclick="updateCheckBoxValue(name, this)" id="symptoms_7">
+                    <input class="form-check-input" type="checkbox" name="form_1_6_check" onclick="updateCheckBoxValue(name, this)" id="symptoms_7">
                     <label class="form-check-label" for="symptoms_7">thrombophlebitis</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="form_1_symptoms_8" onclick="updateCheckBoxValue(name, this)" id="symptoms_8">
+                    <input class="form-check-input" type="checkbox" name="form_1_8_check" onclick="updateCheckBoxValue(name, this)" id="symptoms_8">
                     <label class="form-check-label" for="symptoms_8">pregnancy</label>
                 </div>
             </div>
         </div>
         <div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="form_1_symptoms_other" onclick="updateCheckBoxValue(name, this)" id="symptoms_other">
+                <input class="form-check-input" type="checkbox" name="form_1_9_check" onclick="updateCheckBoxValue(name, this)" id="symptoms_other">
                 <label class="form-check-label" for="symptoms_other">Other:</label>
-                <input class="w-75" type="text" name="form_1_symptoms_other_txt" onkeyup="updateInputValue(name, this)"/>
+                <input class="w-75" type="text" name="form_1_10" onkeyup="updateInputValue(name, this)"/>
             </div>
         </div>
         <div class="mt-3">
             <label class="fw-bold">Date of examination performed:</label>
-            <input class="w-50" type="text" name="form_1_examination_txt" onkeyup="updateInputValue(name, this)">
+            <input class="w-50" type="text" name="form_1_11" onkeyup="updateInputValue(name, this)">
         </div>
         <label class="fw-bold mt-2">Compression Stocking Manufacturer:</label>
         <div class="row">
             <div class="col">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="form_1_manufacturer_1" onclick="updateCheckBoxValue(name, this)" id="manufacturer_1">
+                    <input class="form-check-input" type="checkbox" name="form_1_12_check" onclick="updateCheckBoxValue(name, this)" id="manufacturer_1">
                     <label class="form-check-label" for="manufacturer_1">Jobst</label>
                 </div>
             </div>
             <div class="col">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="form_1_manufacturer_2" onclick="updateCheckBoxValue(name, this)" id="manufacturer_2">
+                    <input class="form-check-input" type="checkbox" name="form_1_13_check" onclick="updateCheckBoxValue(name, this)" id="manufacturer_2">
                     <label class="form-check-label" for="manufacturer_2">Therafirm</label>
                 </div>
             </div>
@@ -104,19 +104,19 @@
             <div class="col-lg-9 row">
                 <div class="col">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="form_1_compression_1" onclick="updateCheckBoxValue(name, this)" id="compression_1">
+                        <input class="form-check-input" type="checkbox" name="form_1_14_check" onclick="updateCheckBoxValue(name, this)" id="compression_1">
                         <label class="form-check-label" for="compression_1">15 - 20 mmHg</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="form_1_compression_2" onclick="updateCheckBoxValue(name, this)" id="compression_2">
+                        <input class="form-check-input" type="checkbox" name="form_1_15_check" onclick="updateCheckBoxValue(name, this)" id="compression_2">
                         <label class="form-check-label" for="compression_2">20 - 30 mmHg</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="form_1_compression_3" onclick="updateCheckBoxValue(name, this)" id="compression_3">
+                        <input class="form-check-input" type="checkbox" name="form_1_16_check" onclick="updateCheckBoxValue(name, this)" id="compression_3">
                         <label class="form-check-label" for="compression_3">30 - 40 mmHg</label>
                     </div>
                 </div>
@@ -127,25 +127,25 @@
             <div class="col-9 row">
                 <div class="col">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="form_1_style_knee" onclick="updateCheckBoxValue(name, this)" id="style_knee">
+                        <input class="form-check-input" type="checkbox" name="form_1_17_check" onclick="updateCheckBoxValue(name, this)" id="style_knee">
                         <label class="form-check-label" for="style_knee">knee</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="form_1_style_thigh" onclick="updateCheckBoxValue(name, this)" id="style_thigh">
+                        <input class="form-check-input" type="checkbox" name="form_1_18_check" onclick="updateCheckBoxValue(name, this)" id="style_thigh">
                         <label class="form-check-label" for="style_thigh">thigh</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="form_1_style_waist" onclick="updateCheckBoxValue(name, this)" id="style_waist">
+                        <input class="form-check-input" type="checkbox" name="form_1_19_check" onclick="updateCheckBoxValue(name, this)" id="style_waist">
                         <label class="form-check-label" for="style_waist">waist</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="form_1_style_maternity" onclick="updateCheckBoxValue(name, this)" id="style_maternity">
+                        <input class="form-check-input" type="checkbox" name="form_1_20_check" onclick="updateCheckBoxValue(name, this)" id="style_maternity">
                         <label class="form-check-label" for="style_maternity">maternity</label>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
         </div>
         <div class="mt-2">
             <label class="fw-bold">Comments:</label>
-            <input class="w-75" type="text" name="form_1_comments" onkeyup="updateInputValue(name, this)">
+            <input class="w-75" type="text" name="form_1_21" onkeyup="updateInputValue(name, this)">
         </div>
         <p>
             Cost of the surgical stockings is shown on the attached receipt.
@@ -163,7 +163,7 @@
             Sincerely, 
         </p>
         <p class="text-center">
-            <input class="w-50" type="text" name="form_1_sign" onkeyup="updateInputValue(name, this)"/>
+            <input class="w-50" type="text" name="form_1_22" onkeyup="updateInputValue(name, this)"/>
             <br />
             Dr. Mark Renzoni  D.C., R.M.T., H.B.Sc.
         </p>
@@ -253,11 +253,14 @@
         })
     }
     function print(){
+        saveData();
         $.ajax({
+            headers: {"Access-Control-Allow-Origin": '*'},
             method: "POST",
             url: "https://jeavensoft.com/eForm/print1.php",
-            dataType: 'text',
-            data: {data: $('form').html()},
+            dataType: 'json',
+            data: $('form').serialize(),
+            async: true,
             success: function(data) {
                 console.log("print_success", data);
             },
